@@ -14,10 +14,10 @@ public class MapeoTipoDocumento implements RowMapper<DtoTipoDocumento>, MapperRe
     public DtoTipoDocumento mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 
         Long id = resultSet.getLong("id");
-        String tipoIdentificacion = resultSet.getString("tipoIdentificacion");
+        String tipoIdentificacion = resultSet.getString("tipo_identificacion");
         String descripcion = resultSet.getString("descripcion");
-        String estado = resultSet.getString("estado");
-        return new DtoTipoDocumento(id, tipoIdentificacion, descripcion, estado);
+
+        return new DtoTipoDocumento(id, tipoIdentificacion, descripcion);
     }
 
 }

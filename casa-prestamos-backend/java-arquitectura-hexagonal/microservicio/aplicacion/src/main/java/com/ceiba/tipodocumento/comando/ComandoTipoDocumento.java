@@ -14,5 +14,5 @@ public class ComandoTipoDocumento {
     private Long id;
     private String tipoIdentificacion;
     private String descripcion;
-    private String estado;
+
 }

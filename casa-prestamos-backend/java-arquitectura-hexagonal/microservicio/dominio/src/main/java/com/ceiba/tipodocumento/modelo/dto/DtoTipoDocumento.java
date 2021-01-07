@@ -7,9 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public class DtoTipoDocumento {
 
-	private Long id;
-	private String tipoIdentificacion;
-	private String descripcion;
-	private String estado;
+    private Long id;
+    private String tipoIdentificacion;
+    private String descripcion;
 
 }

@@ -39,5 +39,12 @@ public interface RepositorioCliente {
      * @return si existe o no
      */
     boolean existeExcluyendoId(Long id,String numeroDocumento);
+    
+    /**
+     * Permite validar si existe un cliente con un id
+     * @param id
+     * @return si existe o no
+     */
+    boolean existeId(Long id);
 
 }

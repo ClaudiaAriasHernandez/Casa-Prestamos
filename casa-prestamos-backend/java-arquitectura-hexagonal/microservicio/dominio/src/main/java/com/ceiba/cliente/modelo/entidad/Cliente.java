@@ -3,11 +3,6 @@ package com.ceiba.cliente.modelo.entidad;
 import static com.ceiba.dominio.ValidadorArgumento.validarLongitud;
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.ceiba.tipodocumento.modelo.entidad.TipoDocumento;
-
 import lombok.Getter;
 
 @Getter
@@ -26,16 +21,12 @@ public class Cliente {
     private String nombre;
     private String direccion;
     private String numeroDocumento;
-    private String telefono;
     private String correo;
-    private String idTipoDocumento;
-
-    @ManyToOne
-    @JoinColumn(name = "idTipoDocumento", referencedColumnName = "id")
-    private TipoDocumento tipoDocumento;
+    private String telefono;
+    private Long idTipoDocumento;
 
     public Cliente(Long id, String nombre, String direccion, String numeroDocumento, String correo, String telefono,
-            String idTipoDocumento) {
+            Long idTipoDocumento) {
         validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE_CLIENTE);
         validarObligatorio(telefono, SE_DEBE_INGRESAR_EL_TELEFONO);
         validarObligatorio(numeroDocumento, SE_DEBE_INGRESAR_EL_NUMERO_DE_DOCUMENTO_DEL_CLIENTE);
@@ -46,10 +37,11 @@ public class Cliente {
 
         this.id = id;
         this.nombre = nombre;
-        this.telefono = telefono;
+
         this.direccion = direccion;
         this.numeroDocumento = numeroDocumento;
         this.correo = correo;
+        this.telefono = telefono;
         this.idTipoDocumento = idTipoDocumento;
     }
 }

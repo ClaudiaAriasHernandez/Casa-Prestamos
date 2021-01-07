@@ -35,8 +35,9 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioCrearCliente servicioCrearCliente(RepositorioCliente repositorioCliente) {
-        return new ServicioCrearCliente(repositorioCliente);
+    public ServicioCrearCliente servicioCrearCliente(RepositorioCliente repositorioCliente,
+            RepositorioTipoDocumento repositorioTipoDocumento) {
+        return new ServicioCrearCliente(repositorioCliente, repositorioTipoDocumento);
     }
 
     @Bean
@@ -45,8 +46,9 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioActualizarCliente servicioActualizarCliente(RepositorioCliente repositorioCliente) {
-        return new ServicioActualizarCliente(repositorioCliente);
+    public ServicioActualizarCliente servicioActualizarCliente(RepositorioCliente repositorioCliente,
+            RepositorioTipoDocumento repositorioTipoDocumento) {
+        return new ServicioActualizarCliente(repositorioCliente, repositorioTipoDocumento);
     }
 
     @Bean

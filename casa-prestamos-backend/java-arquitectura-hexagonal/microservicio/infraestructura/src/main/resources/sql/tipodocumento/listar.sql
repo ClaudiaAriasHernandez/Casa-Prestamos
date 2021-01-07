@@ -1,2 +1,2 @@
-select id, tipo_identificacion, descripcion, estado
+select id, tipo_identificacion, descripcion
 from tipo_documento

@@ -1,1 +1,1 @@
-select count(1) from cliente where id <> :id and numero_documento = :numeroDocumento
+select count(1) from casaprestamos.cliente where  numero_documento = :numeroDocumento

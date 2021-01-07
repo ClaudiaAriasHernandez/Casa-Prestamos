@@ -28,12 +28,21 @@ public interface RepositorioTipoDocumento {
      * @return si existe o no
      */
     boolean existe(String tipoIdentificacion);
+
+    /**
+     * Permite validar si existe un TipoDocumento con un id
+     * @param id
+     * @return si existe o no
+     */
+    boolean existeId(Long id);
     
     /**
-     * Permite validar si existe un TipoDocumento con un tipoIdentificacion excluyendo un id
+     * Permite validar si existe un TipoDocumento con un tipoIdentificacion 
      * @param tipoIdentificacion
      * @return si existe o no
      */
-    boolean existeExcluyendoId(Long id,String tipoIdentificacion);
+    boolean existeTipoIdentificacion(String tipoIdentificacion);
+
+   
 
 }

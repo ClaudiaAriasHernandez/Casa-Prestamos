@@ -2,31 +2,31 @@ package com.ceiba.cliente.controlador;
 
 import java.util.List;
 
-import com.ceiba.usuario.consulta.ManejadorListarUsuarios;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
+import com.ceiba.cliente.consulta.ManejadorListarClientes;
+import com.ceiba.cliente.modelo.dto.DtoCliente;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/clientes")
-@Api(tags={"Controlador consulta cliente"})
+@Api(tags = { "Controlador consulta cliente" })
 public class ConsultaControladorCliente {
 
-    private final ManejadorListarUsuarios manejadorListarUsuarios;
+    private final ManejadorListarClientes manejadorListarClientes;
 
-    public ConsultaControladorCliente(ManejadorListarUsuarios manejadorListarUsuarios) {
-        this.manejadorListarUsuarios = manejadorListarUsuarios;
+    public ConsultaControladorCliente(ManejadorListarClientes manejadorListarClientes) {
+        this.manejadorListarClientes = manejadorListarClientes;
     }
 
     @GetMapping
     @ApiOperation("Listar Clientes")
-    public List<DtoUsuario> listar() {
-        return this.manejadorListarUsuarios.ejecutar();
+    public List<DtoCliente> listar() {
+        return this.manejadorListarClientes.ejecutar();
     }
 
 }

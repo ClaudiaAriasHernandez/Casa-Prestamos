@@ -10,7 +10,7 @@ public class FabricaTipoDocumento {
 
     public TipoDocumento crear(ComandoTipoDocumento comandoTipoDocumento) {
         return new TipoDocumento(comandoTipoDocumento.getId(), comandoTipoDocumento.getTipoIdentificacion(),
-                comandoTipoDocumento.getDescripcion(), comandoTipoDocumento.getEstado());
+                comandoTipoDocumento.getDescripcion());
     }
 
 }

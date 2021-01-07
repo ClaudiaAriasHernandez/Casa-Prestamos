@@ -25,8 +25,11 @@ public class RepositorioTipoDocumentoMysql implements RepositorioTipoDocumento {
     @SqlStatement(namespace = "tipodocumento", value = "existe")
     private static String sqlExiste;
 
-    @SqlStatement(namespace = "tipodocumento", value = "existeExcluyendoId")
-    private static String sqlExisteExcluyendoId;
+    @SqlStatement(namespace = "tipodocumento", value = "existeId")
+    private static String sqlExisteId;
+
+    @SqlStatement(namespace = "tipodocumento", value = "existeTipoIdentificacion")
+    private static String sqlExisteTipoIdentificacion;
 
     public RepositorioTipoDocumentoMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -55,17 +58,26 @@ public class RepositorioTipoDocumentoMysql implements RepositorioTipoDocumento {
     }
 
     @Override
+    public boolean existeId(Long id) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id", id);
+
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteId,
+                paramSource, Boolean.class);
+    }
+
+    @Override
     public void actualizar(TipoDocumento tipoDocumento) {
         this.customNamedParameterJdbcTemplate.actualizar(tipoDocumento, sqlActualizar);
     }
 
     @Override
-    public boolean existeExcluyendoId(Long id, String tipoIdentificacion) {
+    public boolean existeTipoIdentificacion(String tipoIdentificacion) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id", id);
+
         paramSource.addValue("tipoIdentificacion", tipoIdentificacion);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                .queryForObject(sqlExisteExcluyendoId, paramSource, Boolean.class);
+                .queryForObject(sqlExisteTipoIdentificacion, paramSource, Boolean.class);
     }
 }

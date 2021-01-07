@@ -14,8 +14,6 @@ dependencies {
 	testImplementation project.ext.junit5
 	implementation project.ext.junit4
 	implementation project.ext.junit5
-	implementation project.ext.javaxpersistence
-    implementation project.ext.springbeans
 	testImplementation project.ext.mockito
 	testImplementation project(':comun:comun-test')
 

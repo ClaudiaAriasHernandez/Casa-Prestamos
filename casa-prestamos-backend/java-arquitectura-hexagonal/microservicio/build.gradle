@@ -21,8 +21,7 @@ allprojects {
 	project.ext.springdevtools = ["org.springframework.boot:spring-boot-devtools:${springBootVersion}"]
 	project.ext.springbootundertow = ["org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}"]
 	project.ext.springbootjasypt = ['com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.1']
-	project.ext.javaxpersistence=[ 'javax.persistence:javax.persistence-api:2.2']
-	project.ext.springbeans=[ 'org.springframework:spring-beans:3.0.5.RELEASE']
+		
 		
 	project.ext.springtxt = [
 							  	"org.springframework:spring-tx:${springVersion}",

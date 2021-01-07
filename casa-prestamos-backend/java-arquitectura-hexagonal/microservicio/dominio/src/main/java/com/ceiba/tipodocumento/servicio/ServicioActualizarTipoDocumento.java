@@ -20,10 +20,11 @@ public class ServicioActualizarTipoDocumento {
     }
 
     private void validarExistenciaPrevia(TipoDocumento tipoDocumento) {
-        boolean existe = this.repositorioTipoDocumento.existeExcluyendoId(tipoDocumento.getId(),
-                tipoDocumento.getTipoIdentificacion());
-        if (!existe) {
+        boolean existe = this.repositorioTipoDocumento.existeTipoIdentificacion(tipoDocumento.getTipoIdentificacion());
+        boolean existeId = this.repositorioTipoDocumento.existeId(tipoDocumento.getId());
+        if (!existe || !existeId) {
             throw new ExcepcionDuplicidad(EL_TIPO_DE_DOCUMENTO_NO_EXISTE_EN_EL_SISTEMA);
         }
+
     }
 }
