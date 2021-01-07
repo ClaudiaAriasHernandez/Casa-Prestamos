@@ -1,0 +1,1 @@
+select count(1) from cliente where numero_documento = :numeroDocumento

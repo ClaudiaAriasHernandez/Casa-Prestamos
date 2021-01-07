@@ -1,0 +1,1 @@
+select count(1) from tipo_documento where tipo_identificacion = :tipoIdentificacion

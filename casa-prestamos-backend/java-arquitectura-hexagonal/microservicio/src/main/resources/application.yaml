@@ -1,0 +1,30 @@
+jasypt:
+   encryptor:
+      password: admin
+      algorithm: PBEWithMD5AndDES
+
+server:
+   port: 8080
+   servlet:
+      context-path: /casa-prestamos
+      session:
+         timeout: 21600s
+
+
+spring:
+   datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbcUrl: jdbc:mysql://${MYSQL_HOST:localhost}:3306/casaprestamos?serverTimezone=UTC
+      username: root
+      password: ENC(Gyr8DxkwwZNzreMh0upKTQ==)
+      hikari:
+         poolName: pool
+   jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        formatSql: true
+        databasePlatform: org.hibernate.dialect.MySQL8Dialect
+   
