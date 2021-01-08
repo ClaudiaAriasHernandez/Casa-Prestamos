@@ -7,6 +7,9 @@ import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.cliente.servicio.ServicioActualizarCliente;
 import com.ceiba.cliente.servicio.ServicioCrearCliente;
 import com.ceiba.cliente.servicio.ServicioEliminarCliente;
+import com.ceiba.prestamo.puerto.repositorio.RepositorioPrestamo;
+import com.ceiba.prestamo.servicio.ServicioActualizarPrestamo;
+import com.ceiba.prestamo.servicio.ServicioCrearPrestamo;
 import com.ceiba.tipodocumento.puerto.repositorio.RepositorioTipoDocumento;
 import com.ceiba.tipodocumento.servicio.ServicioActualizarTipoDocumento;
 import com.ceiba.tipodocumento.servicio.ServicioCrearTipoDocumento;
@@ -66,6 +69,17 @@ public class BeanServicio {
     public ServicioActualizarTipoDocumento servicioActualizarTipoDocumento(
             RepositorioTipoDocumento repositorioTipoDocumento) {
         return new ServicioActualizarTipoDocumento(repositorioTipoDocumento);
+    }
+
+    @Bean
+    public ServicioCrearPrestamo servicioCrearPrestamo(RepositorioCliente repositorioCliente,
+            RepositorioPrestamo repositorioPrestamo) {
+        return new ServicioCrearPrestamo(repositorioCliente, repositorioPrestamo);
+    }
+
+    @Bean
+    public ServicioActualizarPrestamo servicioActualizarPrestamo(RepositorioPrestamo repositorioPrestamo) {
+        return new ServicioActualizarPrestamo(repositorioPrestamo);
     }
 
 }

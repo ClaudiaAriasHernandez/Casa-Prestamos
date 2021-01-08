@@ -5,14 +5,14 @@ import com.ceiba.tipodocumento.modelo.entidad.TipoDocumento;
 public interface RepositorioTipoDocumento {
     /**
      * Permite crear un TipoDocumento
-     * @param TipoDocumento
+     * @param Prestamo
      * @return el id generado
      */
     Long crear(TipoDocumento tipoDocumento);
 
     /**
      * Permite actualizar un TipoDocumento
-     * @param TipoDocumento
+     * @param Prestamo
      */
     void actualizar(TipoDocumento tipoDocumento);
 

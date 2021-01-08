@@ -1,0 +1,1 @@
+insert into prestamo (id, fecha_solicitud, fecha_estimada_pago, fecha_pago, valor, valor_mora, valor_interes, valor_recargo, valor_total, estado, id_cliente) values (:id,  :fechaSolicitud, :fechaEstimadaPago, :fechaPago, :valor, :valorMora, :valorInteres, :valorRecargo,:valorTotal, :estado, :idCliente)
