@@ -12,4 +12,6 @@ public interface DaoPrestamo {
      * @return los prestamos
      */
     List<DtoPrestamo> listar();
+
+
 }

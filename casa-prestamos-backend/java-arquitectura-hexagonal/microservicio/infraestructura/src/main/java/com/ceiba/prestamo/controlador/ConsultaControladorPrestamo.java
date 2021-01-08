@@ -3,6 +3,7 @@ package com.ceiba.prestamo.controlador;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,13 @@ public class ConsultaControladorPrestamo {
     @ApiOperation("Listar Prestamos")
     public List<DtoPrestamo> listar() {
         return this.manejadorListarPrestamos.ejecutar();
+    }
+
+    @GetMapping(value = "/{id}")
+    @ApiOperation("Listar Prestamos Activos por cliente")
+    public List<DtoPrestamo> listarPorIdCliente(@PathVariable Long id) {
+
+        return this.manejadorListarPrestamos.ejecutar(id);
     }
 
 }

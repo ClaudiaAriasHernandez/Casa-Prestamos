@@ -1,8 +1,9 @@
 package com.ceiba.prestamo.servicio;
 
+import static com.ceiba.dominio.fecha.OperacionesFecha.convertirFecha;
+import static com.ceiba.dominio.fecha.OperacionesFecha.generarFechaActual;
+
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 
 import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
@@ -35,7 +36,7 @@ public class ServicioCrearPrestamo {
     }
 
     private void validarExistenciaPrevia(Prestamo prestamo) {
-        boolean existe = this.repositorioPrestamo.existeIdCliente(prestamo.getIdCliente());
+        boolean existe = this.repositorioPrestamo.existePrestamoActivo(prestamo.getIdCliente());
         if (existe) {
             throw new ExcepcionDuplicidad(EL_CLIENTE_YA_TIENE_UN_PRESTAMO_EN_EL_SISTEMA);
         }
@@ -50,11 +51,6 @@ public class ServicioCrearPrestamo {
 
     }
 
-    public LocalDate generarFechaActual() {
-
-        return LocalDate.now();
-    }
-
     public LocalDate generarFechaEstimadaPago(LocalDate fechaInicioGarantia, int diasGarantia) {
 
         int diasHabiles = 0;
@@ -65,11 +61,6 @@ public class ServicioCrearPrestamo {
         }
 
         return fechaFinGarantia;
-    }
-
-    public Date convertirFecha(LocalDate fecha) {
-
-        return Date.from(fecha.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
 
 }

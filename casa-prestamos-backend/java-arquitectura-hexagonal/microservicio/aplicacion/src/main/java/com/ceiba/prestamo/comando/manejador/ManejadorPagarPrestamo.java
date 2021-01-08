@@ -6,22 +6,22 @@ import com.ceiba.manejador.ManejadorComando;
 import com.ceiba.prestamo.comando.ComandoPrestamo;
 import com.ceiba.prestamo.comando.fabrica.FabricaPrestamo;
 import com.ceiba.prestamo.modelo.entidad.Prestamo;
-import com.ceiba.prestamo.servicio.ServicioActualizarPrestamo;
+import com.ceiba.prestamo.servicio.ServicioPagarPrestamo;
 
 @Component
-public class ManejadorActualizarPrestamo implements ManejadorComando<ComandoPrestamo> {
+public class ManejadorPagarPrestamo implements ManejadorComando<ComandoPrestamo> {
 
     private final FabricaPrestamo fabricaPrestamo;
-    private final ServicioActualizarPrestamo servicioActualizarPrestamo;
+    private final ServicioPagarPrestamo servicioPagarPrestamo;
 
-    public ManejadorActualizarPrestamo(FabricaPrestamo fabricaPrestamo,
-            ServicioActualizarPrestamo servicioActualizarPrestamo) {
+    public ManejadorPagarPrestamo(FabricaPrestamo fabricaPrestamo,
+            ServicioPagarPrestamo servicioPagarPrestamo) {
         this.fabricaPrestamo = fabricaPrestamo;
-        this.servicioActualizarPrestamo = servicioActualizarPrestamo;
+        this.servicioPagarPrestamo = servicioPagarPrestamo;
     }
 
     public void ejecutar(ComandoPrestamo comandoPrestamo) {
         Prestamo prestamo = this.fabricaPrestamo.crear(comandoPrestamo);
-        this.servicioActualizarPrestamo.ejecutar(prestamo);
+        this.servicioPagarPrestamo.ejecutar(prestamo);
     }
 }

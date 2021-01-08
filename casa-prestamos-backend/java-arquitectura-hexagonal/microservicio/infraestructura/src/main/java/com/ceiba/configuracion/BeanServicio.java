@@ -8,7 +8,8 @@ import com.ceiba.cliente.servicio.ServicioActualizarCliente;
 import com.ceiba.cliente.servicio.ServicioCrearCliente;
 import com.ceiba.cliente.servicio.ServicioEliminarCliente;
 import com.ceiba.prestamo.puerto.repositorio.RepositorioPrestamo;
-import com.ceiba.prestamo.servicio.ServicioActualizarPrestamo;
+import com.ceiba.prestamo.servicio.ServicioPagarPrestamo;
+import com.ceiba.prestamo.servicio.ServicioConsultarPrestamo;
 import com.ceiba.prestamo.servicio.ServicioCrearPrestamo;
 import com.ceiba.tipodocumento.puerto.repositorio.RepositorioTipoDocumento;
 import com.ceiba.tipodocumento.servicio.ServicioActualizarTipoDocumento;
@@ -78,8 +79,13 @@ public class BeanServicio {
     }
 
     @Bean
-    public ServicioActualizarPrestamo servicioActualizarPrestamo(RepositorioPrestamo repositorioPrestamo) {
-        return new ServicioActualizarPrestamo(repositorioPrestamo);
+    public ServicioPagarPrestamo servicioPagarPrestamo(RepositorioCliente repositorioCliente,RepositorioPrestamo repositorioPrestamo) {
+        return new ServicioPagarPrestamo(repositorioCliente,repositorioPrestamo );
+    }
+
+    @Bean
+    public ServicioConsultarPrestamo servicioConsultarPrestamo(RepositorioCliente repositorioCliente,RepositorioPrestamo repositorioPrestamo) {
+        return new ServicioConsultarPrestamo(repositorioCliente, repositorioPrestamo);
     }
 
 }

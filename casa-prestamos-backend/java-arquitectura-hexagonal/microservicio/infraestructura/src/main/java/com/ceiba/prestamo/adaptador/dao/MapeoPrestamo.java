@@ -16,7 +16,7 @@ public class MapeoPrestamo implements RowMapper<DtoPrestamo>, MapperResult {
     @Override
     public DtoPrestamo mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 
-        Long id = resultSet.getLong("id");
+        Long idPrestamo = resultSet.getLong("idPrestamo");
         Date fechaSolicitud = resultSet.getDate("fecha_solicitud");
         Date fechaEstimadaPago = resultSet.getDate("fecha_estimada_pago");
         Date fechaPago = resultSet.getDate("fecha_pago");
@@ -43,7 +43,7 @@ public class MapeoPrestamo implements RowMapper<DtoPrestamo>, MapperResult {
 
         DtoCliente dtoCliente = new DtoCliente(idCliente, nombre, direccion, numeroDocumento, telefono, correo,
                 idTipoDocumento, dtoTipoDocumento);
-        return new DtoPrestamo(id, fechaSolicitud, fechaEstimadaPago, fechaPago, valor, valorMora, valorInteres,
+        return new DtoPrestamo(idPrestamo, fechaSolicitud, fechaEstimadaPago, fechaPago, valor, valorMora, valorInteres,
                 valorRecargo, valorTotal, estado, idClientePrestamo, dtoCliente);
     }
 

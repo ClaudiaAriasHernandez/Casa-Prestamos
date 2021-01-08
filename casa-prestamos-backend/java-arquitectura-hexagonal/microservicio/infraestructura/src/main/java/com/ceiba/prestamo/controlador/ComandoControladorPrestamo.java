@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ceiba.ComandoRespuesta;
 import com.ceiba.prestamo.comando.ComandoPrestamo;
-import com.ceiba.prestamo.comando.manejador.ManejadorActualizarPrestamo;
+import com.ceiba.prestamo.comando.manejador.ManejadorPagarPrestamo;
 import com.ceiba.prestamo.comando.manejador.ManejadorCrearPrestamo;
 
 import io.swagger.annotations.Api;
@@ -23,14 +23,14 @@ public class ComandoControladorPrestamo {
 
     private final ManejadorCrearPrestamo manejadorCrearPrestamo;
 
-    private final ManejadorActualizarPrestamo manejadorActualizarPrestamo;
+    private final ManejadorPagarPrestamo manejadorPagarPrestamo;
 
     @Autowired
     public ComandoControladorPrestamo(ManejadorCrearPrestamo manejadorCrearPrestamo,
-            ManejadorActualizarPrestamo manejadorActualizarPrestamo) {
+            ManejadorPagarPrestamo manejadorPagarPrestamo) {
         this.manejadorCrearPrestamo = manejadorCrearPrestamo;
 
-        this.manejadorActualizarPrestamo = manejadorActualizarPrestamo;
+        this.manejadorPagarPrestamo = manejadorPagarPrestamo;
     }
 
     @PostMapping
@@ -40,9 +40,11 @@ public class ComandoControladorPrestamo {
     }
 
     @PutMapping(value = "/{id}")
-    @ApiOperation("Actualizar Prestamo")
-    public void actualizar(@RequestBody ComandoPrestamo comandoPrestamo, @PathVariable Long id) {
+    @ApiOperation("Pagar Prestamo")
+    public void pagar(@RequestBody ComandoPrestamo comandoPrestamo, @PathVariable Long id) {
         comandoPrestamo.setId(id);
-        manejadorActualizarPrestamo.ejecutar(comandoPrestamo);
+        manejadorPagarPrestamo.ejecutar(comandoPrestamo);
     }
+    
+    
 }

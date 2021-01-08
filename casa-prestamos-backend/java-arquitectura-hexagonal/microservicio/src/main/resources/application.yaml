@@ -15,7 +15,7 @@ spring:
    datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
       type: com.zaxxer.hikari.HikariDataSource
-      jdbcUrl: jdbc:mysql://${MYSQL_HOST:localhost}:3306/casaprestamos?serverTimezone=UTC
+      jdbcUrl: jdbc:mysql://${MYSQL_HOST:localhost}:3306/casaprestamos
       username: root
       password: ENC(Gyr8DxkwwZNzreMh0upKTQ==)
       hikari:
