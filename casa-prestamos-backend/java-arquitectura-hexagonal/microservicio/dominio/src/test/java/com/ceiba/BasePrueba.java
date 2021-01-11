@@ -1,5 +1,6 @@
 package com.ceiba;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.util.function.Supplier;
@@ -31,6 +32,10 @@ public class BasePrueba {
                     + e.getClass().getCanonicalName(), exception.isInstance(e));
             Assert.assertTrue(e.getMessage().contains(message));
         }
+    }
+
+    public static void assertEqualsObject(Object expected, Object actual) {
+        assertEquals(expected, actual);
     }
 
     @FunctionalInterface

@@ -50,7 +50,7 @@ public class ServicioConsultarPrestamo {
 
         List<DtoPrestamo> prestamoCliente = this.repositorioPrestamo.listarPorIdCliente(id);
         for (DtoPrestamo dtoPrestamo : prestamoCliente) {
-            System.err.println(dtoPrestamo.getFechaSolicitud());
+
             dtoPrestamo.setFechaPago(fechaActual);
 
             dias = generarDiasPrestamo(fechaActual, dtoPrestamo);
