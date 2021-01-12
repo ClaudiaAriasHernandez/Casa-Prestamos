@@ -1,1 +1,1 @@
-select count(1) from casaprestamos.tipo_documento where tipo_identificacion = :tipoIdentificacion
+select count(1) from tipo_documento where tipo_identificacion = :tipoIdentificacion

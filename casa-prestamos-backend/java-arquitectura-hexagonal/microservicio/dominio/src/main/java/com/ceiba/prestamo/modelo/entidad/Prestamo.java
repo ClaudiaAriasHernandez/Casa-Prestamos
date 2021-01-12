@@ -18,7 +18,7 @@ public class Prestamo {
     private Date fechaSolicitud;
     private Date fechaEstimadaPago;
     private Date fechaPago;
-    private double valor;
+    private Double valor;
     private double valorMora;
     private double valorInteres;
     private double valorRecargo;
@@ -26,7 +26,7 @@ public class Prestamo {
     private String estado;
     private Long idCliente;
 
-    public Prestamo(Long id, Date fechaSolicitud, Date fechaEstimadaPago, Date fechaPago, double valor,
+    public Prestamo(Long id, Date fechaSolicitud, Date fechaEstimadaPago, Date fechaPago, Double valor,
             double valorMora, double valorInteres, double valorRecargo, double valorTotal, String estado,
             Long idCliente) {
 

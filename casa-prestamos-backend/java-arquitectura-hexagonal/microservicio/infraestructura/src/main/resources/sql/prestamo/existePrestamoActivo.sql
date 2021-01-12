@@ -1,1 +1,1 @@
-select count(1) from casaprestamos.prestamo where  id_cliente = :idCliente and estado = 'D';
+select count(1) from prestamo where  id_cliente = :idCliente and estado = 'D';

@@ -17,7 +17,7 @@ public class DtoPrestamo {
     private Date fechaSolicitud;
     private Date fechaEstimadaPago;
     private Date fechaPago;
-    private double valor;
+    private Double valor;
     private double valorMora;
     private double valorInteres;
     private double valorRecargo;

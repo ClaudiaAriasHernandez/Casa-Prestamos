@@ -4,12 +4,12 @@ import static com.ceiba.dominio.fecha.OperacionesFecha.convertirFecha;
 import static com.ceiba.dominio.fecha.OperacionesFecha.generarFechaActual;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
@@ -58,7 +58,7 @@ public class ServicioConsultarPrestamo {
             boolean diaFecha = validarDiaFecha(convertToLocalDate(dtoPrestamo.getFechaSolicitud()));
             if (dias == DIAS_PRESTAMO || dias <= DIAS_PRESTAMO) {
 
-                if (diaFecha) {
+                if (diaFecha==true) {
                     valorRecargo = (dtoPrestamo.getValor() / 100) * PORCENTAJE_RECARGO;
                     dtoPrestamo.setValorRecargo(valorRecargo);
                     valorInteres = (dtoPrestamo.getValor() / 100) * PORCENTAJE_INTERES;
@@ -135,10 +135,15 @@ public class ServicioConsultarPrestamo {
 
     private long generarDiasPrestamo(Date fechaActual, DtoPrestamo dtoPrestamo) {
 
-        long calculoFecha;
-        calculoFecha = (fechaActual.getTime() - dtoPrestamo.getFechaSolicitud().getTime());
 
-        return TimeUnit.DAYS.convert(calculoFecha, TimeUnit.MILLISECONDS);
+     
+       LocalDate inicio = Instant.ofEpochMilli(fechaActual.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+
+       LocalDate fin = Instant.ofEpochMilli(dtoPrestamo.getFechaSolicitud().getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+
+      // return Duration.between(fin.atTime(00, 00, 00), inicio.atTime(23, 59, 59)).toMillis();
+
+        return Duration.between(fin.atStartOfDay(), inicio.atStartOfDay()).toDays()+1;
     }
 
 }

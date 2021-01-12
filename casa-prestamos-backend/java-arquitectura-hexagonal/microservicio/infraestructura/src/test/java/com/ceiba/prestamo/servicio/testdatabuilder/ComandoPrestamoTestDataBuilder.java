@@ -2,9 +2,9 @@ package com.ceiba.prestamo.servicio.testdatabuilder;
 
 import java.util.Date;
 
-import com.ceiba.prestamo.modelo.entidad.Prestamo;
+import com.ceiba.prestamo.comando.ComandoPrestamo;
 
-public class PrestamoTestDataBuilder {
+public class ComandoPrestamoTestDataBuilder {
 
     private Long id;
     private Date fechaSolicitud;
@@ -18,9 +18,8 @@ public class PrestamoTestDataBuilder {
     private String estado;
     private Long idCliente;
 
-    public PrestamoTestDataBuilder() {
-
-        id = 1L;
+    public ComandoPrestamoTestDataBuilder() {
+        id = 3L;
         fechaSolicitud = new Date(2021 - 01 - 07);
         fechaEstimadaPago = new Date(2021 - 01 - 21);
         fechaPago = new Date();
@@ -30,27 +29,17 @@ public class PrestamoTestDataBuilder {
         valorRecargo = 0.0;
         valorTotal = 1030000.0;
         estado = "D";
-        idCliente = 1L;
-
+        idCliente = 2L;
     }
 
-    public PrestamoTestDataBuilder conId(Long id) {
+    public ComandoPrestamoTestDataBuilder conId(Long id) {
         this.id = id;
         return this;
     }
 
-    public PrestamoTestDataBuilder conValor(Double valor) {
-        this.valor = valor;
-        return this;
-    }
-
-    public PrestamoTestDataBuilder conIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
-        return this;
-    }
-
-    public Prestamo build() {
-        return new Prestamo(id, fechaSolicitud, fechaEstimadaPago, fechaPago, valor, valorMora, valorInteres,
+    public ComandoPrestamo build() {
+        return new ComandoPrestamo(id, fechaSolicitud, fechaEstimadaPago, fechaPago, valor, valorMora, valorInteres,
                 valorRecargo, valorTotal, estado, idCliente);
     }
+
 }
