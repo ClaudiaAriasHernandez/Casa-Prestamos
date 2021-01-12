@@ -16,7 +16,18 @@ public class ComandoCliente {
     private String direccion;
     private String numeroDocumento;
     private String correo;
-    private String telefono; 
+    private String telefono;
     private Long idTipoDocumento;
+
+    public ComandoCliente(String nombre, String direccion, String numeroDocumento, String correo, String telefono,
+            Long idTipoDocumento) {
+        super();
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.numeroDocumento = numeroDocumento;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.idTipoDocumento = idTipoDocumento;
+    }
 
 }

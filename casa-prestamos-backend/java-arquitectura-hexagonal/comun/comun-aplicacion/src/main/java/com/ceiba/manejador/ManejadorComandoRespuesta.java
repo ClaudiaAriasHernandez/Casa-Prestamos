@@ -2,8 +2,10 @@ package com.ceiba.manejador;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ceiba.ComandoRespuesta;
+
 public interface ManejadorComandoRespuesta<C, R> {
 
 	@Transactional
-	R ejecutar(C comando);
+	ComandoRespuesta<Long> ejecutar(C comando);
 }

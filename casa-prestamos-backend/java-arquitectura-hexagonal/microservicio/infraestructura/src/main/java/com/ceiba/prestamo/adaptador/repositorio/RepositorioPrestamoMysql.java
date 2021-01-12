@@ -42,6 +42,8 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
 
     @Override
     public Long crear(Prestamo prestamo) {
+        //transformacion fecha        
+        
         return this.customNamedParameterJdbcTemplate.crear(prestamo, sqlCrear);
     }
 

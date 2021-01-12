@@ -13,7 +13,7 @@ public class ComandoClienteTestDataBuilder {
     private Long idTipoDocumento;
 
     public ComandoClienteTestDataBuilder() {
-        id = 200L;
+       
         nombre = "Katia Arismendy";
         direccion = "Call 62";
         numeroDocumento = "1037641017";

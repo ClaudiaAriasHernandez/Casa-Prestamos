@@ -51,7 +51,7 @@ public class ServicioCrearPrestamo {
 
     }
 
-    public LocalDate generarFechaEstimadaPago(LocalDate fechaInicioGarantia, int diasGarantia) {
+    private LocalDate generarFechaEstimadaPago(LocalDate fechaInicioGarantia, int diasGarantia) {
 
         int diasHabiles = 0;
         LocalDate fechaFinGarantia = fechaInicioGarantia.plusDays(-1);

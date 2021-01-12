@@ -29,6 +29,7 @@ dependencies {
 
 	implementation project(':comun:comun-infraestructura')
 	implementation project(':comun:comun-aplicacion')
+	implementation 'com.google.code.gson:gson:2.8.6'
 }
 
 jacocoTestReport {

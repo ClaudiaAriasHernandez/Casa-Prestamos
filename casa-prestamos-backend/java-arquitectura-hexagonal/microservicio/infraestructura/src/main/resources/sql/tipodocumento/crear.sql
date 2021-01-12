@@ -1,2 +1,2 @@
-insert into tipo_documento (id, tipo_identificacion, descripcion) values (:id,  :tipoIdentificacion, :descripcion)
+insert into tipo_documento ( tipo_identificacion, descripcion) values (  :tipoIdentificacion, :descripcion)
  

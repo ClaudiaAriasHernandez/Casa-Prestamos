@@ -19,17 +19,17 @@ public class ComandoPrestamoTestDataBuilder {
     private Long idCliente;
 
     public ComandoPrestamoTestDataBuilder() {
-        id = 3L;
+        id = 300L;
         fechaSolicitud = new Date(2021 - 01 - 07);
         fechaEstimadaPago = new Date(2021 - 01 - 21);
-        fechaPago = new Date();
+        fechaPago = null;
         valor = 1000000.0;
         valorMora = 0.0;
-        valorInteres = 30000.0;
+        valorInteres = 0.0;
         valorRecargo = 0.0;
-        valorTotal = 1030000.0;
+        valorTotal = 0.0;
         estado = "D";
-        idCliente = 2L;
+        idCliente = 1L;
     }
 
     public ComandoPrestamoTestDataBuilder conId(Long id) {

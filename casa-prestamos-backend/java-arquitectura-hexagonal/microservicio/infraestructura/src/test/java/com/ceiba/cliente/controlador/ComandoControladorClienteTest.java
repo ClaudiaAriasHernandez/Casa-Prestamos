@@ -3,7 +3,7 @@ package com.ceiba.cliente.controlador;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Test;
@@ -14,11 +14,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.cliente.comando.ComandoCliente;
 import com.ceiba.cliente.servicio.testdatabuilder.ComandoClienteTestDataBuilder;
+import com.ceiba.response.testdatabuildar.ComandoRespuestaTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ApplicationMock.class)
@@ -39,7 +42,7 @@ public class ComandoControladorClienteTest {
         // act - assert
         mocMvc.perform(post("/clientes").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(cliente))).andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 200}"));
+                .andExpect(jsonPath("valor").isNotEmpty());
     }
 
     @Test
@@ -57,19 +60,23 @@ public class ComandoControladorClienteTest {
     @Test
     public void eliminar() throws Exception {
         // arrange
-        Long id = 201L;
+
         ComandoCliente cliente = new ComandoClienteTestDataBuilder().build();
-        cliente.setId(id);
+
         cliente.setNumeroDocumento("12345423");
 
         // act - assert
-        mocMvc.perform(post("/clientes").contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(cliente))).andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 201}"));
+        ResultActions result = mocMvc
+                .perform(post("/clientes").contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(cliente)))
+                .andExpect(status().isOk()).andExpect(jsonPath("valor").isNotEmpty());
 
+        //
         // act - assert
-        mocMvc.perform(
-                delete("/clientes/{id}", id).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        mocMvc.perform(delete("/clientes/{id}",
+                new Gson().fromJson(result.andReturn().getResponse().getContentAsString(),
+                        ComandoRespuestaTestDataBuilder.class).getValor()).contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 }

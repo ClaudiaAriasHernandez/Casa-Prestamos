@@ -58,7 +58,7 @@ public class ServicioConsultarPrestamo {
             boolean diaFecha = validarDiaFecha(convertToLocalDate(dtoPrestamo.getFechaSolicitud()));
             if (dias == DIAS_PRESTAMO || dias <= DIAS_PRESTAMO) {
 
-                if (diaFecha==true) {
+                if (diaFecha == true) {
                     valorRecargo = (dtoPrestamo.getValor() / 100) * PORCENTAJE_RECARGO;
                     dtoPrestamo.setValorRecargo(valorRecargo);
                     valorInteres = (dtoPrestamo.getValor() / 100) * PORCENTAJE_INTERES;
@@ -135,15 +135,15 @@ public class ServicioConsultarPrestamo {
 
     private long generarDiasPrestamo(Date fechaActual, DtoPrestamo dtoPrestamo) {
 
+        LocalDate inicio = Instant.ofEpochMilli(fechaActual.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
 
-     
-       LocalDate inicio = Instant.ofEpochMilli(fechaActual.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fin = Instant.ofEpochMilli(dtoPrestamo.getFechaSolicitud().getTime()).atZone(ZoneId.systemDefault())
+                .toLocalDate();
 
-       LocalDate fin = Instant.ofEpochMilli(dtoPrestamo.getFechaSolicitud().getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+        // return Duration.between(fin.atTime(00, 00, 00), inicio.atTime(23, 59,
+        // 59)).toMillis();
 
-      // return Duration.between(fin.atTime(00, 00, 00), inicio.atTime(23, 59, 59)).toMillis();
-
-        return Duration.between(fin.atStartOfDay(), inicio.atStartOfDay()).toDays()+1;
+        return Duration.between(fin.atStartOfDay(), inicio.atStartOfDay()).toDays() + 1;
     }
 
 }
