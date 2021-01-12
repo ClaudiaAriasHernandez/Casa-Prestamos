@@ -33,7 +33,7 @@ public class ConsultaControladorTipoDocumentoTest {
         mocMvc.perform(get("/tipodocumentos")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].tipoIdentificacion", is("CC")));
     }
 

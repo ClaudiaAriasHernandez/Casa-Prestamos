@@ -19,8 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.ceiba.ApplicationMock;
 import com.ceiba.cliente.comando.ComandoCliente;
 import com.ceiba.prestamo.comando.ComandoPrestamo;
-import com.ceiba.tipodocumento.comando.ComandoTipoDocumento;
-import com.ceiba.tipodocumento.servicio.testdatabuilder.ComandoTipoDocumentoTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
@@ -36,29 +34,18 @@ public class ComandoControladorPrestamoTest {
 
     @Test
     public void crear() throws Exception {
-        
-        
         // arrange
-        ComandoTipoDocumento tipoDocumento = new ComandoTipoDocumento(20L, "CE","Cedula Extrajeria");
-
-        // act - assert
-        mocMvc.perform(post("/tipodocumentos")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(tipoDocumento)))
-                .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 20}"));
-        // arrange
-        Long idCliente = 30L;
+        Long idCliente = 40L;
         ComandoCliente cliente = new ComandoCliente(idCliente, "Sara Quintero", "Carrera 62 # 59 -38", "13345564",
-                "sara@hotmail.com", "5989252", 20L);
+                "sara@hotmail.com", "5989252", 1L);
 
         // act - assert
         mocMvc.perform(post("/clientes").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(cliente))).andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 30}"));
+                .andExpect(content().json("{'valor': 40}"));
         // arrange
         ComandoPrestamo prestamo = new ComandoPrestamo(30L, new Date(2020 - 12 - 27), new Date(2021 - 01 - 10),
-                new Date(2021 - 01 - 10), 1000000.0, 0.0, 0.0, 0.0, 0.0, "D", 30L);
+                new Date(2021 - 01 - 10), 1000000.0, 0.0, 0.0, 0.0, 0.0, "D", idCliente);
 
         // act - assert
         mocMvc.perform(post("/prestamos").contentType(MediaType.APPLICATION_JSON)
