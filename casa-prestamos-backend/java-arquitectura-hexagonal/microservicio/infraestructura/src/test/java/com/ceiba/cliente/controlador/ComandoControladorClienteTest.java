@@ -61,8 +61,8 @@ public class ComandoControladorClienteTest {
         ComandoCliente cliente = new ComandoClienteTestDataBuilder().build();
         cliente.setId(id);
         cliente.setNumeroDocumento("12345423");
-        
-     // act - assert
+
+        // act - assert
         mocMvc.perform(post("/clientes").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(cliente))).andExpect(status().isOk())
                 .andExpect(content().json("{'valor': 201}"));
