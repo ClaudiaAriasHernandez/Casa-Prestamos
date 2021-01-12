@@ -35,29 +35,29 @@ public class ComandoControladorPrestamoTest {
     @Test
     public void crear() throws Exception {
         // arrange
-        Long idCliente = 3L;
+        Long idCliente = 30L;
         ComandoCliente cliente = new ComandoCliente(idCliente, "Sara Quintero", "Carrera 62 # 59 -38", "1023458874",
                 "sara@hotmail.com", "5989252", 1L);
 
         // act - assert
         mocMvc.perform(post("/clientes").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(cliente))).andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 3}"));
+                .andExpect(content().json("{'valor': 30}"));
         // arrange
-        ComandoPrestamo prestamo = new ComandoPrestamo(2L, new Date(2020 - 12 - 27), new Date(2021 - 01 - 10),
-                new Date(2021 - 01 - 10), 1000000.0, 0.0, 0.0, 0.0, 0.0, "D", 3L);
+        ComandoPrestamo prestamo = new ComandoPrestamo(200L, new Date(2020 - 12 - 27), new Date(2021 - 01 - 10),
+                new Date(2021 - 01 - 10), 1000000.0, 0.0, 0.0, 0.0, 0.0, "D", 30L);
 
         // act - assert
         mocMvc.perform(post("/prestamos").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(prestamo))).andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 2}"));
+                .andExpect(content().json("{'valor': 200}"));
     }
 
     @Test
     public void pagar() throws Exception {
 
         // arrange
-        Long id = 2L;
+        Long id = 1L;
         ComandoPrestamo prestamo = new ComandoPrestamo(id, new Date(2020 - 12 - 27), new Date(2021 - 01 - 10),
                 new Date(2021 - 01 - 10), 1000000.0, 30000, 0.0, 0.0, 1030000, "P", 1L);
 
