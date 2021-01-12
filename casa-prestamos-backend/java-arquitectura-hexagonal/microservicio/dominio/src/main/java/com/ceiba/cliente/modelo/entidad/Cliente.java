@@ -9,10 +9,10 @@ import lombok.Getter;
 public class Cliente {
 
     private static final String SE_DEBE_INGRESAR_EL_NOMBRE_CLIENTE = "Se debe ingresar el nombre del cliente";
-    private static final String EL_TELEFONO_DEBE_TENER_UNA_LONGITUD_MAYOR_O_IGUAL_A = "El número de telefono debe tener una longitud mayor o igual a %s";
-    private static final String SE_DEBE_INGRESAR_EL_TELEFONO = "Se debe ingresar el número de telefono del cliente";
-    private static final String SE_DEBE_INGRESAR_EL_NUMERO_DE_DOCUMENTO_DEL_CLIENTE = "Se debe ingresar el número de documento del cliente";
-    private static final String SE_DEBE_INGRESAR_LA_DIRECCION_DEL_CLIENTE = "Se debe ingresar la dirección del cliente";
+    private static final String EL_TELEFONO_DEBE_TENER_UNA_LONGITUD_MAYOR_O_IGUAL_A = "El nÃºmero de telefono debe tener una longitud mayor o igual a %s";
+    private static final String SE_DEBE_INGRESAR_EL_TELEFONO = "Se debe ingresar el nÃºmero de telefono del cliente";
+    private static final String SE_DEBE_INGRESAR_EL_NUMERO_DE_DOCUMENTO_DEL_CLIENTE = "Se debe ingresar el nÃºmero de documento del cliente";
+    private static final String SE_DEBE_INGRESAR_LA_DIRECCION_DEL_CLIENTE = "Se debe ingresar la direcciÃ³n del cliente";
     private static final String SE_DEBE_INGRESAR_EL_TIPO_DE_DOCUMENTO_CLIENTE = "Se debe ingresar el tipo de documento del cliente";
 
     private static final int LONGITUD_MINIMA_TELEFONO = 7;

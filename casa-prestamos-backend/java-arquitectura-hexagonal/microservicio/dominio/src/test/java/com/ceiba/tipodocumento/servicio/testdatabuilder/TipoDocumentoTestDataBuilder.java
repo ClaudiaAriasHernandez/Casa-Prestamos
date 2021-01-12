@@ -12,7 +12,7 @@ public class TipoDocumentoTestDataBuilder {
 
         id = 1L;
         tipoIdentificacion = "CC";
-        descripcion = "Cedúla de ciudadania";
+        descripcion = "CedÃºla de ciudadania";
 
     }
 

@@ -29,7 +29,7 @@ public class ServicioCrearClienteTest {
         ClienteTestDataBuilder clienteTestDataBuilder = new ClienteTestDataBuilder().conTelefono(null);
         // act - assert
         BasePrueba.assertThrows(() -> clienteTestDataBuilder.build(), ExcepcionValorObligatorio.class,
-                "Se debe ingresar el número de telefono del cliente");
+                "Se debe ingresar el nÃºmero de telefono del cliente");
     }
 
     @Test
@@ -38,7 +38,7 @@ public class ServicioCrearClienteTest {
         ClienteTestDataBuilder clienteTestDataBuilder = new ClienteTestDataBuilder().conTelefono("12345");
         // act - assert
         BasePrueba.assertThrows(() -> clienteTestDataBuilder.build(), ExcepcionLongitudValor.class,
-                "El número de telefono debe tener una longitud mayor o igual a 7");
+                "El nÃºmero de telefono debe tener una longitud mayor o igual a 7");
     }
 
     @Test
@@ -47,7 +47,7 @@ public class ServicioCrearClienteTest {
         ClienteTestDataBuilder clienteTestDataBuilder = new ClienteTestDataBuilder().conDireccion(null);
         // act - assert
         BasePrueba.assertThrows(() -> clienteTestDataBuilder.build(), ExcepcionValorObligatorio.class,
-                "Se debe ingresar la dirección del cliente");
+                "Se debe ingresar la direcciÃ³n del cliente");
     }
 
     @Test
@@ -56,7 +56,7 @@ public class ServicioCrearClienteTest {
         ClienteTestDataBuilder clienteTestDataBuilder = new ClienteTestDataBuilder().conNumeroDocumento(null);
         // act - assert
         BasePrueba.assertThrows(() -> clienteTestDataBuilder.build(), ExcepcionValorObligatorio.class,
-                "Se debe ingresar el número de documento del cliente");
+                "Se debe ingresar el nÃºmero de documento del cliente");
     }
 
     @Test

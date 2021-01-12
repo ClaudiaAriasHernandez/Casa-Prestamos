@@ -48,7 +48,7 @@ public class ComandoControladorTipoDocumentoTest {
     public void actualizar() throws Exception{
         // arrange
         Long id = 1L;
-        ComandoTipoDocumento tipoDocumento = new ComandoTipoDocumento(id, "CC", "Cedúla de Ciudadania");
+        ComandoTipoDocumento tipoDocumento = new ComandoTipoDocumento(id, "CC", "CedÃºla de Ciudadania");
 
         // act - assert
         mocMvc.perform(put("/tipodocumentos/{id}",id)
