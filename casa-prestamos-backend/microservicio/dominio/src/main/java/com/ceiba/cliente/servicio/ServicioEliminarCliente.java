@@ -2,9 +2,11 @@ package com.ceiba.cliente.servicio;
 
 import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionEntidadRelacionada;
 
 public class ServicioEliminarCliente {
     private static final String EL_CLIENTE_NO_EXISTE_EN_EL_SISTEMA = "El cliente no existe en el sistema";
+    private static final String NO_SE_PUEDE_ELIMINAR_EL_CLIENTE_DEBIDO_A_QUE_ESTA_LIGADO_A_UN_PRESTAMO = "No se puede eliminar el cliente debido a que esta ligado a un prestamo";
 
     private final RepositorioCliente repositorioCliente;
 
@@ -14,7 +16,15 @@ public class ServicioEliminarCliente {
 
     public void ejecutar(Long id) {
         validarExistenciaPrevia(id);
-        this.repositorioCliente.eliminar(id);
+
+        try {
+            this.repositorioCliente.eliminar(id);
+        } catch (Exception e) {
+
+            throw new ExcepcionEntidadRelacionada(
+                    NO_SE_PUEDE_ELIMINAR_EL_CLIENTE_DEBIDO_A_QUE_ESTA_LIGADO_A_UN_PRESTAMO);
+
+        }
     }
 
     private void validarExistenciaPrevia(Long id) {

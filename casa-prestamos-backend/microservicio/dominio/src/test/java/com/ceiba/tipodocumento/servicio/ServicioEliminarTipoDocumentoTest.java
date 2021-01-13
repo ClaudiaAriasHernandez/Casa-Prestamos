@@ -2,8 +2,6 @@ package com.ceiba.tipodocumento.servicio;
 
 import static org.mockito.Matchers.anyLong;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -32,15 +30,14 @@ public class ServicioEliminarTipoDocumentoTest {
     }
 
     @Test
-    public void validarTipoDocumentoConstraintPreviaTest() {
+    public void validarTipoDocumentoEntidadRelacionadareviaTest() {
 
         // arrange
         TipoDocumento tipoDocumento = new TipoDocumentoTestDataBuilder().build();
         RepositorioTipoDocumento repositorioTipoDocumento = Mockito.mock(RepositorioTipoDocumento.class);
 
         Mockito.when(repositorioTipoDocumento.existeId(anyLong())).thenReturn(true);
-        Mockito.doThrow(SQLIntegrityConstraintViolationException.class).when(repositorioTipoDocumento)
-                .eliminar(anyLong());
+        Mockito.doThrow(Exception.class).when(repositorioTipoDocumento).eliminar(anyLong());
         ServicioEliminarTipoDocumento servicioEliminarTipoDocumento = new ServicioEliminarTipoDocumento(
                 repositorioTipoDocumento);
         // act - assert

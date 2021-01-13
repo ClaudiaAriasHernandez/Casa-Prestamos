@@ -8,11 +8,39 @@ import org.mockito.Mockito;
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
+import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.usuario.modelo.entidad.Usuario;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.testdatabuilder.UsuarioTestDataBuilder;
 
 public class ServicioCrearUsuarioTest {
+
+    @Test
+    public void validarObligatorioNombreUsuarioTest() {
+        // arrange
+        UsuarioTestDataBuilder usuarioTestDataBuilder = new UsuarioTestDataBuilder().conNombreUsuario(null);
+        // act - assert
+        BasePrueba.assertThrows(() -> usuarioTestDataBuilder.build(), ExcepcionValorObligatorio.class,
+                "Se debe ingresar el nombre de usuario");
+    }
+
+    @Test
+    public void validarObligatorioFechaCreacionUsuarioTest() {
+        // arrange
+        UsuarioTestDataBuilder usuarioTestDataBuilder = new UsuarioTestDataBuilder().conFecha(null);
+        // act - assert
+        BasePrueba.assertThrows(() -> usuarioTestDataBuilder.build(), ExcepcionValorObligatorio.class,
+                "Se debe ingresar la fecha de creación");
+    }
+
+    @Test
+    public void validarObligatorioClaveUsuarioTest() {
+        // arrange
+        UsuarioTestDataBuilder usuarioTestDataBuilder = new UsuarioTestDataBuilder().conClave(null);
+        // act - assert
+        BasePrueba.assertThrows(() -> usuarioTestDataBuilder.build(), ExcepcionValorObligatorio.class,
+                "Se debe ingresar la clave");
+    }
 
     @Test
     public void validarClaveLongitudMenor4Test() {

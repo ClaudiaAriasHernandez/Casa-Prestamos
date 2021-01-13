@@ -15,15 +15,15 @@ public class Prestamo {
     private static final String SE_DEBE_INGRESAR_EL_VALOR_DEL_PRESTAMO = "Se debe ingresar el valor del prestamo";
 
     private Long id;
+    private Double valor;
     private Date fechaSolicitud;
     private Date fechaEstimadaPago;
     private Date fechaPago;
-    private Double valor;
     private double valorMora;
-    private double valorInteres;
     private double valorRecargo;
-    private double valorTotal;
+    private double valorInteres;
     private String estado;
+    private double valorTotal;
     private Long idCliente;
 
     public Prestamo(Long id, Date fechaSolicitud, Date fechaEstimadaPago, Date fechaPago, Double valor,

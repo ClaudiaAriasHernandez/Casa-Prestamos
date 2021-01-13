@@ -1,8 +1,5 @@
 package com.ceiba.tipodocumento.servicio;
 
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionEntidadRelacionada;
 import com.ceiba.tipodocumento.puerto.repositorio.RepositorioTipoDocumento;
@@ -24,17 +21,10 @@ public class ServicioEliminarTipoDocumento {
         try {
             this.repositorioTipoDocumento.eliminar(id);
         } catch (Exception e) {
-            if (e instanceof SQLIntegrityConstraintViolationException) {
-                try {
-                    throw new SQLException();
-                } catch (SQLException e1) {
-                    throw new ExcepcionEntidadRelacionada(
-                            NO_SE_PUEDE_ELIMINAR_EL_TIPO_DE_DOCUMENTO_DEBIDO_A_QUE_ESTA_LIGADO_A_UN_CLIENTE);
-                }
-            } else {
-                throw new ExcepcionEntidadRelacionada(
-                        NO_SE_PUEDE_ELIMINAR_EL_TIPO_DE_DOCUMENTO_DEBIDO_A_QUE_ESTA_LIGADO_A_UN_CLIENTE);
-            }
+
+            throw new ExcepcionEntidadRelacionada(
+                    NO_SE_PUEDE_ELIMINAR_EL_TIPO_DE_DOCUMENTO_DEBIDO_A_QUE_ESTA_LIGADO_A_UN_CLIENTE);
+
         }
 
     }

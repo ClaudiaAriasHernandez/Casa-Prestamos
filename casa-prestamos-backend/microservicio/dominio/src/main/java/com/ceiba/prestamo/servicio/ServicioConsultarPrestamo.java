@@ -124,14 +124,7 @@ public class ServicioConsultarPrestamo {
     }
 
     public boolean validarDiaFecha(LocalDate fechaSolicitud) {
-
-        if ((fechaSolicitud.getDayOfWeek() == DayOfWeek.SATURDAY)
-                || (fechaSolicitud.getDayOfWeek() == DayOfWeek.SUNDAY)) {
-
-            return true;
-        }
-        return false;
-
+        return fechaSolicitud.getDayOfWeek() == DayOfWeek.SATURDAY || fechaSolicitud.getDayOfWeek() == DayOfWeek.SUNDAY;
     }
 
     public LocalDate convertToLocalDate(Date fecha) {

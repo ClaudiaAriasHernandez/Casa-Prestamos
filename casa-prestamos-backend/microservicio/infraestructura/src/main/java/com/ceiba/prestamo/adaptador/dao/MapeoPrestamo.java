@@ -27,22 +27,22 @@ public class MapeoPrestamo implements RowMapper<DtoPrestamo>, MapperResult {
         double valorTotal = resultSet.getDouble("valor_total");
         String estado = resultSet.getString("estado");
         Long idClientePrestamo = resultSet.getLong("id_cliente");
-
+        Long idTipoDocumento = resultSet.getLong("id_tipo_documento");
+        Long idIdentificacion = resultSet.getLong("id_documento");
+        String tipoIdentificacion = resultSet.getString("tipo_identificacion");
+        String descripcion = resultSet.getString("descripcion");
         Long idCliente = resultSet.getLong("id");
         String nombre = resultSet.getString("nombre");
         String direccion = resultSet.getString("direccion");
         String numeroDocumento = resultSet.getString("numero_documento");
         String telefono = resultSet.getString("telefono");
         String correo = resultSet.getString("correo");
-        Long idTipoDocumento = resultSet.getLong("id_tipo_documento");
-        Long idIdentificacion = resultSet.getLong("id_documento");
-        String tipoIdentificacion = resultSet.getString("tipo_identificacion");
-        String descripcion = resultSet.getString("descripcion");
 
         DtoTipoDocumento dtoTipoDocumento = new DtoTipoDocumento(idIdentificacion, tipoIdentificacion, descripcion);
 
         DtoCliente dtoCliente = new DtoCliente(idCliente, nombre, direccion, numeroDocumento, telefono, correo,
                 idTipoDocumento, dtoTipoDocumento);
+
         return new DtoPrestamo(idPrestamo, fechaSolicitud, fechaEstimadaPago, fechaPago, valor, valorMora, valorInteres,
                 valorRecargo, valorTotal, estado, idClientePrestamo, dtoCliente);
     }

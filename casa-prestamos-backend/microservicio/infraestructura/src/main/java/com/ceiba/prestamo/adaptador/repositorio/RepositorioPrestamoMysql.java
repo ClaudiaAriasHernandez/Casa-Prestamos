@@ -18,19 +18,19 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace = "prestamo", value = "crear")
-    private static String sqlCrear;
+    private static String sqlCrearPrestamo;
 
     @SqlStatement(namespace = "prestamo", value = "actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarPrestamo;
 
     @SqlStatement(namespace = "prestamo", value = "existeId")
-    private static String sqlExisteId;
+    private static String sqlExisteIdPrestamo;
 
     @SqlStatement(namespace = "prestamo", value = "listarByIdCliente")
-    private static String sqlListarByIdCliente;
+    private static String sqlListarByIdClientePrestamo;
 
     @SqlStatement(namespace = "prestamo", value = "existePrestamoActivo")
-    private static String sqlExistePrestamoActivo;
+    private static String sqlExistePrestamoActivoPrestamo;
 
     public RepositorioPrestamoMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -40,12 +40,12 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
     public Long crear(Prestamo prestamo) {
         // transformacion fecha
 
-        return this.customNamedParameterJdbcTemplate.crear(prestamo, sqlCrear);
+        return this.customNamedParameterJdbcTemplate.crear(prestamo, sqlCrearPrestamo);
     }
 
     @Override
     public void actualizar(Prestamo prestamo) {
-        this.customNamedParameterJdbcTemplate.actualizar(prestamo, sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizar(prestamo, sqlActualizarPrestamo);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteId,
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteIdPrestamo,
                 paramSource, Boolean.class);
     }
 
@@ -63,7 +63,7 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
         paramSource.addValue("idCliente", idCliente);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                .queryForObject(sqlExistePrestamoActivo, paramSource, Boolean.class);
+                .queryForObject(sqlExistePrestamoActivoPrestamo, paramSource, Boolean.class);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
         paramSource.addValue("id", id);
 
         List<DtoPrestamo> prestamo = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                .query(sqlListarByIdCliente, paramSource, new MapeoPrestamo());
+                .query(sqlListarByIdClientePrestamo, paramSource, new MapeoPrestamo());
 
         for (DtoPrestamo prestamoCliente : prestamo) {
             datosPrestamo = prestamoCliente;

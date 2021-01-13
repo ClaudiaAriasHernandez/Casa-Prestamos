@@ -14,19 +14,19 @@ public class RepositorioTipoDocumentoMysql implements RepositorioTipoDocumento {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace = "tipodocumento", value = "crear")
-    private static String sqlCrear;
+    private static String sqlCrearTipoDocumento;
 
     @SqlStatement(namespace = "tipodocumento", value = "actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarTipoDocumento;
 
     @SqlStatement(namespace = "tipodocumento", value = "eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarTipoDocumento;
 
     @SqlStatement(namespace = "tipodocumento", value = "existe")
-    private static String sqlExiste;
+    private static String sqlExisteTipoDocumento;
 
     @SqlStatement(namespace = "tipodocumento", value = "existeId")
-    private static String sqlExisteId;
+    private static String sqlExisteIdTipoDocumento;
 
     @SqlStatement(namespace = "tipodocumento", value = "existeTipoIdentificacion")
     private static String sqlExisteTipoIdentificacion;
@@ -37,7 +37,7 @@ public class RepositorioTipoDocumentoMysql implements RepositorioTipoDocumento {
 
     @Override
     public Long crear(TipoDocumento tipoDocumento) {
-        return this.customNamedParameterJdbcTemplate.crear(tipoDocumento, sqlCrear);
+        return this.customNamedParameterJdbcTemplate.crear(tipoDocumento, sqlCrearTipoDocumento);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class RepositorioTipoDocumentoMysql implements RepositorioTipoDocumento {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarTipoDocumento, paramSource);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class RepositorioTipoDocumentoMysql implements RepositorioTipoDocumento {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("tipoIdentificacion", tipoIdentificacion);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteTipoDocumento,
                 paramSource, Boolean.class);
     }
 
@@ -62,13 +62,13 @@ public class RepositorioTipoDocumentoMysql implements RepositorioTipoDocumento {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteId,
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteIdTipoDocumento,
                 paramSource, Boolean.class);
     }
 
     @Override
     public void actualizar(TipoDocumento tipoDocumento) {
-        this.customNamedParameterJdbcTemplate.actualizar(tipoDocumento, sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizar(tipoDocumento, sqlActualizarTipoDocumento);
     }
 
     @Override
