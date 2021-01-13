@@ -1,5 +1,8 @@
 package com.ceiba.cliente.servicio;
 
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyString;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -18,7 +21,7 @@ public class ServicioEliminarClienteTest {
         Cliente cliente = new ClienteTestDataBuilder().build();
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
 
-        Mockito.when(repositorioCliente.existe(Mockito.anyString())).thenReturn(false);
+        Mockito.when(repositorioCliente.existe(anyString())).thenReturn(false);
         ServicioEliminarCliente servicioEliminarCliente = new ServicioEliminarCliente(repositorioCliente);
         // act - assert
         BasePrueba.assertThrows(() -> servicioEliminarCliente.ejecutar(cliente.getId()), ExcepcionDuplicidad.class,
@@ -30,7 +33,7 @@ public class ServicioEliminarClienteTest {
         // arrange
         Cliente cliente = new ClienteTestDataBuilder().build();
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
-        Mockito.when(repositorioCliente.existeId(Mockito.anyLong())).thenReturn(true);
+        Mockito.when(repositorioCliente.existeId(anyLong())).thenReturn(true);
         ServicioEliminarCliente servicioEliminarCliente = new ServicioEliminarCliente(repositorioCliente);
 
         // act

@@ -28,11 +28,10 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
 
     @SqlStatement(namespace = "prestamo", value = "existeIdCliente")
     private static String sqlExisteIdCliente;
-    
 
     @SqlStatement(namespace = "prestamo", value = "listarByIdCliente")
     private static String sqlListarByIdCliente;
-    
+
     @SqlStatement(namespace = "prestamo", value = "existePrestamoActivo")
     private static String sqlExistePrestamoActivo;
 
@@ -42,8 +41,8 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
 
     @Override
     public Long crear(Prestamo prestamo) {
-        //transformacion fecha        
-        
+        // transformacion fecha
+
         return this.customNamedParameterJdbcTemplate.crear(prestamo, sqlCrear);
     }
 
@@ -66,10 +65,10 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("idCliente", idCliente);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePrestamoActivo,
-                paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .queryForObject(sqlExistePrestamoActivo, paramSource, Boolean.class);
     }
-    
+
     @Override
     public boolean existeIdCliente(Long idCliente) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
@@ -78,14 +77,20 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteIdCliente,
                 paramSource, Boolean.class);
     }
-    
-    @Override
-    public List<DtoPrestamo> listarPorIdCliente(Long id) {
 
+    @Override
+    public DtoPrestamo listarPorIdCliente(Long id) {
+        DtoPrestamo datosPrestamo = null;
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListarByIdCliente,
-                paramSource, new MapeoPrestamo());
+        List<DtoPrestamo> prestamo = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .query(sqlListarByIdCliente, paramSource, new MapeoPrestamo());
+
+        for (DtoPrestamo prestamoCliente : prestamo) {
+            datosPrestamo = prestamoCliente;
+        }
+        return datosPrestamo;
+
     }
 }

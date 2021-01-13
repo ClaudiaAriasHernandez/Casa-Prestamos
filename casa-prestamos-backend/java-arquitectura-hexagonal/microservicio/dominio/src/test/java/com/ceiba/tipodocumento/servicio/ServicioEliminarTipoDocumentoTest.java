@@ -1,13 +1,15 @@
 package com.ceiba.tipodocumento.servicio;
 
+import static org.mockito.Matchers.anyLong;
+
 import java.sql.SQLIntegrityConstraintViolationException;
 
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.ceiba.BasePrueba;
-import com.ceiba.dominio.excepcion.ExcepcionConstraint;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.dominio.excepcion.ExcepcionEntidadRelacionada;
 import com.ceiba.tipodocumento.modelo.entidad.TipoDocumento;
 import com.ceiba.tipodocumento.puerto.repositorio.RepositorioTipoDocumento;
 import com.ceiba.tipodocumento.servicio.testdatabuilder.TipoDocumentoTestDataBuilder;
@@ -21,7 +23,7 @@ public class ServicioEliminarTipoDocumentoTest {
         TipoDocumento tipoDocumento = new TipoDocumentoTestDataBuilder().build();
         RepositorioTipoDocumento repositorioTipoDocumento = Mockito.mock(RepositorioTipoDocumento.class);
 
-        Mockito.when(repositorioTipoDocumento.existeId(Mockito.anyLong())).thenReturn(false);
+        Mockito.when(repositorioTipoDocumento.existeId(anyLong())).thenReturn(false);
         ServicioEliminarTipoDocumento servicioEliminarTipoDocumento = new ServicioEliminarTipoDocumento(
                 repositorioTipoDocumento);
         // act - assert
@@ -36,14 +38,14 @@ public class ServicioEliminarTipoDocumentoTest {
         TipoDocumento tipoDocumento = new TipoDocumentoTestDataBuilder().build();
         RepositorioTipoDocumento repositorioTipoDocumento = Mockito.mock(RepositorioTipoDocumento.class);
 
-        Mockito.when(repositorioTipoDocumento.existeId(Mockito.anyLong())).thenReturn(true);
+        Mockito.when(repositorioTipoDocumento.existeId(anyLong())).thenReturn(true);
         Mockito.doThrow(SQLIntegrityConstraintViolationException.class).when(repositorioTipoDocumento)
-                .eliminar(Mockito.anyLong());
+                .eliminar(anyLong());
         ServicioEliminarTipoDocumento servicioEliminarTipoDocumento = new ServicioEliminarTipoDocumento(
                 repositorioTipoDocumento);
         // act - assert
         BasePrueba.assertThrows(() -> servicioEliminarTipoDocumento.ejecutar(tipoDocumento.getId()),
-                ExcepcionConstraint.class,
+                ExcepcionEntidadRelacionada.class,
                 "No se puede eliminar el tipo de documento debido a que esta ligado a un cliente");
     }
 
@@ -54,13 +56,13 @@ public class ServicioEliminarTipoDocumentoTest {
         TipoDocumento tipoDocumento = new TipoDocumentoTestDataBuilder().build();
         RepositorioTipoDocumento repositorioTipoDocumento = Mockito.mock(RepositorioTipoDocumento.class);
 
-        Mockito.when(repositorioTipoDocumento.existeId(Mockito.anyLong())).thenReturn(true);
-        Mockito.doThrow(ExcepcionConstraint.class).when(repositorioTipoDocumento).eliminar(Mockito.anyLong());
+        Mockito.when(repositorioTipoDocumento.existeId(anyLong())).thenReturn(true);
+        Mockito.doThrow(ExcepcionEntidadRelacionada.class).when(repositorioTipoDocumento).eliminar(anyLong());
         ServicioEliminarTipoDocumento servicioEliminarTipoDocumento = new ServicioEliminarTipoDocumento(
                 repositorioTipoDocumento);
         // act - assert
         BasePrueba.assertThrows(() -> servicioEliminarTipoDocumento.ejecutar(tipoDocumento.getId()),
-                ExcepcionConstraint.class,
+                ExcepcionEntidadRelacionada.class,
                 "No se puede eliminar el tipo de documento debido a que esta ligado a un cliente");
     }
 
@@ -69,7 +71,7 @@ public class ServicioEliminarTipoDocumentoTest {
         // arrange
         TipoDocumento tipoDocumento = new TipoDocumentoTestDataBuilder().build();
         RepositorioTipoDocumento repositorioTipoDocumento = Mockito.mock(RepositorioTipoDocumento.class);
-        Mockito.when(repositorioTipoDocumento.existeId(Mockito.anyLong())).thenReturn(true);
+        Mockito.when(repositorioTipoDocumento.existeId(anyLong())).thenReturn(true);
         ServicioEliminarTipoDocumento servicioEliminarTipoDocumento = new ServicioEliminarTipoDocumento(
                 repositorioTipoDocumento);
 

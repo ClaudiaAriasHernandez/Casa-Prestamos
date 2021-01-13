@@ -1,5 +1,8 @@
 package com.ceiba.tipodocumento.servicio;
 
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyString;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -18,8 +21,8 @@ public class ServicioActualizarTipoDocumentoTest {
         TipoDocumento tipoDocumento = new TipoDocumentoTestDataBuilder().build();
         RepositorioTipoDocumento repositorioTipoDocumento = Mockito.mock(RepositorioTipoDocumento.class);
 
-        Mockito.when(repositorioTipoDocumento.existeId(Mockito.anyLong())).thenReturn(false);
-        Mockito.when(repositorioTipoDocumento.existeTipoIdentificacion(Mockito.anyString())).thenReturn(false);
+        Mockito.when(repositorioTipoDocumento.existeId(anyLong())).thenReturn(false);
+        Mockito.when(repositorioTipoDocumento.existeTipoIdentificacion(anyString())).thenReturn(false);
         ServicioActualizarTipoDocumento servicioActualizarTipoDocumento = new ServicioActualizarTipoDocumento(
                 repositorioTipoDocumento);
         // act - assert
@@ -34,8 +37,8 @@ public class ServicioActualizarTipoDocumentoTest {
         TipoDocumento tipoDocumento = new TipoDocumentoTestDataBuilder().build();
         RepositorioTipoDocumento repositorioTipoDocumento = Mockito.mock(RepositorioTipoDocumento.class);
 
-        Mockito.when(repositorioTipoDocumento.existeId(Mockito.anyLong())).thenReturn(true);
-        Mockito.when(repositorioTipoDocumento.existeTipoIdentificacion(Mockito.anyString())).thenReturn(true);
+        Mockito.when(repositorioTipoDocumento.existeId(anyLong())).thenReturn(true);
+        Mockito.when(repositorioTipoDocumento.existeTipoIdentificacion(anyString())).thenReturn(true);
         ServicioActualizarTipoDocumento servicioActualizarTipoDocumento = new ServicioActualizarTipoDocumento(
                 repositorioTipoDocumento);
 

@@ -1,5 +1,7 @@
 package com.ceiba.tipodocumento.servicio;
 
+import static org.mockito.Matchers.anyString;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -39,7 +41,7 @@ public class ServicioCrearTipoDocumentoTest {
         TipoDocumento tipoDocumento = new TipoDocumentoTestDataBuilder().build();
         RepositorioTipoDocumento repositorioTipoDocumento = Mockito.mock(RepositorioTipoDocumento.class);
 
-        Mockito.when(repositorioTipoDocumento.existe(Mockito.anyString())).thenReturn(true);
+        Mockito.when(repositorioTipoDocumento.existe(anyString())).thenReturn(true);
         ServicioCrearTipoDocumento servicioCrearTipoDocumento = new ServicioCrearTipoDocumento(
                 repositorioTipoDocumento);
         // act - assert
@@ -54,7 +56,7 @@ public class ServicioCrearTipoDocumentoTest {
 
         RepositorioTipoDocumento repositorioTipoDocumento = Mockito.mock(RepositorioTipoDocumento.class);
 
-        Mockito.when(repositorioTipoDocumento.existe(Mockito.anyString())).thenReturn(false);
+        Mockito.when(repositorioTipoDocumento.existe(anyString())).thenReturn(false);
         Mockito.when(repositorioTipoDocumento.crear(tipoDocumento)).thenReturn(1L);
         ServicioCrearTipoDocumento servicioCrearTipoDocumento = new ServicioCrearTipoDocumento(
                 repositorioTipoDocumento);
@@ -62,7 +64,7 @@ public class ServicioCrearTipoDocumentoTest {
         Long idUsuario = servicioCrearTipoDocumento.ejecutar(tipoDocumento);
 
         // assert
-        BasePrueba.assertEqualsObject(1L, idUsuario.longValue());
+        BasePrueba.assertEqualsObject(1L, idUsuario);
     }
 
 }

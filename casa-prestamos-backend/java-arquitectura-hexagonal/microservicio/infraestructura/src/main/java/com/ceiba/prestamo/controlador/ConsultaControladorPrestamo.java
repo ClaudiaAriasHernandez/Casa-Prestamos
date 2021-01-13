@@ -32,7 +32,7 @@ public class ConsultaControladorPrestamo {
 
     @GetMapping(value = "/{id}")
     @ApiOperation("Listar Prestamos Activos por cliente")
-    public List<DtoPrestamo> listarPorIdCliente(@PathVariable Long id) {
+    public DtoPrestamo listarPorIdCliente(@PathVariable Long id) {
 
         return this.manejadorListarPrestamos.ejecutar(id);
     }

@@ -24,7 +24,7 @@ public class ManejadorListarPrestamos {
         return this.daoPrestamo.listar();
     }
 
-    public List<DtoPrestamo> ejecutar(Long id) {
+    public DtoPrestamo ejecutar(Long id) {
 
         return this.servicioConsultarPrestamo.ejecutar(id);
     }

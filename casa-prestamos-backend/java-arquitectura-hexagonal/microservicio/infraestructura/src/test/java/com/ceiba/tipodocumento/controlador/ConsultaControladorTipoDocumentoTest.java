@@ -6,8 +6,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.ceiba.ApplicationMock;
-import com.ceiba.tipodocumento.controlador.ConsultaControladorTipoDocumento;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +15,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import com.ceiba.ApplicationMock;
+
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes= ApplicationMock.class)
+@ContextConfiguration(classes = ApplicationMock.class)
 @WebMvcTest(ConsultaControladorTipoDocumento.class)
 public class ConsultaControladorTipoDocumentoTest {
 
@@ -30,12 +30,8 @@ public class ConsultaControladorTipoDocumentoTest {
         // arrange
 
         // act - assert
-        mocMvc.perform(get("/tipodocumentos")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].tipoIdentificacion", is("CC")));
+        mocMvc.perform(get("/tipodocumentos").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1))).andExpect(jsonPath("$[0].tipoIdentificacion", is("CC")));
     }
-
 
 }

@@ -1,5 +1,8 @@
 package com.ceiba.cliente.servicio;
 
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.anyString;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -19,8 +22,8 @@ public class ServicioActualizarClienteTest {
         Cliente cliente = new ClienteTestDataBuilder().build();
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
         RepositorioTipoDocumento repositorioTipoDocumento = Mockito.mock(RepositorioTipoDocumento.class);
-        Mockito.when(repositorioTipoDocumento.existeId(Mockito.anyLong())).thenReturn(true);
-        Mockito.when(repositorioCliente.existe(Mockito.anyString())).thenReturn(false);
+        Mockito.when(repositorioTipoDocumento.existeId(anyLong())).thenReturn(true);
+        Mockito.when(repositorioCliente.existe(anyString())).thenReturn(false);
         ServicioActualizarCliente servicioActualizarCliente = new ServicioActualizarCliente(repositorioCliente,
                 repositorioTipoDocumento);
         // act - assert
@@ -35,8 +38,8 @@ public class ServicioActualizarClienteTest {
         Cliente cliente = new ClienteTestDataBuilder().build();
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
         RepositorioTipoDocumento repositorioTipoDocumento = Mockito.mock(RepositorioTipoDocumento.class);
-        Mockito.when(repositorioTipoDocumento.existeId(Mockito.anyLong())).thenReturn(false);
-        Mockito.when(repositorioCliente.existe(Mockito.anyString())).thenReturn(false);
+        Mockito.when(repositorioTipoDocumento.existeId(anyLong())).thenReturn(false);
+        Mockito.when(repositorioCliente.existe(anyString())).thenReturn(false);
         ServicioActualizarCliente servicioActualizarCliente = new ServicioActualizarCliente(repositorioCliente,
                 repositorioTipoDocumento);
         // act - assert
@@ -49,10 +52,10 @@ public class ServicioActualizarClienteTest {
         // arrange
         Cliente cliente = new ClienteTestDataBuilder().build();
         RepositorioTipoDocumento repositorioTipoDocumento = Mockito.mock(RepositorioTipoDocumento.class);
-        Mockito.when(repositorioTipoDocumento.existeId(Mockito.anyLong())).thenReturn(true);
+        Mockito.when(repositorioTipoDocumento.existeId(anyLong())).thenReturn(true);
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
-        Mockito.when(repositorioCliente.existeId(Mockito.anyLong())).thenReturn(true);
-        Mockito.when(repositorioCliente.existeExcluyendoId(Mockito.anyLong(), Mockito.anyString())).thenReturn(true);
+        Mockito.when(repositorioCliente.existeId(anyLong())).thenReturn(true);
+        Mockito.when(repositorioCliente.existeExcluyendoId(anyLong(), anyString())).thenReturn(true);
         ServicioActualizarCliente servicioActualizarCliente = new ServicioActualizarCliente(repositorioCliente,
                 repositorioTipoDocumento);
 

@@ -9,7 +9,6 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.List;
 
 import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
@@ -18,6 +17,7 @@ import com.ceiba.prestamo.puerto.repositorio.RepositorioPrestamo;
 
 public class ServicioConsultarPrestamo {
 
+    private static final int PORCENTAJE_DIVISION = 100;
     private static final Long DIAS_PRESTAMO = 15L;
     private static final String EL_CLIENTE_NO_TIENE_UN_PRESTAMO_ACTIVO_EN_EL_SISTEMA = "El cliente no tiene un prestamo activo en el sistema";
     private static final String EL_CLIENTE_NO_EXISTE_EN_EL_SISTEMA = "El cliente no existe en el sistema";
@@ -35,69 +35,76 @@ public class ServicioConsultarPrestamo {
         this.repositorioPrestamo = repositorioPrestamo;
     }
 
-    public List<DtoPrestamo> ejecutar(Long id) {
+    public DtoPrestamo ejecutar(Long id) {
         long dias = 0;
 
-        double valorRecargo;
-        double valorInteres;
         double valorTotal;
-        double valorMora;
-        double valorTotalMora;
+
         Date fechaActual = convertirFecha(generarFechaActual());
 
         validarExistenciaPreviaCliente(id);
         validarExistenciaPreviaPrestamo(id);
 
-        List<DtoPrestamo> prestamoCliente = this.repositorioPrestamo.listarPorIdCliente(id);
-        for (DtoPrestamo dtoPrestamo : prestamoCliente) {
+        DtoPrestamo prestamoCliente = this.repositorioPrestamo.listarPorIdCliente(id);
 
-            dtoPrestamo.setFechaPago(fechaActual);
+        prestamoCliente.setFechaPago(fechaActual);
 
-            dias = generarDiasPrestamo(fechaActual, dtoPrestamo);
+        dias = generarDiasPrestamo(fechaActual, prestamoCliente);
 
-            boolean diaFecha = validarDiaFecha(convertToLocalDate(dtoPrestamo.getFechaSolicitud()));
-            if (dias == DIAS_PRESTAMO || dias <= DIAS_PRESTAMO) {
+        boolean diaFecha = validarDiaFecha(convertToLocalDate(prestamoCliente.getFechaSolicitud()));
+        if (dias == DIAS_PRESTAMO || dias <= DIAS_PRESTAMO) {
 
-                if (diaFecha == true) {
-                    valorRecargo = (dtoPrestamo.getValor() / 100) * PORCENTAJE_RECARGO;
-                    dtoPrestamo.setValorRecargo(valorRecargo);
-                    valorInteres = (dtoPrestamo.getValor() / 100) * PORCENTAJE_INTERES;
-                    dtoPrestamo.setValorInteres(valorInteres);
-                    valorTotal = valorRecargo + valorInteres + dtoPrestamo.getValor();
-                    dtoPrestamo.setValorTotal(valorTotal);
-                } else {
-                    valorInteres = (dtoPrestamo.getValor() / 100) * PORCENTAJE_INTERES;
-                    dtoPrestamo.setValorInteres(valorInteres);
-                    valorTotal = valorInteres + dtoPrestamo.getValor();
-                    dtoPrestamo.setValorTotal(valorTotal);
-                }
+            if (diaFecha) {
+
+                valorTotal = generarValorRecargo(prestamoCliente) + generarValorInteres(prestamoCliente)
+                        + prestamoCliente.getValor();
+                prestamoCliente.setValorTotal(valorTotal);
             } else {
 
-                long diasMora = dias - DIAS_PRESTAMO;
-                if (diaFecha) {
-                    valorRecargo = (dtoPrestamo.getValor() / 100) * PORCENTAJE_RECARGO;
-                    dtoPrestamo.setValorRecargo(valorRecargo);
-                    valorInteres = (dtoPrestamo.getValor() / 100) * PORCENTAJE_INTERES;
-                    dtoPrestamo.setValorInteres(valorInteres);
-                    valorMora = (dtoPrestamo.getValor() / 100) * PORCENTAJE_MORA;
-                    valorTotalMora = valorMora * diasMora;
-                    dtoPrestamo.setValorMora(valorTotalMora);
-                    valorTotal = valorRecargo + valorInteres + dtoPrestamo.getValor() + valorTotalMora;
-                    dtoPrestamo.setValorTotal(valorTotal);
-                } else {
-                    valorInteres = (dtoPrestamo.getValor() / 100) * PORCENTAJE_INTERES;
-                    dtoPrestamo.setValorInteres(valorInteres);
-                    valorMora = (dtoPrestamo.getValor() / 100) * PORCENTAJE_MORA;
-                    valorTotalMora = valorMora * diasMora;
-                    dtoPrestamo.setValorMora(valorTotalMora);
-                    valorTotal = valorInteres + dtoPrestamo.getValor() + valorTotalMora;
-                    dtoPrestamo.setValorTotal(valorTotal);
-                }
+                valorTotal = generarValorInteres(prestamoCliente) + prestamoCliente.getValor();
+                prestamoCliente.setValorTotal(valorTotal);
             }
 
+        } else {
+
+            long diasMora = dias - DIAS_PRESTAMO;
+            if (diaFecha) {
+
+                valorTotal = generarValorRecargo(prestamoCliente) + generarValorInteres(prestamoCliente)
+                        + prestamoCliente.getValor() + generarValorMora(prestamoCliente, diasMora);
+                prestamoCliente.setValorTotal(valorTotal);
+            } else {
+
+                valorTotal = generarValorInteres(prestamoCliente) + prestamoCliente.getValor()
+                        + generarValorMora(prestamoCliente, diasMora);
+                prestamoCliente.setValorTotal(valorTotal);
+            }
         }
 
         return prestamoCliente;
+    }
+
+    private double generarValorMora(DtoPrestamo prestamoCliente, long diasMora) {
+        double valorMora;
+        double valorTotalMora;
+        valorMora = (prestamoCliente.getValor() / PORCENTAJE_DIVISION) * PORCENTAJE_MORA;
+        valorTotalMora = valorMora * diasMora;
+        prestamoCliente.setValorMora(valorTotalMora);
+        return valorTotalMora;
+    }
+
+    private double generarValorInteres(DtoPrestamo prestamoCliente) {
+        double valorInteres;
+        valorInteres = (prestamoCliente.getValor() / PORCENTAJE_DIVISION) * PORCENTAJE_INTERES;
+        prestamoCliente.setValorInteres(valorInteres);
+        return valorInteres;
+    }
+
+    private double generarValorRecargo(DtoPrestamo prestamoCliente) {
+        double valorRecargo;
+        valorRecargo = (prestamoCliente.getValor() / PORCENTAJE_DIVISION) * PORCENTAJE_RECARGO;
+        prestamoCliente.setValorRecargo(valorRecargo);
+        return valorRecargo;
     }
 
     private void validarExistenciaPreviaPrestamo(Long id) {
@@ -122,9 +129,8 @@ public class ServicioConsultarPrestamo {
                 || (fechaSolicitud.getDayOfWeek() == DayOfWeek.SUNDAY)) {
 
             return true;
-        } else {
-            return false;
         }
+        return false;
 
     }
 
@@ -139,9 +145,6 @@ public class ServicioConsultarPrestamo {
 
         LocalDate fin = Instant.ofEpochMilli(dtoPrestamo.getFechaSolicitud().getTime()).atZone(ZoneId.systemDefault())
                 .toLocalDate();
-
-        // return Duration.between(fin.atTime(00, 00, 00), inicio.atTime(23, 59,
-        // 59)).toMillis();
 
         return Duration.between(fin.atStartOfDay(), inicio.atStartOfDay()).toDays() + 1;
     }

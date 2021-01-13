@@ -1,5 +1,7 @@
 package com.ceiba.prestamo.servicio;
 
+import static org.mockito.Matchers.anyLong;
+
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -38,8 +40,8 @@ public class ServicioCrearPrestamoTest {
         Prestamo prestamo = new PrestamoTestDataBuilder().build();
         RepositorioPrestamo repositorioPrestamo = Mockito.mock(RepositorioPrestamo.class);
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
-        Mockito.when(repositorioCliente.existeId(Mockito.anyLong())).thenReturn(true);
-        Mockito.when(repositorioPrestamo.existePrestamoActivo(Mockito.anyLong())).thenReturn(true);
+        Mockito.when(repositorioCliente.existeId(anyLong())).thenReturn(true);
+        Mockito.when(repositorioPrestamo.existePrestamoActivo(anyLong())).thenReturn(true);
         ServicioCrearPrestamo servicioCrearPrestamo = new ServicioCrearPrestamo(repositorioCliente,
                 repositorioPrestamo);
         // act - assert
@@ -54,8 +56,8 @@ public class ServicioCrearPrestamoTest {
         Prestamo prestamo = new PrestamoTestDataBuilder().build();
         RepositorioPrestamo repositorioPrestamo = Mockito.mock(RepositorioPrestamo.class);
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
-        Mockito.when(repositorioCliente.existeId(Mockito.anyLong())).thenReturn(false);
-        Mockito.when(repositorioPrestamo.existePrestamoActivo(Mockito.anyLong())).thenReturn(false);
+        Mockito.when(repositorioCliente.existeId(anyLong())).thenReturn(false);
+        Mockito.when(repositorioPrestamo.existePrestamoActivo(anyLong())).thenReturn(false);
         ServicioCrearPrestamo servicioCrearPrestamo = new ServicioCrearPrestamo(repositorioCliente,
                 repositorioPrestamo);
         // act - assert
@@ -69,8 +71,8 @@ public class ServicioCrearPrestamoTest {
         Prestamo prestamo = new PrestamoTestDataBuilder().build();
         RepositorioPrestamo repositorioPrestamo = Mockito.mock(RepositorioPrestamo.class);
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
-        Mockito.when(repositorioCliente.existeId(Mockito.anyLong())).thenReturn(true);
-        Mockito.when(repositorioPrestamo.existePrestamoActivo(Mockito.anyLong())).thenReturn(false);
+        Mockito.when(repositorioCliente.existeId(anyLong())).thenReturn(true);
+        Mockito.when(repositorioPrestamo.existePrestamoActivo(anyLong())).thenReturn(false);
         Mockito.when(repositorioPrestamo.crear(prestamo)).thenReturn(1L);
         ServicioCrearPrestamo servicioCrearPrestamo = new ServicioCrearPrestamo(repositorioCliente,
                 repositorioPrestamo);
@@ -78,7 +80,7 @@ public class ServicioCrearPrestamoTest {
         Long idPrestamo = servicioCrearPrestamo.ejecutar(prestamo);
 
         // assert
-        BasePrueba.assertEqualsObject(1L, idPrestamo.longValue());
+        BasePrueba.assertEqualsObject(1L, idPrestamo);
     }
 
 }
