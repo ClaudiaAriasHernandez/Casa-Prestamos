@@ -65,7 +65,7 @@ public class ConsultaControladorPrestamoTest {
         prestamo.setIdCliente(Long.parseLong(new Gson().fromJson(result.andReturn().getResponse().getContentAsString(),
                 ComandoRespuestaTestDataBuilder.class).getValor()));
         // act - assert
-        ResultActions resultPrestamo=  mocMvc.perform(post("/prestamos").contentType(MediaType.APPLICATION_JSON)
+       mocMvc.perform(post("/prestamos").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(prestamo)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("valor").isNotEmpty());
@@ -73,7 +73,7 @@ public class ConsultaControladorPrestamoTest {
 //     
 //        // act - assert
 //      
-        mocMvc.perform(get("/prestamos/{id}", Long.parseLong(new Gson().fromJson(resultPrestamo.andReturn().getResponse().getContentAsString(),
+        mocMvc.perform(get("/prestamos/{id}", Long.parseLong(new Gson().fromJson(result.andReturn().getResponse().getContentAsString(),
                 ComandoRespuestaTestDataBuilder.class).getValor()))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
