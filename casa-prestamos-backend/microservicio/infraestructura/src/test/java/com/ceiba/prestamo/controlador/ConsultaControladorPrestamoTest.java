@@ -70,9 +70,9 @@ public class ConsultaControladorPrestamoTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("valor").isNotEmpty());
         // arrange
-     
-        // act - assert
-      
+//     
+//        // act - assert
+//      
         mocMvc.perform(get("/prestamos/{id}", Long.parseLong(new Gson().fromJson(resultPrestamo.andReturn().getResponse().getContentAsString(),
                 ComandoRespuestaTestDataBuilder.class).getValor()))
                 .contentType(MediaType.APPLICATION_JSON))
