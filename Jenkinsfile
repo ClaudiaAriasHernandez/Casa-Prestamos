@@ -33,10 +33,10 @@ pipeline {
     stage('Compile & Unit Tests') {
       steps{
         echo "------------>Unit Tests<------------"
-		sh 'gradle --b ./casa-prestamos-backend/java-arquitectura-hexagonal/microservicio/build.gradle clean'
+		sh 'gradle --b ./casa-prestamos-backend/microservicio/build.gradle clean'
 					
 		echo "------------>Unit Test<------------"
-		sh 'gradle --b ./casa-prestamos-backend/java-arquitectura-hexagonal/microservicio/build.gradle test jacocoTestReport'
+		sh 'gradle --b ./casa-prestamos-backend/microservicio/build.gradle test jacocoTestReport'
 		
       }
     }
@@ -56,7 +56,7 @@ pipeline {
       steps {
         echo "------------>Build<------------"
 		
-		sh 'gradle --b ./casa-prestamos-backend/java-arquitectura-hexagonal/microservicio/build.gradle build -x test'
+		sh 'gradle --b ./casa-prestamos-backend/microservicio/build.gradle build -x test'
       }
     }  
   }
