@@ -9,7 +9,7 @@ import com.ceiba.tipodocumento.puerto.repositorio.RepositorioTipoDocumento;
 
 public class ServicioEliminarTipoDocumento {
 
-    private static final Logger logger = Logger.getLogger(ServicioEliminarTipoDocumento.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ServicioEliminarTipoDocumento.class.getName());
 
     private static final String NO_SE_PUEDE_ELIMINAR_EL_TIPO_DE_DOCUMENTO_DEBIDO_A_QUE_ESTA_LIGADO_A_UN_CLIENTE = "No se puede eliminar el tipo de documento debido a que esta ligado a un cliente";
 
@@ -27,7 +27,8 @@ public class ServicioEliminarTipoDocumento {
         try {
             this.repositorioTipoDocumento.eliminar(id);
         } catch (Exception e) {
-            logger.log(Level.WARNING, e.getMessage());
+            LOGGER.log(Level.WARNING, NO_SE_PUEDE_ELIMINAR_EL_TIPO_DE_DOCUMENTO_DEBIDO_A_QUE_ESTA_LIGADO_A_UN_CLIENTE,
+                    e);
 
             throw new ExcepcionEntidadRelacionada(
                     NO_SE_PUEDE_ELIMINAR_EL_TIPO_DE_DOCUMENTO_DEBIDO_A_QUE_ESTA_LIGADO_A_UN_CLIENTE);
