@@ -20,14 +20,6 @@ public interface RepositorioPrestamo {
     void actualizar(Prestamo prestamo);
 
     /**
-     * Permite validar si existe un prestamo con un idCliente
-     * 
-     * @param idCliente
-     * @return si existe o no
-     */
-    boolean existeIdCliente(Long idCliente);
-
-    /**
      * Permite validar si existe un prestamo Activo con un idCliente
      * 
      * @param idCliente

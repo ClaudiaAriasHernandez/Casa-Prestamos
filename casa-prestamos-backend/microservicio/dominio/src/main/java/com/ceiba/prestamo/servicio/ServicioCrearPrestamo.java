@@ -31,6 +31,7 @@ public class ServicioCrearPrestamo {
         validarExistenciaPrevia(prestamo);
         prestamo.setEstado(DEUDOR);
         prestamo.setFechaSolicitud(convertirFecha(fechaActual));
+
         prestamo.setFechaEstimadaPago(convertirFecha(generarFechaEstimadaPago(fechaActual, DIAS_PRESTAMO)));
         return this.repositorioPrestamo.crear(prestamo);
     }
@@ -51,16 +52,16 @@ public class ServicioCrearPrestamo {
 
     }
 
-    private LocalDate generarFechaEstimadaPago(LocalDate fechaInicioGarantia, int diasGarantia) {
+    private LocalDate generarFechaEstimadaPago(LocalDate fechaSolicitud, int diasPrestamo) {
 
         int diasHabiles = 0;
-        LocalDate fechaFinGarantia = fechaInicioGarantia.plusDays(-1);
-        while (diasHabiles < diasGarantia) {
-            fechaFinGarantia = fechaFinGarantia.plusDays(1);
+        LocalDate fechaFinPrestamo = fechaSolicitud.plusDays(-1);
+        while (diasHabiles < diasPrestamo) {
+            fechaFinPrestamo = fechaFinPrestamo.plusDays(1);
             ++diasHabiles;
         }
 
-        return fechaFinGarantia;
+        return fechaFinPrestamo;
     }
 
 }

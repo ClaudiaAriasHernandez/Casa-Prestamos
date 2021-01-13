@@ -140,7 +140,7 @@ public class ServicioConsultarPrestamo {
     }
 
     private long generarDiasPrestamo(Date fechaActual, DtoPrestamo dtoPrestamo) {
-
+  
         LocalDate inicio = Instant.ofEpochMilli(fechaActual.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
 
         LocalDate fin = Instant.ofEpochMilli(dtoPrestamo.getFechaSolicitud().getTime()).atZone(ZoneId.systemDefault())

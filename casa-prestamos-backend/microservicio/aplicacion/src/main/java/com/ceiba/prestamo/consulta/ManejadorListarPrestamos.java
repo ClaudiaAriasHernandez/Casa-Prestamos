@@ -6,17 +6,14 @@ import org.springframework.stereotype.Component;
 
 import com.ceiba.prestamo.modelo.dto.DtoPrestamo;
 import com.ceiba.prestamo.puerto.dao.DaoPrestamo;
-import com.ceiba.prestamo.servicio.ServicioConsultarPrestamo;
 
 @Component
 public class ManejadorListarPrestamos {
 
     private final DaoPrestamo daoPrestamo;
-    private final ServicioConsultarPrestamo servicioConsultarPrestamo;
 
-    public ManejadorListarPrestamos(DaoPrestamo daoPrestamo, ServicioConsultarPrestamo servicioConsultarPrestamo) {
+    public ManejadorListarPrestamos(DaoPrestamo daoPrestamo) {
         this.daoPrestamo = daoPrestamo;
-        this.servicioConsultarPrestamo = servicioConsultarPrestamo;
 
     }
 
@@ -24,8 +21,4 @@ public class ManejadorListarPrestamos {
         return this.daoPrestamo.listar();
     }
 
-    public DtoPrestamo ejecutar(Long id) {
-
-        return this.servicioConsultarPrestamo.ejecutar(id);
-    }
 }

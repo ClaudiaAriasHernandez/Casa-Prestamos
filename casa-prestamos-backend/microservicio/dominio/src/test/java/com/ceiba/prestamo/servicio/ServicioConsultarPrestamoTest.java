@@ -51,29 +51,6 @@ public class ServicioConsultarPrestamoTest {
                 "El cliente no tiene un prestamo activo en el sistema");
     }
 
-    // @Test
-    // public void validarConsultarPrestamoTest() {
-    // // arrange
-    // Prestamo prestamo = new PrestamoTestDataBuilder().build();
-    // RepositorioCliente repositorioCliente =
-    // Mockito.mock(RepositorioCliente.class);
-    // Mockito.when(repositorioCliente.existeId(Mockito.anyLong())).thenReturn(true);
-    // RepositorioPrestamo repositorioPrestamo =
-    // Mockito.mock(RepositorioPrestamo.class);
-    //
-    // Mockito.when(repositorioPrestamo.existePrestamoActivo(Mockito.anyLong())).thenReturn(true);
-    // ServicioConsultarPrestamo servicioConsultarPrestamo = new
-    // ServicioConsultarPrestamo(repositorioCliente,
-    // repositorioPrestamo);
-    //
-    // // act
-    // servicioConsultarPrestamo.ejecutar(prestamo.getId());
-    //
-    // // assert
-    // Mockito.verify(repositorioPrestamo,
-    // Mockito.times(1)).listarPorIdCliente(prestamo.getId());
-    // }
-
     @Test
     public void validarConsultarPrestamoConMoraInteresTest() {
         // arrange

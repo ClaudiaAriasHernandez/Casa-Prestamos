@@ -26,9 +26,6 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
     @SqlStatement(namespace = "prestamo", value = "existeId")
     private static String sqlExisteId;
 
-    @SqlStatement(namespace = "prestamo", value = "existeIdCliente")
-    private static String sqlExisteIdCliente;
-
     @SqlStatement(namespace = "prestamo", value = "listarByIdCliente")
     private static String sqlListarByIdCliente;
 
@@ -67,15 +64,6 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .queryForObject(sqlExistePrestamoActivo, paramSource, Boolean.class);
-    }
-
-    @Override
-    public boolean existeIdCliente(Long idCliente) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("idCliente", idCliente);
-
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteIdCliente,
-                paramSource, Boolean.class);
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.ceiba.prestamo.servicio.testdatabuilder;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import com.ceiba.prestamo.comando.ComandoPrestamo;
 
@@ -20,8 +22,8 @@ public class ComandoPrestamoTestDataBuilder {
 
     public ComandoPrestamoTestDataBuilder() {
         id = 300L;
-        fechaSolicitud = new Date(2021 - 01 - 07);
-        fechaEstimadaPago = new Date(2021 - 01 - 21);
+        fechaSolicitud = new GregorianCalendar(2021, Calendar.JANUARY, 07).getTime();
+        fechaEstimadaPago = new GregorianCalendar(2021, Calendar.JANUARY, 21).getTime();
         fechaPago = null;
         valor = 1000000.0;
         valorMora = 0.0;

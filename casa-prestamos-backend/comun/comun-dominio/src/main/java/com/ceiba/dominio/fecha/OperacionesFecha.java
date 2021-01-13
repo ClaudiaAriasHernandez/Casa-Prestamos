@@ -17,7 +17,7 @@ public class OperacionesFecha {
     }
 
     public static Date convertirFecha(LocalDate fecha) {
- //cambiar al servicio
+
         return Date.from(fecha.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
 
