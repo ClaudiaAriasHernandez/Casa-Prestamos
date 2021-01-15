@@ -24,4 +24,6 @@ public class ComandoPrestamo {
     private double valorTotal;
     private String estado;
     private Long idCliente;
+    private String numeroDocumento;
+    private String tipoIdentificacion;
 }

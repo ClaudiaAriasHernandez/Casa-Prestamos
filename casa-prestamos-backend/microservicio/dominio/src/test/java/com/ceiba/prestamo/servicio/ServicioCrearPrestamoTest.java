@@ -16,15 +16,6 @@ import com.ceiba.prestamo.servicio.testdatabuilder.PrestamoTestDataBuilder;
 public class ServicioCrearPrestamoTest {
 
     @Test
-    public void validarObligatorioClientePrestamoTest() {
-        // arrange
-        PrestamoTestDataBuilder prestamoTestDataBuilder = new PrestamoTestDataBuilder().conIdCliente(null);
-        // act - assert
-        BasePrueba.assertThrows(() -> prestamoTestDataBuilder.build(), ExcepcionValorObligatorio.class,
-                "Se debe ingresar el usuario");
-    }
-
-    @Test
     public void validarObligatorioValorPrestamoTest() {
         // arrange
         PrestamoTestDataBuilder prestamoTestDataBuilder = new PrestamoTestDataBuilder().conValor(null);

@@ -28,7 +28,17 @@ public class ConsultaControladorClienteTest {
         // arrange
 
         // act - assert
-        mocMvc.perform(get("/clientes").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
+        mocMvc.perform(get("/clientes").contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk());
     }
 
+    @Test
+    public void consultaCliente() throws Exception {
+        // arrange
+
+        // act - assert
+        mocMvc.perform(get("/clientes/tipoidentificacion/{tipoidentificacion}/numerodocumento/{numerodocumento}", "CC", "1037641034")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
 }

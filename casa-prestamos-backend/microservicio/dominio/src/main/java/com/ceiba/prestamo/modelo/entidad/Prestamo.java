@@ -11,7 +11,6 @@ import lombok.Setter;
 @Setter
 public class Prestamo {
 
-    private static final String SE_DEBE_INGRESAR_EL_USUARIO = "Se debe ingresar el usuario";
     private static final String SE_DEBE_INGRESAR_EL_VALOR_DEL_PRESTAMO = "Se debe ingresar el valor del prestamo";
 
     private Long id;
@@ -31,7 +30,6 @@ public class Prestamo {
             Long idCliente) {
 
         validarObligatorio(valor, SE_DEBE_INGRESAR_EL_VALOR_DEL_PRESTAMO);
-        validarObligatorio(idCliente, SE_DEBE_INGRESAR_EL_USUARIO);
 
         this.id = id;
         this.fechaSolicitud = fechaSolicitud;

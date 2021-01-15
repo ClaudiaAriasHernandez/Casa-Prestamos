@@ -19,6 +19,8 @@ public class ComandoPrestamoTestDataBuilder {
     private double valorTotal;
     private String estado;
     private Long idCliente;
+    private String numeroDocumento;
+    private String tipoIdentificacion;
 
     public ComandoPrestamoTestDataBuilder() {
         id = 300L;
@@ -32,6 +34,8 @@ public class ComandoPrestamoTestDataBuilder {
         valorTotal = 0.0;
         estado = "D";
         idCliente = 1L;
+        numeroDocumento = "1037641034";
+        tipoIdentificacion = "CC";
     }
 
     public ComandoPrestamoTestDataBuilder conId(Long id) {
@@ -41,7 +45,7 @@ public class ComandoPrestamoTestDataBuilder {
 
     public ComandoPrestamo build() {
         return new ComandoPrestamo(id, fechaSolicitud, fechaEstimadaPago, fechaPago, valor, valorMora, valorInteres,
-                valorRecargo, valorTotal, estado, idCliente);
+                valorRecargo, valorTotal, estado, idCliente, numeroDocumento, tipoIdentificacion);
     }
 
 }

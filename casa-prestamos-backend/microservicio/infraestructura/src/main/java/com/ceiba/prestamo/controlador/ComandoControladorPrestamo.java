@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ceiba.ComandoRespuesta;
 import com.ceiba.prestamo.comando.ComandoPrestamo;
-import com.ceiba.prestamo.comando.manejador.ManejadorPagarPrestamo;
 import com.ceiba.prestamo.comando.manejador.ManejadorCrearPrestamo;
+import com.ceiba.prestamo.comando.manejador.ManejadorPagarPrestamo;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,12 +39,14 @@ public class ComandoControladorPrestamo {
         return manejadorCrearPrestamo.ejecutar(comandoPrestamo);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/tipoidentificacion/{tipoidentificacion}/numerodocumento/{numerodocumento}")
     @ApiOperation("Pagar Prestamo")
-    public void pagar(@RequestBody ComandoPrestamo comandoPrestamo, @PathVariable Long id) {
-        comandoPrestamo.setId(id);
+    public void pagar(@RequestBody ComandoPrestamo comandoPrestamo,
+            @PathVariable("tipoidentificacion") String tipoIdentificacion,
+            @PathVariable("numerodocumento") String numeroDocumento) {
+        comandoPrestamo.setNumeroDocumento(numeroDocumento);
+        comandoPrestamo.setTipoIdentificacion(tipoIdentificacion);
         manejadorPagarPrestamo.ejecutar(comandoPrestamo);
     }
-    
-    
+
 }

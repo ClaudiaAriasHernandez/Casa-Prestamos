@@ -13,6 +13,7 @@ import java.util.Date;
 import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.prestamo.modelo.dto.DtoPrestamo;
+import com.ceiba.prestamo.puerto.dao.DaoPrestamo;
 import com.ceiba.prestamo.puerto.repositorio.RepositorioPrestamo;
 
 public class ServicioConsultarPrestamo {
@@ -29,10 +30,14 @@ public class ServicioConsultarPrestamo {
 
     private final RepositorioPrestamo repositorioPrestamo;
 
-    public ServicioConsultarPrestamo(RepositorioCliente repositorioCliente, RepositorioPrestamo repositorioPrestamo) {
+    private final DaoPrestamo daoPrestamo;
+
+    public ServicioConsultarPrestamo(RepositorioCliente repositorioCliente, RepositorioPrestamo repositorioPrestamo,
+            DaoPrestamo daoPrestamo) {
         this.repositorioCliente = repositorioCliente;
 
         this.repositorioPrestamo = repositorioPrestamo;
+        this.daoPrestamo = daoPrestamo;
     }
 
     public DtoPrestamo ejecutar(Long id) {
@@ -45,7 +50,7 @@ public class ServicioConsultarPrestamo {
         validarExistenciaPreviaCliente(id);
         validarExistenciaPreviaPrestamo(id);
 
-        DtoPrestamo prestamoCliente = this.repositorioPrestamo.listarPorIdCliente(id);
+        DtoPrestamo prestamoCliente = this.daoPrestamo.listarPorIdCliente(id);
 
         prestamoCliente.setFechaPago(fechaActual);
 
@@ -133,7 +138,7 @@ public class ServicioConsultarPrestamo {
     }
 
     private long generarDiasPrestamo(Date fechaActual, DtoPrestamo dtoPrestamo) {
-  
+
         LocalDate inicio = Instant.ofEpochMilli(fechaActual.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
 
         LocalDate fin = Instant.ofEpochMilli(dtoPrestamo.getFechaSolicitud().getTime()).atZone(ZoneId.systemDefault())

@@ -69,10 +69,10 @@ public class ComandoControladorPrestamoTest {
         // arrange
         Long id = 1L;
         ComandoPrestamo prestamo = new ComandoPrestamo(id,  new GregorianCalendar(2020, Calendar.DECEMBER, 27).getTime(), new GregorianCalendar(2021, Calendar.JANUARY, 10).getTime(),
-                 new GregorianCalendar(2021, Calendar.JANUARY, 10).getTime(), 1000000.0, 30000, 0.0, 0.0, 1030000, "P", 1L);
+                 new GregorianCalendar(2021, Calendar.JANUARY, 10).getTime(), 1000000.0, 30000, 0.0, 0.0, 1030000, "P", 1L,"1037641034", "CC" );
 
         // act - assert
-        mocMvc.perform(put("/prestamos/{id}", id).contentType(MediaType.APPLICATION_JSON)
+        mocMvc.perform(put("/prestamos/tipoidentificacion/{tipoidentificacion}/numerodocumento/{numerodocumento}", "CC","1037641034").contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(prestamo)))
                 .andExpect(status().isOk());
     }

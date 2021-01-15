@@ -1,6 +1,5 @@
 package com.ceiba.prestamo.puerto.repositorio;
 
-import com.ceiba.prestamo.modelo.dto.DtoPrestamo;
 import com.ceiba.prestamo.modelo.entidad.Prestamo;
 
 public interface RepositorioPrestamo {
@@ -35,13 +34,6 @@ public interface RepositorioPrestamo {
      */
     boolean existeId(Long id);
 
-    /**
-     * Permite listar los prestamos por cliente
-     * 
-     * @param prestamo
-     * 
-     * @return los prestamos
-     */
-    DtoPrestamo listarPorIdCliente(Long id);
+    
 
 }

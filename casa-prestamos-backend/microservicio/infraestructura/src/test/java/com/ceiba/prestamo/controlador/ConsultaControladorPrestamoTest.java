@@ -73,8 +73,7 @@ public class ConsultaControladorPrestamoTest {
 //     
 //        // act - assert
 //      
-        mocMvc.perform(get("/prestamos/{id}", Long.parseLong(new Gson().fromJson(result.andReturn().getResponse().getContentAsString(),
-                ComandoRespuestaTestDataBuilder.class).getValor()))
+        mocMvc.perform(get("/prestamos/tipoidentificacion/{tipoidentificacion}/numerodocumento/{numerodocumento}", "CC","103764534")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }

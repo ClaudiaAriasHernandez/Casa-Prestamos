@@ -13,6 +13,7 @@ import com.ceiba.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.prestamo.modelo.dto.DtoPrestamo;
 import com.ceiba.prestamo.modelo.entidad.Prestamo;
+import com.ceiba.prestamo.puerto.dao.DaoPrestamo;
 import com.ceiba.prestamo.puerto.repositorio.RepositorioPrestamo;
 import com.ceiba.prestamo.servicio.testdatabuilder.PrestamoTestDataBuilder;
 
@@ -25,10 +26,12 @@ public class ServicioConsultarPrestamoTest {
         Prestamo prestamo = new PrestamoTestDataBuilder().build();
         RepositorioPrestamo repositorioPrestamo = Mockito.mock(RepositorioPrestamo.class);
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
+
+        DaoPrestamo daoPrestamo = Mockito.mock(DaoPrestamo.class);
         Mockito.when(repositorioCliente.existeId(anyLong())).thenReturn(false);
 
         ServicioConsultarPrestamo servicioConsultarPrestamo = new ServicioConsultarPrestamo(repositorioCliente,
-                repositorioPrestamo);
+                repositorioPrestamo, daoPrestamo);
         // act - assert
         BasePrueba.assertThrows(() -> servicioConsultarPrestamo.ejecutar(prestamo.getId()), ExcepcionDuplicidad.class,
                 "El cliente no existe en el sistema");
@@ -41,11 +44,12 @@ public class ServicioConsultarPrestamoTest {
         Prestamo prestamo = new PrestamoTestDataBuilder().build();
         RepositorioPrestamo repositorioPrestamo = Mockito.mock(RepositorioPrestamo.class);
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
+        DaoPrestamo daoPrestamo = Mockito.mock(DaoPrestamo.class);
         Mockito.when(repositorioCliente.existeId(anyLong())).thenReturn(true);
         Mockito.when(repositorioPrestamo.existePrestamoActivo(anyLong())).thenReturn(false);
 
         ServicioConsultarPrestamo servicioConsultarPrestamo = new ServicioConsultarPrestamo(repositorioCliente,
-                repositorioPrestamo);
+                repositorioPrestamo, daoPrestamo);
         // act - assert
         BasePrueba.assertThrows(() -> servicioConsultarPrestamo.ejecutar(prestamo.getId()), ExcepcionDuplicidad.class,
                 "El cliente no tiene un prestamo activo en el sistema");
@@ -63,11 +67,12 @@ public class ServicioConsultarPrestamoTest {
 
         RepositorioPrestamo repositorioPrestamo = Mockito.mock(RepositorioPrestamo.class);
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
+        DaoPrestamo daoPrestamo = Mockito.mock(DaoPrestamo.class);
         Mockito.when(repositorioCliente.existeId(anyLong())).thenReturn(true);
         Mockito.when(repositorioPrestamo.existePrestamoActivo(anyLong())).thenReturn(true);
-        Mockito.when(repositorioPrestamo.listarPorIdCliente(prestamo.getId())).thenReturn(dtoPrestamo);
+        Mockito.when(daoPrestamo.listarPorIdCliente(prestamo.getId())).thenReturn(dtoPrestamo);
         ServicioConsultarPrestamo servicioConsultarPrestamo = new ServicioConsultarPrestamo(repositorioCliente,
-                repositorioPrestamo);
+                repositorioPrestamo, daoPrestamo);
 
         // act
         DtoPrestamo datosPrestamos = servicioConsultarPrestamo.ejecutar(prestamo.getId());
@@ -88,12 +93,12 @@ public class ServicioConsultarPrestamoTest {
 
         RepositorioPrestamo repositorioPrestamo = Mockito.mock(RepositorioPrestamo.class);
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
+        DaoPrestamo daoPrestamo = Mockito.mock(DaoPrestamo.class);
         Mockito.when(repositorioCliente.existeId(anyLong())).thenReturn(true);
         Mockito.when(repositorioPrestamo.existePrestamoActivo(anyLong())).thenReturn(true);
-        Mockito.when(repositorioPrestamo.listarPorIdCliente(prestamo.getId())).thenReturn(dtoPrestamo);
+        Mockito.when(daoPrestamo.listarPorIdCliente(prestamo.getId())).thenReturn(dtoPrestamo);
         ServicioConsultarPrestamo servicioConsultarPrestamo = new ServicioConsultarPrestamo(repositorioCliente,
-                repositorioPrestamo);
-
+                repositorioPrestamo, daoPrestamo);
         // act
         DtoPrestamo datosPrestamos = servicioConsultarPrestamo.ejecutar(prestamo.getId());
 
@@ -113,11 +118,12 @@ public class ServicioConsultarPrestamoTest {
 
         RepositorioPrestamo repositorioPrestamo = Mockito.mock(RepositorioPrestamo.class);
         RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
+        DaoPrestamo daoPrestamo = Mockito.mock(DaoPrestamo.class);
         Mockito.when(repositorioCliente.existeId(anyLong())).thenReturn(true);
         Mockito.when(repositorioPrestamo.existePrestamoActivo(anyLong())).thenReturn(true);
-        Mockito.when(repositorioPrestamo.listarPorIdCliente(prestamo.getId())).thenReturn(dtoPrestamo);
+        Mockito.when(daoPrestamo.listarPorIdCliente(prestamo.getId())).thenReturn(dtoPrestamo);
         ServicioConsultarPrestamo servicioConsultarPrestamo = new ServicioConsultarPrestamo(repositorioCliente,
-                repositorioPrestamo);
+                repositorioPrestamo, daoPrestamo);
 
         // act
         DtoPrestamo datosPrestamos = servicioConsultarPrestamo.ejecutar(prestamo.getId());

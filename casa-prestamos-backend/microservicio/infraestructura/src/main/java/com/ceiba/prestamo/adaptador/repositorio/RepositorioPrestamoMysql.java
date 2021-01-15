@@ -1,14 +1,10 @@
 package com.ceiba.prestamo.adaptador.repositorio;
 
-import java.util.List;
-
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.prestamo.adaptador.dao.MapeoPrestamo;
-import com.ceiba.prestamo.modelo.dto.DtoPrestamo;
 import com.ceiba.prestamo.modelo.entidad.Prestamo;
 import com.ceiba.prestamo.puerto.repositorio.RepositorioPrestamo;
 
@@ -25,9 +21,6 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
 
     @SqlStatement(namespace = "prestamo", value = "existeId")
     private static String sqlExisteIdPrestamo;
-
-    @SqlStatement(namespace = "prestamo", value = "listarByIdCliente")
-    private static String sqlListarByIdClientePrestamo;
 
     @SqlStatement(namespace = "prestamo", value = "existePrestamoActivo")
     private static String sqlExistePrestamoActivoPrestamo;
@@ -66,19 +59,4 @@ public class RepositorioPrestamoMysql implements RepositorioPrestamo {
                 .queryForObject(sqlExistePrestamoActivoPrestamo, paramSource, Boolean.class);
     }
 
-    @Override
-    public DtoPrestamo listarPorIdCliente(Long id) {
-        DtoPrestamo datosPrestamo = null;
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id", id);
-
-        List<DtoPrestamo> prestamo = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                .query(sqlListarByIdClientePrestamo, paramSource, new MapeoPrestamo());
-
-        for (DtoPrestamo prestamoCliente : prestamo) {
-            datosPrestamo = prestamoCliente;
-        }
-        return datosPrestamo;
-
-    }
 }

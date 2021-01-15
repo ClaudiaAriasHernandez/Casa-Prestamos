@@ -11,5 +11,13 @@ public interface DaoCliente {
      * 
      * @return los clientes
      */
-    List<DtoCliente> listar();
+    List<DtoCliente> listar();    
+
+
+    /**
+     * Permite consultar un cliente por tipo de documento y numero de documento
+     * 
+     * @return los clientes
+     */
+    DtoCliente consultarCliente(String tipoIdentificacion, String numeroDocumento);
 }

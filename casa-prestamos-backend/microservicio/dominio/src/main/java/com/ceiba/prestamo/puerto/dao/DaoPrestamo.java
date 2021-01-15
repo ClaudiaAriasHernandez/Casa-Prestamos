@@ -13,5 +13,12 @@ public interface DaoPrestamo {
      */
     List<DtoPrestamo> listar();
 
-
+    /**
+     * Permite listar los prestamos por cliente
+     * 
+     * @param prestamo
+     * 
+     * @return los prestamos
+     */
+    DtoPrestamo listarPorIdCliente(Long id);
 }

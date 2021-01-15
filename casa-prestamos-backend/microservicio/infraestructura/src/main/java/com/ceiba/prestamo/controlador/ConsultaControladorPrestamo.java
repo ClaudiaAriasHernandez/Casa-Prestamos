@@ -34,11 +34,12 @@ public class ConsultaControladorPrestamo {
         return this.manejadorListarPrestamos.ejecutar();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/tipoidentificacion/{tipoidentificacion}/numerodocumento/{numerodocumento}")
     @ApiOperation("Listar Prestamos Activos por cliente")
-    public DtoPrestamo listarPorIdCliente(@PathVariable Long id) {
+    public DtoPrestamo listarPorIdCliente(@PathVariable("tipoidentificacion") String tipoIdentificacion,
+            @PathVariable("numerodocumento") String numeroDocumento) {
 
-        return this.manejadorListarPrestamoCliente.ejecutar(id);
+        return this.manejadorListarPrestamoCliente.ejecutar(tipoIdentificacion,numeroDocumento );
     }
 
 }
