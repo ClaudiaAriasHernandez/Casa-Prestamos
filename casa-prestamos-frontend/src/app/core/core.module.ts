@@ -9,12 +9,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HttpService } from './services/http.service';
 import { ManejadorError } from './interceptor/manejador-error';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   declarations: [ToolbarComponent, NavbarComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MaterialModule,
   ],
   exports: [ToolbarComponent, NavbarComponent],
   providers: [
@@ -23,7 +25,6 @@ import { RouterModule } from '@angular/router';
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: ErrorHandler, useClass: ManejadorError }
-  ],
-  bootstrap: [NavbarComponent]
+  ]
 })
 export class CoreModule { }

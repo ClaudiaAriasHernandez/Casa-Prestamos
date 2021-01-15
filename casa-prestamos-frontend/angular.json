@@ -6,7 +6,9 @@
     "app-base": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {  "style": "scss"}
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
       },
       "root": "",
       "sourceRoot": "src",
@@ -25,8 +27,9 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [ 
-              "src/styles.scss"          
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -56,7 +59,6 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-
               ]
             }
           }
@@ -66,7 +68,6 @@
           "options": {
             "browserTarget": "app-base:build",
             "proxyConfig": "proxy.conf.json"
-
           },
           "configurations": {
             "production": {
@@ -92,7 +93,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss" 
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
             ],
             "scripts": []
           }
@@ -123,6 +125,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "app-base"
 }
