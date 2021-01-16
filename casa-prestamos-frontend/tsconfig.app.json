@@ -17,6 +17,12 @@
       "@producto/*": [
         "src/app/feature/producto/*"
       ],
+      "@cliente/*": [
+        "src/app/feature/cliente/*"
+      ],
+      "@tipodocumento/*": [
+        "src/app/feature/tipodocumento/*"
+      ],
       "@shared/*": [
         "src/app/shared/*"
       ]

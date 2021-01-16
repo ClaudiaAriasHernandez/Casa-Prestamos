@@ -2,7 +2,32 @@
   <a *ngFor="let item of items" [routerLink]="item.url" routerLinkActive="active">{{item.nombre}}</a>
 </nav>-->
 
-<button color="accent" mat-icon-button [matTooltip]="'Hola'">
+<!--<button color="accent" mat-icon-button [matTooltip]="'Hola'">
   <mat-icon>edit</mat-icon>
-</button>
+</button>-->
 
+
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="openSidenav()">
+      <mat-icon>menu</mat-icon>
+  </button>
+  <span class="menu-spacer"></span>
+  <button mat-button routerLink="/movements">
+     Home 
+  </button>
+  <button mat-button routerLink="/cliente">
+   Cliente
+  </button>
+  <button mat-button routerLink="/tipodocumento">
+    Tipo Documento
+  </button>
+  <button mat-button [matMenuTriggerFor]="menu">
+    
+      <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/reports/month-year"> Prueba 1</button>
+      <button mat-menu-item routerLink="/reports/category"> Prueba 1</button>
+      <button mat-menu-item routerLink="/reports/type"> Prueba 1</button>
+  </mat-menu>
+</mat-toolbar>

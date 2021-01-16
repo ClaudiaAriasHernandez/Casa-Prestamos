@@ -18,6 +18,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
 
 const modules = [
     MatSidenavModule,
@@ -39,6 +40,7 @@ const modules = [
     MatProgressBarModule,
     MatDialogModule,
     MatDividerModule,
+    MatListModule
 ];
 
 @NgModule({

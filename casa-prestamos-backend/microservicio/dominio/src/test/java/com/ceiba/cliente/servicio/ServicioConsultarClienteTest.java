@@ -38,7 +38,6 @@ public class ServicioConsultarClienteTest {
         Cliente cliente = new ClienteTestDataBuilder().build();
         TipoDocumento tipoDocumento = new TipoDocumentoTestDataBuilder().build();
 
-        ;
         DtoTipoDocumento dtoTipoDocumento = new DtoTipoDocumento(tipoDocumento.getId(),
                 tipoDocumento.getTipoIdentificacion(), tipoDocumento.getDescripcion());
 

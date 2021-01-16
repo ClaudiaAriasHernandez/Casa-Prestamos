@@ -1,0 +1,8 @@
+<p>listar-tipoDocumentoS works!</p>
+<div id="tipoDocumentos">
+  <ul class="tipoDocumentos">
+    <li *ngFor="let item of listaTipoDocumentos | async">
+      <span>{{item.id}}</span> {{item.tipoIdentificacion}}
+    </li>
+  </ul>
+</div>

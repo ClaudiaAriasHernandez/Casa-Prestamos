@@ -1,0 +1,8 @@
+<p>listar-cliente works!</p>
+<div id="clientes">
+  <ul class="clientes">
+    <li *ngFor="let item of listaClientes | async">
+      <span>{{item.id}}</span> {{item.nombre}}
+    </li>
+  </ul>
+</div>
