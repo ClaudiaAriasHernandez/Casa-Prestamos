@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { CrearTipoDocumentoComponent } from './crear-tipodocumento.component';
+import { PagarPrestamoComponent } from './pagar-prestamo.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TipoDocumentoService } from '../../shared/service/tipodocumento.service';
+import { PrestamoService } from '../../shared/service/prestamo.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-describe('CrearTipoDocumentoComponent', () => {
-  let component: CrearTipoDocumentoComponent;
-  let fixture: ComponentFixture<CrearTipoDocumentoComponent>;
-  let tipoDocumentoService: TipoDocumentoService;
+describe('PagarPrestamoComponent', () => {
+  let component: PagarPrestamoComponent;
+  let fixture: ComponentFixture<PagarPrestamoComponent>;
+  let prestamoService: PrestamoService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CrearTipoDocumentoComponent ],
+      declarations: [ PagarPrestamoComponent ],
       imports: [
         CommonModule,
         HttpClientModule,
@@ -24,16 +24,16 @@ describe('CrearTipoDocumentoComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers: [TipoDocumentoService, HttpService],
+      providers: [PrestamoService, HttpService],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CrearTipoDocumentoComponent);
+    fixture = TestBed.createComponent(PagarPrestamoComponent);
     component = fixture.componentInstance;
-    tipoDocumentoService = TestBed.inject(TipoDocumentoService);
-    spyOn(tipoDocumentoService, 'guardar').and.returnValue(
+    prestamoService = TestBed.inject(PrestamoService);
+    spyOn(prestamoService, 'guardar').and.returnValue(
       of(true)
     );
     fixture.detectChanges();
@@ -44,14 +44,14 @@ describe('CrearTipoDocumentoComponent', () => {
   });
 
   it('formulario es invalido cuando esta vacio', () => {
-    expect(component.tipodocumentoForm.valid).toBeFalsy();
+    expect(component.prestamoForm.valid).toBeFalsy();
   });
 
-  it('Registrando cliente', () => {
-    expect(component.tipodocumentoForm.valid).toBeFalsy();
-    component.tipodocumentoForm.controls.id.setValue(2);
-    component.tipodocumentoForm.controls.nombre.setValue("Sara")
-    expect(component.tipodocumentoForm.valid).toBeTruthy();
+  it('Registrando prestamo', () => {
+    expect(component.prestamoForm.valid).toBeFalsy();
+    component.prestamoForm.controls.id.setValue(2);
+    component.prestamoForm.controls.numeroDocumento.setValue("4552111")
+    expect(component.prestamoForm.valid).toBeTruthy();
 
     component.cerar();
 

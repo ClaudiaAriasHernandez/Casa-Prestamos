@@ -1,0 +1,46 @@
+@import 'src/assets/scss/modules/_mixins';
+.example-card {
+  width: 100%;
+  margin-bottom: 20px;
+
+
+  @include  media($media-sm) {
+ // @media (min-width: 560px) {
+    width: calc(50% - 42px);
+
+    &:nth-child(odd) {
+      margin-right: 20px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    flex: 1;
+    margin-bottom: 0;
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
+}
+  
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.container-card {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  @media (min-width: 1024px) {
+    flex-wrap: unset;
+  }
+}
+
+ /* .mat-card-image {
+   
+    border-radius: 60%;
+    flex-shrink: 0;
+    object-fit: cover;
+}*/

@@ -1,6 +1,6 @@
-<h1>Registrar tipodoumento</h1>
+<h1>Registrar prestamo</h1>
 <h3>Ejemplo validacion de formularios reactivos con directiva</h3>
-<form [formGroup]="tipodocumentoForm" (ngSubmit)="cerar()">
+<form [formGroup]="prestamoForm" (ngSubmit)="cerar()">
   <div class="row">
     <div class="col-sm-2">
       <label>Id:</label>
@@ -12,11 +12,11 @@
   </div>
   <div class="row">
     <div class="col-sm-2">
-      <label>Tipo identificacion:</label>
+      <label>Numero documento:</label>
     </div>
     <div class="col-sm-4">
-      <input validar type="text" id="tipoIdentificacion" name="tipoIdentificacion" placeholder="Descripción tipoIdentificacion"
-        class="form-control" formControlName="tipoIdentificacion">
+      <input validar type="text" id="numeroDocumento" name="numeroDocumento" placeholder="numero documento"
+        class="form-control" formControlName="numeroDocumento">
     </div>
   </div>
 </form>

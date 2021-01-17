@@ -1,0 +1,8 @@
+<p>listar-prestamo works!</p>
+<div id="prestamo">
+  <ul class="prestamo">
+    <li *ngFor="let item of listaPrestamos| async">
+      <span>{{item.id}}</span> {{item.numerodocumento}}
+    </li>
+  </ul>
+</div>

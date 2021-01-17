@@ -18,14 +18,14 @@ export class CrearTipoDocumentoComponent implements OnInit {
     this.construirFormularioTipoDocumento();
   }
 
-  cerar() {
+  crear() {
     this.tipoDocumentoService.guardar(this.tipodocumentoForm.value);
   }
 
   private construirFormularioTipoDocumento() {
     this.tipodocumentoForm = new FormGroup({
       id: new FormControl('', [Validators.required]),
-      descripcion: new FormControl('', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO),
+      tipoIdentificacion: new FormControl('', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO),
                                                              Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)])
     });
   }

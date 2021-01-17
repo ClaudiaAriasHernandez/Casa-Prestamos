@@ -39,6 +39,9 @@
       "@tipodocumento/*": [
         "src/app/feature/tipodocumento/*"
       ],
+      "@prestamo/*": [
+        "src/app/feature/prestamo/*"
+      ],
       "@shared/*": [
         "src/app/shared/*"
       ]

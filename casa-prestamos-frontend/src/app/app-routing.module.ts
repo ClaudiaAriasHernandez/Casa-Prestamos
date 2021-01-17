@@ -9,8 +9,9 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [SecurityGuard]  },
   { path: 'producto', loadChildren: () => import('@producto/producto.module').then(mod => mod.ProductoModule) },
   { path: 'cliente', loadChildren: () => import('@cliente/cliente.module').then(mod => mod.ClienteModule) },
-  { path: 'tipodocumento', loadChildren: () => import('@tipodocumento/tipodocumento.module').then(mod => mod.TipoDocumentoModule) }
-  
+  { path: 'tipodocumento', loadChildren: () => import('@tipodocumento/tipodocumento.module').then(mod => mod.TipoDocumentoModule) },
+  { path: 'prestamo', loadChildren: () => import('@prestamo/prestamo.module').then(mod => mod.PrestamoModule) },
+  { path: '**', redirectTo: 'home' },
 ];
 
 @NgModule({

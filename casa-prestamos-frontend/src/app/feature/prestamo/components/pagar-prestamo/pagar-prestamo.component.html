@@ -1,0 +1,22 @@
+<h1>Actualizar prestamo</h1>
+<h3>Ejemplo validacion de formularios reactivos con directiva</h3>
+<form [formGroup]="prestamoForm" (ngSubmit)="cerar()">
+  <div class="row">
+    <div class="col-sm-2">
+      <label>Id:</label>
+    </div>
+    <div class="col-sm-4">
+      <input validar type="text" id="id" name="id" placeholder="Id " class="form-control"
+        formControlName="id">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <label>numero documento:</label>
+    </div>
+    <div class="col-sm-4">
+      <input validar type="text" id="numeroDocumento" name="numeroDocumento" placeholder="numero documento"
+        class="form-control" formControlName="numeroDocumento">
+    </div>
+  </div>
+</form>

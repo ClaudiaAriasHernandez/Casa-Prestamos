@@ -8,7 +8,7 @@ import { ActualizarTipoDocumentoComponent } from './components/actualizar-tipodo
 import { TipoDocumentoComponent } from './components/tipodocumento/tipodocumento.component';
 import { SharedModule } from '@shared/shared.module';
 import { TipoDocumentoService } from './shared/service/tipodocumento.service';
-
+import { MaterialModule } from 'src/app/material.module';
 
 @NgModule({
   declarations: [
@@ -16,11 +16,12 @@ import { TipoDocumentoService } from './shared/service/tipodocumento.service';
     ListarTipoDocumentoComponent,
     BorrarTipoDocumentoComponent,
     ActualizarTipoDocumentoComponent,
-    TipoDocumentoComponent
+    TipoDocumentoComponent,
   ],
   imports: [
     TipoDocumentoRoutingModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ],
   providers: [TipoDocumentoService]
 })

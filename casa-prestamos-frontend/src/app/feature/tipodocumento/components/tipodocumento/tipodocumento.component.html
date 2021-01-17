@@ -1,9 +1,62 @@
-<nav>
-  <a id="linkTipoDocumento" routerLink="./" routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }">Tipo documento</a>
-  <a id="linkTipoDocumento" routerLink="./actualizar" routerLinkActive="active">Actualizar tipo documento</a>
-  <a id="linkTipoDocumento" routerLink="./crear" routerLinkActive="active">Crear tipo documento</a>
-  <a id="linkTipoDocumento" routerLink="./borrar" routerLinkActive="active">Borrar tipo documento</a>
-  <a id="linkTipoDocumento" routerLink="./listar" routerLinkActive="active">listar tipo documento</a>
-</nav>
+<div class="container-card">
+<mat-card class="example-card" routerLink="/tipodocumento/actualizar">
+  <mat-card-header>
+    
+    <mat-card-title>Actualizar</mat-card-title>
+   
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+  <mat-card-content >
+  <p>Permite actualizar las información del tipo de documento.</p>
+  </mat-card-content>
+  
+</mat-card>
+
+
+<mat-card class="example-card" routerLink="/tipodocumento/crear">
+  <mat-card-header>
+    
+    <mat-card-title>Crear</mat-card-title>
+   
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+  <mat-card-content >
+  <p>Permite crear un nuevo tipo de documento</p>
+  </mat-card-content>
+  
+</mat-card>
+
+
+<mat-card class="example-card" routerLink="/tipodocumento/borrar">
+  <mat-card-header>
+    
+    <mat-card-title>Eliminar</mat-card-title>
+   
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+  <mat-card-content >
+  <p>Permite actualizar las información del tipo de documento</p>
+  </mat-card-content>
+  
+</mat-card>
+
+<mat-card class="example-card" routerLink="/tipodocumento/listar">
+  <mat-card-header>
+    
+    <mat-card-title>Consultar</mat-card-title>
+   
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+  <mat-card-content >
+  <p>Permite actualizar las información del tipo de documento</p>
+  </mat-card-content>
+  
+</mat-card>
+
+</div>
+
+
+<!-- Copyright 2020 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
 <router-outlet></router-outlet>
