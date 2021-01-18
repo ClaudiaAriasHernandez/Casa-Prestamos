@@ -1,0 +1,15 @@
+@import 'src/assets/scss/modules/_mixins.scss';
+
+.container-form {
+    width: 400px; 
+    margin: 20px auto 0 auto;
+
+    @include  media('sm') {
+        width: 100%; 
+    }
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+}

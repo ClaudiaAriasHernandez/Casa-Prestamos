@@ -12,4 +12,13 @@ public interface DaoTipoDocumento {
      * @return los tipos de documentos
      */
     List<DtoTipoDocumento> listar();
+    
+    
+
+    /**
+     * Permite consultar un tipo de documento por tipo de identificacion
+     * 
+     * @return informacion tipo documento
+     */
+    DtoTipoDocumento consultarTipoDocumento(String tipoIdentificacion);
 }

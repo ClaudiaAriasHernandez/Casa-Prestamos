@@ -2,6 +2,7 @@ package com.ceiba.tipodocumento.adaptador.dao;
 
 import java.util.List;
 
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
@@ -17,6 +18,9 @@ public class DaoTipoDocumentoMysql implements DaoTipoDocumento {
     @SqlStatement(namespace = "tipodocumento", value = "listar")
     private static String sqlListar;
 
+    @SqlStatement(namespace = "tipodocumento", value = "consultarTipoDocumento")
+    private static String sqlConsultarTipoDocumento;
+
     public DaoTipoDocumentoMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -25,5 +29,20 @@ public class DaoTipoDocumentoMysql implements DaoTipoDocumento {
     public List<DtoTipoDocumento> listar() {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar,
                 new MapeoTipoDocumento());
+    }
+
+    @Override
+    public DtoTipoDocumento consultarTipoDocumento(String tipoIdentificacion) {
+        DtoTipoDocumento datosTipoDocumento = null;
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("tipoIdentificacion", tipoIdentificacion);
+
+        List<DtoTipoDocumento> tipoDocumento = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .query(sqlConsultarTipoDocumento, paramSource, new MapeoTipoDocumento());
+
+        for (DtoTipoDocumento tipoDocumentoInfo : tipoDocumento) {
+            datosTipoDocumento = tipoDocumentoInfo;
+        }
+        return datosTipoDocumento;
     }
 }

@@ -14,8 +14,10 @@ import com.ceiba.prestamo.puerto.repositorio.RepositorioPrestamo;
 import com.ceiba.prestamo.servicio.ServicioConsultarPrestamo;
 import com.ceiba.prestamo.servicio.ServicioCrearPrestamo;
 import com.ceiba.prestamo.servicio.ServicioPagarPrestamo;
+import com.ceiba.tipodocumento.puerto.dao.DaoTipoDocumento;
 import com.ceiba.tipodocumento.puerto.repositorio.RepositorioTipoDocumento;
 import com.ceiba.tipodocumento.servicio.ServicioActualizarTipoDocumento;
+import com.ceiba.tipodocumento.servicio.ServicioConsultarTipoDocumento;
 import com.ceiba.tipodocumento.servicio.ServicioCrearTipoDocumento;
 import com.ceiba.tipodocumento.servicio.ServicioEliminarTipoDocumento;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
@@ -96,6 +98,11 @@ public class BeanServicio {
     @Bean
     public ServicioConsultarCliente servicioConsultarCliente(DaoCliente daoCliente) {
         return new ServicioConsultarCliente(daoCliente);
+    }
+
+    @Bean
+    public ServicioConsultarTipoDocumento servicioConsultarTipoDocumento(DaoTipoDocumento daoTipoDocumento) {
+        return new ServicioConsultarTipoDocumento(daoTipoDocumento);
     }
 
 }

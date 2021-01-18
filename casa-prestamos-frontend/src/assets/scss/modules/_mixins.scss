@@ -4,8 +4,11 @@
   $media-lg: "(max-width: 1200px)"; // Resoluciones grandes
   $media-md: "(max-width: 992px)"; // Escritorios
   $media-sm: "(max-width: 768px)";  // Tablets
-  $media-xs: "(max-width : 480px)"; // Telefonos
-  $media-xxs:"(max-width : 320px)"; // iPhone Retina
+  $media-xs: "(max-width: 480px)"; // Telefonos
+  $media-xxs:"(max-width: 320px)"; // iPhone Retina
+
+  $media-xs-min:"(min-width: 560px)"; // tablet
+  $media-md-min:"(min-width: 1024px)"; // desktop
   
   @if $consulta == xxs {
     @media #{$media-xxs} { @content; }
@@ -24,6 +27,12 @@
   }
   @else if $consulta == xlg {
     @media #{$media-xlg}  { @content; }
+  }
+  @else if $consulta == mdmin {
+    @media #{$media-md-min}  { @content; }
+  }
+  @else if $consulta == xsmin {
+    @media #{$media-xs-min}  { @content; }
   }
 }
 //End Responsive

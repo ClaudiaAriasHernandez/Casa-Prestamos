@@ -34,4 +34,13 @@ public class ConsultaControladorTipoDocumentoTest {
                 .andExpect(jsonPath("$", hasSize(1))).andExpect(jsonPath("$[0].tipoIdentificacion", is("CC")));
     }
 
+    @Test
+    public void consultaTipoDocumento() throws Exception {
+        // arrange
+
+        // act - assert
+        mocMvc.perform(get("/tipodocumentos/tipoidentificacion/{tipoidentificacion}", "CC")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
 }

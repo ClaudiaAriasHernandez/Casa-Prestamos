@@ -53,7 +53,7 @@ describe('CrearTipoDocumentoComponent', () => {
     component.tipodocumentoForm.controls.nombre.setValue("PEP")
     expect(component.tipodocumentoForm.valid).toBeTruthy();
 
-    component.cerar();
+    component.crear();
 
     // Aca validamos el resultado esperado al enviar la petición
     // TODO adicionar expect

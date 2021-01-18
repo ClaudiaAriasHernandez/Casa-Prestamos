@@ -1,0 +1,10 @@
+@import 'src/assets/scss/modules/_mixins.scss';
+
+.tabla-registros {
+    width: 80%;
+    margin: 0 auto;
+
+    @include  media('sm') {
+        width: 100%; 
+    }
+}

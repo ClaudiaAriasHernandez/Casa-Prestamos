@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@core-service/http.service';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TipoDocumento } from '../model/tipodocumento';
 
@@ -10,18 +11,20 @@ export class TipoDocumentoService {
 
   constructor(protected http: HttpService) {}
 
-  public consultar() {
-    return this.http.doGet<TipoDocumento[]>(`${this.RUTA_BASE}/tipodocumentos/`, this.http.optsName('consultar tipos de documentos'));
+  public consultar(): Observable<TipoDocumento[]> {
+    return this.http.doGet<TipoDocumento[]>(`${this.RUTA_BASE}/tipodocumentos/`);
+  }
+  
+  public buscarTipoDocumento( tipoDocumento: TipoDocumento): Observable<TipoDocumento> {
+    return this.http.doGet<TipoDocumento>(`${this.RUTA_BASE}/tipodocumentos/tipoidentificacion/${tipoDocumento.tipoIdentificacion}`);
   }
 
   public guardar(tipoDocumento: TipoDocumento) {
-    return this.http.doPost<TipoDocumento, boolean>(`${this.RUTA_BASE}/tipodocumentos`, tipoDocumento,
-                                                this.http.optsName('crear tipo documentos'));
+    return this.http.doPost<TipoDocumento, any>(`${this.RUTA_BASE}/tipodocumentos`, tipoDocumento);
   }
 
   public actualizar(tipoDocumento: TipoDocumento) {
-    return this.http.doPost<TipoDocumento, boolean>(`${this.RUTA_BASE}/tipodocumentos/${tipoDocumento.id}`, tipoDocumento,
-                                                this.http.optsName('actualizar tipo documentos'));
+    return this.http.doPut<TipoDocumento, boolean>(`${this.RUTA_BASE}/tipodocumentos/${tipoDocumento.id}`, tipoDocumento);
   }
 
   public eliminar(tipoDocumento: TipoDocumento) {

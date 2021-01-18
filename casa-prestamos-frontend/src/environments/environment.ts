@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endpoint: '/casa-prestamos'
+  endpoint: 'http://localhost:8080/casa-prestamos'
 };
 
 /*

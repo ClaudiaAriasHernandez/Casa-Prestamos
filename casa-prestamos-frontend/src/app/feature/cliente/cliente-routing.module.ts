@@ -11,25 +11,24 @@ import { ClienteComponent } from './components/cliente/cliente.component';
 const routes: Routes = [
   {
     path: '',
-    component: ClienteComponent,
-    children: [
-      {
-        path: 'crear',
-        component: CrearClienteComponent
-      },
-      {
-        path: 'listar',
-        component: ListarClienteComponent
-      },
-      {
-        path: 'borrar',
-        component: BorrarClienteComponent
-      },
-      {
-        path: 'actualizar',
-        component: ActualizarClienteComponent
-      }
-    ]
+    pathMatch: 'full',
+    component: ClienteComponent
+  },
+  {
+    path: 'crear',
+    component: CrearClienteComponent
+  },
+  {
+    path: 'listar',
+    component: ListarClienteComponent
+  },
+  {
+    path: 'borrar',
+    component: BorrarClienteComponent
+  },
+  {
+    path: 'actualizar',
+    component: ActualizarClienteComponent
   }
 ];
 

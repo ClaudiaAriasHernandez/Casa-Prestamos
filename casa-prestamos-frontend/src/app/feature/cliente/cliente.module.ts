@@ -8,7 +8,7 @@ import { ActualizarClienteComponent } from './components/actualizar-cliente/actu
 import { ClienteComponent } from './components/cliente/cliente.component';
 import { SharedModule } from '@shared/shared.module';
 import { ClienteService } from './shared/service/cliente.service';
-
+import { MaterialModule } from 'src/app/material.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { ClienteService } from './shared/service/cliente.service';
   ],
   imports: [
     ClienteRoutingModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ],
   providers: [ClienteService]
 })

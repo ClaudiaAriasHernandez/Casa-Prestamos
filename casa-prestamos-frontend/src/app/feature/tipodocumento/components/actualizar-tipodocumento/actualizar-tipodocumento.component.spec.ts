@@ -53,7 +53,7 @@ describe('ActualizarTipoDocumentoComponent', () => {
     component.tipodocumentoForm.controls.tipoIdentificacion.setValue("CC")
     expect(component.tipodocumentoForm.valid).toBeTruthy();
 
-    component.cerar();
+    component.actualizar();
 
     // Aca validamos el resultado esperado al enviar la petición
     // TODO adicionar expect

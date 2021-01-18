@@ -1,11 +1,12 @@
-@import 'src/assets/scss/modules/_mixins';
+@import 'src/assets/scss/modules/_mixins.scss';
+
 .example-card {
   width: 100%;
   margin-bottom: 20px;
+  cursor: pointer;
 
 
-  @include  media($media-sm) {
- // @media (min-width: 560px) {
+  @include media(xsmin) {
     width: calc(50% - 42px);
 
     &:nth-child(odd) {
@@ -13,7 +14,7 @@
     }
   }
 
-  @media (min-width: 1024px) {
+  @include media(mdmin) {
     flex: 1;
     margin-bottom: 0;
 
@@ -32,10 +33,33 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  margin-top: 20px;
 
   @media (min-width: 1024px) {
     flex-wrap: unset;
   }
+}
+
+
+.content-card{
+  color: #4b4b4b;
+  font-weight: 100;
+  letter-spacing: 1px;
+  font-family: 'Poppins', sans-serif;
+}
+.tittle-card{
+  font-size: 1.25rem;
+  color: #4b4b4b;
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+ 
+}
+
+
+
+.mat-card-image {
+  width: calc(70% + 12px) !important;
+  margin: 0 -20px 20px 30px !important;
 }
 
  /* .mat-card-image {
