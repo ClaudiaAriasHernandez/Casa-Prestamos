@@ -1,18 +1,23 @@
-
 <h1>Registrar tipo documento</h1>
-<hr>
-<div class="container-form">
-  <form class="form-fields" [formGroup]="tipodocumentoForm" (ngSubmit)="crear()">
-    <mat-form-field class="form-field"  appearance="fill">
-      <mat-label>Tipo Identificacion</mat-label>
-      <input matInput validar type="text" id="tipoIdentificacion" name="tipoIdentificacion"  class="form-control"
-      formControlName="tipoIdentificacion">
-    </mat-form-field>
-    <mat-form-field  class="form-field" appearance="fill">
-      <mat-label>Descripción Identificación</mat-label>
-      <input matInput  validar type="text" id="descripcion" name="descripcion"
-      class="form-control" formControlName="descripcion">
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Crear</button>
-  </form>
-</div>
+  <hr>
+ 
+  
+  <div class="container-form" > 
+    <form class="form-fields" [formGroup]="tipodocumentoForm" (ngSubmit)="crear()">
+      <mat-form-field class="form-field" appearance="fill">
+        <mat-label>Tipo Identificación:</mat-label>
+        <input matInput validar type="text" id="tipoIdentificacion" name="tipoIdentificacion"
+          class="form-control" formControlName="tipoIdentificacion" >
+      </mat-form-field>
+      <mat-form-field  class="form-field" appearance="fill">
+        <mat-label>Descripción Identificación:</mat-label>
+        <input matInput validar type="text" id="descripcion" name="descripcion"
+          class="form-control" formControlName="descripcion" >
+      </mat-form-field>
+      <button [disabled]="!tipodocumentoForm?.valid" mat-raised-button color="primary" type="submit">Guardar</button>
+    </form>
+    <button class="cancel-button" mat-raised-button color="default" type="button" [routerLink]="'/tipodocumento'">
+      Cancelar
+    </button>
+  </div>
+  

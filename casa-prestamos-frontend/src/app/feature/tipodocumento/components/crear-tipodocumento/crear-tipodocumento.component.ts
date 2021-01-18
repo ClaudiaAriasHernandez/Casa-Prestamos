@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TipoDocumentoService } from '../../shared/service/tipodocumento.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 5;
 const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 50;
@@ -12,15 +13,21 @@ const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 50;
 })
 export class CrearTipoDocumentoComponent implements OnInit {
   tipodocumentoForm: FormGroup;
-  constructor(protected tipoDocumentoService: TipoDocumentoService) { }
+  constructor(protected tipoDocumentoService: TipoDocumentoService,
+    private readonly router: Router
+  ) { }
 
   ngOnInit() {
     this.construirFormularioTipoDocumento();
   }
 
   crear() {
+    if (!this.tipodocumentoForm.valid) {
+      return;
+    }
     this.tipoDocumentoService.guardar(this.tipodocumentoForm.value).subscribe((respuesta) => {
       console.log(respuesta);
+      this.router.navigateByUrl('/tipodocumento/listar');
     }, (error) => {
       console.log(error.error.mensaje);
     });
