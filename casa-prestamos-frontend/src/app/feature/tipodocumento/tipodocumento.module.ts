@@ -9,6 +9,7 @@ import { TipoDocumentoComponent } from './components/tipodocumento/tipodocumento
 import { SharedModule } from '@shared/shared.module';
 import { TipoDocumentoService } from './shared/service/tipodocumento.service';
 import { MaterialModule } from 'src/app/material.module';
+import { NotificationService } from 'src/app/notification.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,9 @@ import { MaterialModule } from 'src/app/material.module';
     SharedModule,
     MaterialModule
   ],
-  providers: [TipoDocumentoService]
+  providers: [
+    TipoDocumentoService,
+    NotificationService,
+  ]
 })
 export class TipoDocumentoModule { }

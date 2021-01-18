@@ -53,7 +53,7 @@ describe('CrearClienteComponent', () => {
     component.clienteForm.controls.nombre.setValue("Sara")
     expect(component.clienteForm.valid).toBeTruthy();
 
-    component.cerar();
+    component.crear();
 
     // Aca validamos el resultado esperado al enviar la petición
     // TODO adicionar expect

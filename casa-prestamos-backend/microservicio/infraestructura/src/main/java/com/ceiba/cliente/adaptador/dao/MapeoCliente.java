@@ -26,7 +26,7 @@ public class MapeoCliente implements RowMapper<DtoCliente>, MapperResult {
         String descripcion = resultSet.getString("descripcion");
 
         DtoTipoDocumento dtoTipoDocumento = new DtoTipoDocumento(idIdentificacion, tipoIdentificacion, descripcion);
-        return new DtoCliente(id, nombre, direccion, numeroDocumento, telefono, correo, idTipoDocumento,
+        return new DtoCliente(id, nombre, direccion, numeroDocumento,correo, telefono, idTipoDocumento,
                 dtoTipoDocumento);
     }
 

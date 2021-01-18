@@ -1,1 +1,63 @@
-<p>borrar-cliente works!</p>
+
+<h1>Borrar Cliente</h1>
+<hr>
+<div class="container-form" *ngIf="!clienteBuscado">
+  <form class="form-fields" [formGroup]="findClienteForm" (ngSubmit)="buscarCliente()">
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-select formControlName="idTipoDocumento" name="idTipoDocumento"   placeholder="Seleccionar tipo documento" id="idTipoDocumento" >
+        <mat-option *ngFor="let tipoDocumento of listaTipoDocumentos" 
+    [value]="tipoDocumento.tipoIdentificacion">
+          {{tipoDocumento.tipoIdentificacion}}
+        </mat-option>
+     </mat-select>
+    </mat-form-field>
+     <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Número documento:</mat-label>
+      <input matInput validar type="text" id="numeroDocumento" name="numeroDocumento"
+        class="form-control" formControlName="numeroDocumento" >
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Buscar</button>
+  </form>
+</div>
+
+<div class="container-form" *ngIf = "!!clienteBuscado"> 
+  <form class="form-fields" [formGroup]="clienteForm" (ngSubmit)="eliminar()">
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Nombre:</mat-label>
+      <input matInput validar type="text" id="nombre" name="nombre"
+        class="form-control" formControlName="nombre"  [value]="clienteBuscado?.nombre" >
+    </mat-form-field>
+    <mat-form-field >
+      <mat-select formControlName="idTipoDocumento" name="idTipoDocumento"  id="idTipoDocumento" >
+        <mat-option *ngFor="let tipoDocumento of listaTipoDocumentos" 
+    [value]="tipoDocumento.id">
+          {{tipoDocumento.tipoIdentificacion}}
+        </mat-option>
+     </mat-select>
+   </mat-form-field>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Número documento:</mat-label>
+      <input matInput validar type="text" id="numeroDocumento" name="numeroDocumento"
+        class="form-control" formControlName="numeroDocumento"  [value]="clienteBuscado?.numeroDocumento">
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Direccion:</mat-label>
+      <input matInput validar type="text" id="direccion" name="direccion"
+        class="form-control" formControlName="direccion"  [value]="clienteBuscado?.direccion" >
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Telefono:</mat-label>
+      <input matInput validar type="text" id="telefono" name="telefono"
+        class="form-control" formControlName="telefono"  [value]="clienteBuscado?.telefono">
+    </mat-form-field>
+     <mat-form-field  class="form-field" appearance="fill">
+      <mat-label>Correo:</mat-label>
+      <input matInput validar type="text" id="correo" name="correo" formControlName="correo" [value]="clienteBuscado?.correo"
+        class="form-control" >
+    </mat-form-field>
+    <button  mat-raised-button color="primary" type="submit">Borrar</button>
+  </form>
+  <button class="cancel-button" mat-raised-button color="default" type="button" [routerLink]="'/cliente'">
+    Cancelar
+  </button>
+</div>

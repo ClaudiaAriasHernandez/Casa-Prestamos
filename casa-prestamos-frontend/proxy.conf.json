@@ -1,6 +1,6 @@
 {
   "/casa-prestamos": {
-   "target": "http://localhost:8080/casa-prestamos",
+   "target": "http://localhost:8080",
     "logLevel": "debug"
   }
 

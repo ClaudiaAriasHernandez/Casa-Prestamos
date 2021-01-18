@@ -6,6 +6,7 @@ import { TipoDocumento } from '@tipodocumento/shared/model/tipodocumento';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { NotificationService } from 'src/app/notification.service';
 
 @Component({
   selector: 'app-listar-tipodocumento',
@@ -20,7 +21,9 @@ export class ListarTipoDocumentoComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(protected tipoDocumentoService: TipoDocumentoService) { }
+  constructor(protected tipoDocumentoService: TipoDocumentoService,
+  private readonly notificationService: NotificationService,)
+ { }
 
   ngOnInit() {
     this.tipoDocumentoService.consultar().subscribe((respuesta) => {
@@ -28,7 +31,7 @@ export class ListarTipoDocumentoComponent implements OnInit {
       this.listaTipoDocumentos.sort = this.sort;
       this.listaTipoDocumentos.paginator = this.paginator;
     }, (error) => {
-      console.log(error);
+      this.notificationService.error(error.error.mensaje);
     });
   }
 

@@ -28,7 +28,6 @@ export class TipoDocumentoService {
   }
 
   public eliminar(tipoDocumento: TipoDocumento) {
-    return this.http.doDelete<boolean>(`${this.RUTA_BASE}/tipodocumentos/${tipoDocumento.id}`,
-                                                 this.http.optsName('eliminar tipo documentos '));
+    return this.http.doDelete<boolean>(`${this.RUTA_BASE}/tipodocumentos/${tipoDocumento.id}`);
   }
 }

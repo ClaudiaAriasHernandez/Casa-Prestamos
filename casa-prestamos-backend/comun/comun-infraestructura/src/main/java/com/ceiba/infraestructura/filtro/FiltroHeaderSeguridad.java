@@ -27,12 +27,12 @@ public class FiltroHeaderSeguridad implements Filter {
         httpServletResponse.setHeader(X_CONTENT_TYPE_OPTIONS, "nosniff");
         httpServletResponse.setHeader(PRAGMA, "no-cache");
         httpServletResponse.setHeader(X_FRAME_OPTIONS, "SAMEORIGIN");
-        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
-        httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
-        httpServletResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
-        httpServletResponse.setHeader("Access-Control-Max-Age", "*");
-        httpServletResponse.setHeader("Access-Control-Allow-Headers",
-                "Content-Type, Accept, X-Requested-With, remember-me");
+//        httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");
+//        httpServletResponse.setHeader("Access-Control-Allow-Credentials", "true");
+//        httpServletResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
+//        httpServletResponse.setHeader("Access-Control-Max-Age", "*");
+//        httpServletResponse.setHeader("Access-Control-Allow-Headers",
+//                "Content-Type, Accept, X-Requested-With, remember-me");
         chain.doFilter(request, response);
 
     }

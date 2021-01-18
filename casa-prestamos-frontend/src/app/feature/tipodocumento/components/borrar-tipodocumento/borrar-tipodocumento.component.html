@@ -1,1 +1,34 @@
-<p>borrar-tipo documento works!</p>
+
+<h1>Borrar tipo documento</h1>
+<hr>
+<div class="container-form" *ngIf="!documentoBuscado">
+  <form class="form-fields" [formGroup]="findTipodocumentoForm" (ngSubmit)="buscarTipoDocumento()">
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Tipo Identificación:</mat-label>
+      <input matInput validar type="text" id="tipoIdentificacion" name="tipoIdentificacion"  class="form-control"
+      formControlName="tipoIdentificacion">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Buscar</button>
+  </form>
+</div>
+
+<div class="container-form" *ngIf="!!documentoBuscado"> 
+  <form class="form-fields" [formGroup]="tipodocumentoForm" (ngSubmit)="eliminar()">
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Tipo Identificación:</mat-label>
+      <input matInput validar type="text" id="tipoIdentificacion" name="tipoIdentificacion"
+        class="form-control" formControlName="tipoIdentificacion" [value]="documentoBuscado?.tipoIdentificacion">
+    </mat-form-field>
+    <mat-form-field  class="form-field" appearance="fill">
+      <mat-label>Descripción Identificación:</mat-label>
+      <input matInput validar type="text" id="descripcion" name="descripcion"
+        class="form-control" formControlName="descripcion" [value]="documentoBuscado?.descripcion">
+    </mat-form-field>
+    <button  mat-raised-button color="primary" type="submit">Eliminar</button>
+  </form>
+  <button class="cancel-button" mat-raised-button color="default" type="button" [routerLink]="'/tipodocumento'">
+    Cancelar
+  </button>
+</div>
+
+

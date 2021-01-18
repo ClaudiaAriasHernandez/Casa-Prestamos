@@ -1,8 +1,40 @@
-<p>listar-cliente works!</p>
-<div id="clientes">
-  <ul class="clientes">
-    <li *ngFor="let item of listaClientes | async">
-      <span>{{item.id}}</span> {{item.nombre}}
-    </li>
-  </ul>
+<h1>Clientes</h1>
+<hr>
+<div class="container-form">
+  <table class="tabla-registros" mat-table [dataSource]="listaClientes" matSort>
+    <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef width="10%" mat-sort-header>Id</th>
+          <td mat-cell *matCellDef="let element"> {{ element?.id }}</td>
+      </ng-container>
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef width="10%" mat-sort-header>Nombre</th>
+        <td mat-cell *matCellDef="let element"> {{ element?.nombre }}</td>
+    </ng-container>
+    <ng-container matColumnDef="dtoTipoDocumento">
+      <th mat-header-cell *matHeaderCellDef width="10%" mat-sort-header>Tipo Identificacion</th>
+      <td mat-cell *matCellDef="let element"> {{ element?.dtoTipoDocumento.tipoIdentificacion }}</td>
+    </ng-container>
+    <ng-container matColumnDef="numeroDocumento">
+      <th mat-header-cell *matHeaderCellDef width="10%" mat-sort-header>Número Documento</th>
+      <td mat-cell *matCellDef="let element"> {{ element?.numeroDocumento }}</td>
+    </ng-container>
+    <ng-container matColumnDef="direccion">
+      <th mat-header-cell *matHeaderCellDef width="10%" mat-sort-header>Dirreción</th>
+      <td mat-cell *matCellDef="let element"> {{ element?.direccion }}</td>
+    </ng-container>
+    <ng-container matColumnDef="telefono">
+      <th mat-header-cell *matHeaderCellDef width="10%" mat-sort-header>Telefono</th>
+      <td mat-cell *matCellDef="let element"> {{ element?.telefono }}</td>
+    </ng-container>
+    <ng-container matColumnDef="correo">
+      <th mat-header-cell *matHeaderCellDef width="10%" mat-sort-header>Correo</th>
+      <td mat-cell *matCellDef="let element"> {{ element?.correo }}</td>
+    </ng-container>
+    
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
 </div>

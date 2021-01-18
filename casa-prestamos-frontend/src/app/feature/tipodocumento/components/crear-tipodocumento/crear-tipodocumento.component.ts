@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TipoDocumentoService } from '../../shared/service/tipodocumento.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/notification.service';
 
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 5;
 const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 50;
@@ -14,7 +15,8 @@ const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 50;
 export class CrearTipoDocumentoComponent implements OnInit {
   tipodocumentoForm: FormGroup;
   constructor(protected tipoDocumentoService: TipoDocumentoService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly notificationService: NotificationService,
   ) { }
 
   ngOnInit() {
@@ -27,9 +29,11 @@ export class CrearTipoDocumentoComponent implements OnInit {
     }
     this.tipoDocumentoService.guardar(this.tipodocumentoForm.value).subscribe((respuesta) => {
       console.log(respuesta);
+      this.notificationService.success("Se creo el tipo de documento de forma exitosa.");
       this.router.navigateByUrl('/tipodocumento/listar');
     }, (error) => {
-      console.log(error.error.mensaje);
+      
+      this.notificationService.error(error.error.mensaje);
     });
   }
 

@@ -3,6 +3,7 @@ import { TipoDocumentoService } from '../../shared/service/tipodocumento.service
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TipoDocumento } from '@tipodocumento/shared/model/tipodocumento';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/notification.service';
 
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 3;
 const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 20;
@@ -20,6 +21,7 @@ export class ActualizarTipoDocumentoComponent implements OnInit {
   constructor(
     protected readonly tipodocumentoServices: TipoDocumentoService,
     private readonly router: Router,
+    private readonly notificationService: NotificationService,
   ) { }
 
   ngOnInit() {
@@ -32,7 +34,8 @@ export class ActualizarTipoDocumentoComponent implements OnInit {
       this.documentoBuscado = respuesta;
       this.tipodocumentoForm.patchValue(respuesta);
     }, (error) => {
-      console.log(error);
+   
+      this.notificationService.error(error.error.mensaje);
     });
   }
 
@@ -48,9 +51,11 @@ export class ActualizarTipoDocumentoComponent implements OnInit {
 
     this.tipodocumentoServices.actualizar(datosActualizar).subscribe((respuesta) => {
       console.log(respuesta);
+      this.notificationService.success("Se actualizo de forma exitosa.");
       this.router.navigateByUrl('/tipodocumento/listar');
     }, (error) => {
-      console.log(error);
+      
+      this.notificationService.error(error.error.mensaje);
     });
   }
 
