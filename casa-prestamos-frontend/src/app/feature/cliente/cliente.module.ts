@@ -18,7 +18,7 @@ import { TipoDocumentoService } from 'src/app/feature/tipodocumento/shared/servi
     ListarClienteComponent,
     BorrarClienteComponent,
     ActualizarClienteComponent,
-    ClienteComponent
+    ClienteComponent,
   ],
   imports: [
     ClienteRoutingModule,

@@ -49,11 +49,11 @@ describe('PagarPrestamoComponent', () => {
 
   it('Registrando prestamo', () => {
     expect(component.prestamoForm.valid).toBeFalsy();
-    component.prestamoForm.controls.id.setValue(2);
+    component.prestamoForm.controls.tipoIdentificacion.setValue("CC");
     component.prestamoForm.controls.numeroDocumento.setValue("4552111")
     expect(component.prestamoForm.valid).toBeTruthy();
 
-    component.cerar();
+    component.pagar();
 
     // Aca validamos el resultado esperado al enviar la petición
     // TODO adicionar expect

@@ -27,6 +27,9 @@ export class BorrarTipoDocumentoComponent implements OnInit {
   }
 
   buscarTipoDocumento() {
+    if (!this.findTipodocumentoForm.valid) {
+      return;
+    }
     this.tipodocumentoServices.buscarTipoDocumento(this.findTipodocumentoForm.value).subscribe((respuesta) => {
       this.documentoBuscado = respuesta;
       console.log(this.documentoBuscado);
@@ -34,10 +37,7 @@ export class BorrarTipoDocumentoComponent implements OnInit {
     }, (error) => {
       this.notificationService.error(error.error.mensaje);
     });
-  }
-
-
-  
+  }  
   eliminar() {  
 
     const datosEliminar = {
@@ -47,14 +47,12 @@ export class BorrarTipoDocumentoComponent implements OnInit {
 
     this.tipodocumentoServices.eliminar(datosEliminar).subscribe((respuesta) => {
       console.log(respuesta);
-      this.notificationService.success("Se elimino el rtipo de documento de forma exitosa.");
+      this.notificationService.success("Se elimino el tipo de documento de forma exitosa.");
       this.router.navigateByUrl('/tipodocumento');
     }, (error) => {     
       this.notificationService.error(error.error.mensaje);
     });
   }
-
-
   private construirFormularioTipoDocumento() {
     this.tipodocumentoForm = new FormGroup({
       tipoIdentificacion: new FormControl({ value: '', disabled: true }),

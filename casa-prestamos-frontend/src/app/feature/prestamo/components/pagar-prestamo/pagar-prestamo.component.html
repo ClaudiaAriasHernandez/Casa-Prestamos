@@ -19,8 +19,7 @@
     </form>
   </div>
 <div class="container-form" *ngIf = "!!prestamoBuscado"> 
-    <form class="form-fields" [formGroup]="prestamoForm" (ngSubmit)="pagar()">
-    
+    <form class="form-fields" [formGroup]="prestamoForm" (ngSubmit)="pagar()">    
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Documento:</mat-label>
         <input matInput validar type="text" id="numeroDocumento" name="numeroDocumento"
@@ -30,56 +29,47 @@
         <mat-label>Nombre:</mat-label>
         <input matInput validar type="text" id="nombre" name="nombre"
           class="form-control" formControlName="nombre">
-      </mat-form-field>  
-    
+      </mat-form-field>      
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Valor Prestamo:</mat-label>
         <input matInput validar type="text" id="valor" name="valor"
           class="form-control" formControlName="valor">
       </mat-form-field>
-
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Valor Mora:</mat-label>
         <input matInput validar type="text" id="valorMora" name="valorMora"
           class="form-control" formControlName="valorMora">
       </mat-form-field>
-
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Valor Recargo:</mat-label>
         <input matInput validar type="text" id="valorRecargo" name="valorRecargo"
           class="form-control" formControlName="valorRecargo">
       </mat-form-field>
-
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Valor Intereses:</mat-label>
         <input matInput validar type="text" id="valorInteres" name="valorInteres"
           class="form-control" formControlName="valorInteres">
       </mat-form-field>
-
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Valor Total:</mat-label>
         <input matInput validar type="text" id="valorTotal" name="valorTotal"
           class="form-control" formControlName="valorTotal">
       </mat-form-field>
-
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Fecha de Solicitud:</mat-label>
         <input matInput validar type="text" id="fechaSolicitud" name="fechaSolicitud"
           class="form-control" formControlName="fechaSolicitud">
       </mat-form-field>
-
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Fecha Estimada de Pago:</mat-label>
         <input matInput validar type="text" id="fechaEstimadaPago" name="fechaEstimadaPago"
           class="form-control" formControlName="fechaEstimadaPago">
       </mat-form-field>
-
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Fecha de Pago:</mat-label>
         <input matInput validar type="text" id="fechaPago" name="fechaPago"
           class="form-control" formControlName="fechaPago">
-      </mat-form-field>
-      
+      </mat-form-field>      
       <button [disabled]="!prestamoForm?.valid" mat-raised-button color="primary" type="submit">Guardar</button>
     </form>
     <button class="cancel-button" mat-raised-button color="default" type="button" [routerLink]="'/prestamo'">

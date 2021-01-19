@@ -12,7 +12,10 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material.module';
 
 @NgModule({
-  declarations: [ToolbarComponent, NavbarComponent],
+  declarations: [
+    ToolbarComponent,
+    NavbarComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,

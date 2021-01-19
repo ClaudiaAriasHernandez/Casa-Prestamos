@@ -1,5 +1,4 @@
-
-<h1>Borrar Cliente</h1>
+<h1>Eliminar Cliente</h1>
 <hr>
 <div class="container-form" *ngIf="!clienteBuscado">
   <form class="form-fields" [formGroup]="findClienteForm" (ngSubmit)="buscarCliente()">
@@ -16,10 +15,9 @@
       <input matInput validar type="text" id="numeroDocumento" name="numeroDocumento"
         class="form-control" formControlName="numeroDocumento" >
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Buscar</button>
+    <button [disabled]="!findClienteForm?.valid" mat-raised-button color="primary" type="submit">Buscar</button>
   </form>
 </div>
-
 <div class="container-form" *ngIf = "!!clienteBuscado"> 
   <form class="form-fields" [formGroup]="clienteForm" (ngSubmit)="eliminar()">
     <mat-form-field class="form-field" appearance="fill">

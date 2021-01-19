@@ -1,0 +1,12 @@
+
+<div class="container-card">
+  <mat-card *ngFor="let card of cards" class="generic-card" [routerLink]="card?.url">
+    <mat-card-header>
+      <mat-card-title class="tittle-card">{{ card?.title }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="'assets/img/' + card?.image">
+    <mat-card-content class="content-card">
+      <p>{{ card?.content }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -30,6 +30,9 @@ export class ActualizarTipoDocumentoComponent implements OnInit {
   }
 
   buscarTipoDocumento() {
+    if (!this.findTipodocumentoForm.valid) {
+      return;
+    }
     this.tipodocumentoServices.buscarTipoDocumento(this.findTipodocumentoForm.value).subscribe((respuesta) => {
       this.documentoBuscado = respuesta;
       this.tipodocumentoForm.patchValue(respuesta);

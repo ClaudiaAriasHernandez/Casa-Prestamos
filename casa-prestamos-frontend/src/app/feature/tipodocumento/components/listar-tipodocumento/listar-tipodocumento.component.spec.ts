@@ -13,7 +13,7 @@ describe('ListarTipoDocumentoComponent', () => {
   let component: ListarTipoDocumentoComponent;
   let fixture: ComponentFixture<ListarTipoDocumentoComponent>;
   let tipoDocumentoService: TipoDocumentoService;
-  const listaClientes: TipoDocumento[] = [new TipoDocumento(2, 'PA', 'Pasaporte'), new TipoDocumento(3, 'CE', 'Cedula de extranjeria')];
+  const listaClientes: TipoDocumento[] = [ new TipoDocumento(3, 'CE', 'Cedula de extranjeria')];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

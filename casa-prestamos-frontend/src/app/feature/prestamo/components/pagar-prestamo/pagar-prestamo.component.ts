@@ -7,8 +7,6 @@ import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/notification.service';
 import { Prestamo } from '@prestamo/shared/model/prestamo';
 
-const LONGITUD_MINIMA_PERMITIDA_TEXTO = 3;
-const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 20;
 
 @Component({
   selector: 'app-pagar-prestamo',
@@ -37,7 +35,7 @@ export class PagarPrestamoComponent implements OnInit {
     });
   }
 
-  private asd(respuesta: Prestamo, esFormulario: boolean): any {
+  private generarDatos(respuesta: Prestamo, esFormulario: boolean): any {
     let prestamo: any = { ...respuesta };
     if (!!respuesta && !!respuesta.dtoCliente) {
       const dtoCliente = respuesta.dtoCliente;
@@ -65,36 +63,19 @@ export class PagarPrestamoComponent implements OnInit {
      console.log(respuesta);
       this.prestamoBuscado = respuesta;
 
-      const prestamo = this.asd(respuesta, true);
+      const prestamo = this.generarDatos(respuesta, true);
       this.prestamoForm.patchValue(prestamo);
     }, (error) => {
       this.notificationService.error(error.error.mensaje);
     });
-  }
-
-  
+  }  
 
   pagar() {
     if (!this.prestamoForm.valid) {
       return;
     }   
 
-    const datosPagar = this.asd(this.prestamoBuscado, false);
-    // const datosCrear = {
-    //   ...this.prestamoBuscado,     
-    //   tipoIdentificacion: dtoCliente.dtoTipoDocumento.tipoIdentificacion,
-    //   numeroDocumento: dtoCliente.numeroDocumento,
-    // };
-
-    // let prestamo: any = { ...this.prestamoBuscado };
-    //   if (!!this.prestamoBuscado && !!this.prestamoBuscado.dtoCliente) {
-    //     const dtoCliente = this.prestamoBuscado.dtoCliente;
-    //     prestamo = {
-    //       ...this.prestamoBuscado,
-    //       numeroDocumento: dtoCliente.numeroDocumento,
-    //       tipoIdentificacion: dtoCliente.dtoTipoDocumento.tipoIdentificacion,
-    //     };
-    //   }
+    const datosPagar = this.generarDatos(this.prestamoBuscado, false);  
 
     this.prestamoServices.pagar(datosPagar).subscribe((respuesta) => {
       console.log(respuesta);

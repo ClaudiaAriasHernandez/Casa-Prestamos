@@ -53,7 +53,7 @@ describe('CrearTPrestamoComponent', () => {
     component.prestamoForm.controls.numeroDocumento.setValue("10376432456")
     expect(component.prestamoForm.valid).toBeTruthy();
 
-    component.cerar();
+    component.crear();
 
     // Aca validamos el resultado esperado al enviar la petición
     // TODO adicionar expect

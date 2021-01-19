@@ -47,6 +47,7 @@ export class CrearClienteComponent implements OnInit {
 
   private construirFormularioCliente() {
     this.clienteForm = new FormGroup({
+      correo:new FormControl(),
       nombre: new FormControl('', [Validators.required]),
       direccion: new FormControl('', [Validators.required]),
       idTipoDocumento: new FormControl('', [Validators.required]),

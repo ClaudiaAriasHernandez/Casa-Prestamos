@@ -8,10 +8,9 @@
       <input matInput validar type="text" id="tipoIdentificacion" name="tipoIdentificacion"  class="form-control"
       formControlName="tipoIdentificacion">
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Buscar</button>
+    <button [disabled]="!findTipodocumentoForm?.valid" mat-raised-button color="primary" type="submit">Buscar</button>
   </form>
 </div>
-
 <div class="container-form" *ngIf="!!documentoBuscado"> 
   <form class="form-fields" [formGroup]="tipodocumentoForm" (ngSubmit)="actualizar()">
     <mat-form-field class="form-field" appearance="fill">

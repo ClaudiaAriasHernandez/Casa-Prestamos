@@ -36,6 +36,9 @@ export class ActualizarClienteComponent implements OnInit {
   }
 
   buscarCliente() {
+    if (!this.findClienteForm.valid) {
+      return;
+    }
     this.clienteServices.buscarCliente(this.findClienteForm.value).subscribe((respuesta) => {
       console.log(respuesta);
       this.clienteBuscado = respuesta;

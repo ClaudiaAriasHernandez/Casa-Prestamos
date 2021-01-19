@@ -16,7 +16,7 @@
       <input matInput validar type="text" id="numeroDocumento" name="numeroDocumento"
         class="form-control" formControlName="numeroDocumento" >
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Buscar</button>
+    <button  [disabled]="!findClienteForm?.valid"  mat-raised-button color="primary" type="submit">Buscar</button>
   </form>
 </div>
 

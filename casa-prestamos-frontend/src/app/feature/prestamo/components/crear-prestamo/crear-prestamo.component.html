@@ -1,4 +1,4 @@
-<h1>Registrar cliente</h1>
+<h1>Registrar prestamo</h1>
   <hr>
   <div class="container-form" *ngIf = "!clienteBuscado">
     <form class="form-fields" [formGroup]="findClienteForm" (ngSubmit)="buscarCliente()">
@@ -39,8 +39,7 @@
         <mat-label>Valor Prestamo:</mat-label>
         <input matInput validar type="text" id="valor" name="valor"
           class="form-control" formControlName="valor">
-      </mat-form-field>
-      
+      </mat-form-field>      
       <button [disabled]="!prestamoForm?.valid" mat-raised-button color="primary" type="submit">Guardar</button>
     </form>
     <button class="cancel-button" mat-raised-button color="default" type="button" [routerLink]="'/prestamo'">

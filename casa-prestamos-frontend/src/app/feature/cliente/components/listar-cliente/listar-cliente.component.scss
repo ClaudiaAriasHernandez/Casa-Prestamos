@@ -5,7 +5,6 @@
   margin-bottom: 20px;
   cursor: pointer;
 
-
   @include media(xsmin) {
     width: calc(50% - 42px);
 
@@ -13,7 +12,6 @@
       margin-right: 20px;
     }
   }
-
   @include media(mdmin) {
     flex: 1;
     margin-bottom: 0;
@@ -23,8 +21,6 @@
     }
   }
 }
-
-
 .container-card {
   display: flex;
   flex-wrap: wrap;
@@ -35,8 +31,6 @@
     flex-wrap: unset;
   }
 }
-
-
 .content-card{
   color: #4b4b4b;
   font-weight: 100;
@@ -50,17 +44,7 @@
   font-weight: bold;
  
 }
-
-
-
 .mat-card-image {
   width: calc(70% + 12px) !important;
   margin: 0 -20px 20px 30px !important;
 }
-
- /* .mat-card-image {
-   
-    border-radius: 60%;
-    flex-shrink: 0;
-    object-fit: cover;
-}*/

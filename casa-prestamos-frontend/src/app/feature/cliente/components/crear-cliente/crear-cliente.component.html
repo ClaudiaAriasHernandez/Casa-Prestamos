@@ -1,6 +1,5 @@
-<h1>Registrar cliente</h1>
-  <hr>
-  
+<h1>Crear cliente</h1>
+  <hr>  
 <div class="container-form" *ngIf = "!!listaTipoDocumentos"> 
     <form class="form-fields" [formGroup]="clienteForm" (ngSubmit)="crear()">
       <mat-form-field class="form-field" appearance="fill">
@@ -33,7 +32,7 @@
       </mat-form-field>
        <mat-form-field  class="form-field" appearance="fill">
         <mat-label>Correo:</mat-label>
-        <input matInput validar type="text" id="correo" name="correo"
+        <input matInput validar type="text" id="correo" name="correo" formControlName="correo"
           class="form-control" >
       </mat-form-field>
       <button [disabled]="!clienteForm?.valid" mat-raised-button color="primary" type="submit">Guardar</button>
