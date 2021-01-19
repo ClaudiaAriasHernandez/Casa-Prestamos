@@ -10,6 +10,7 @@ import { TrackByPipe } from './pipe/track-by.pipe';
 import { MaterialModule } from '../material.module';
 import { RouterModule } from '@angular/router';
 import { GenericCardComponent } from '@shared/components/cards/generic-card.component';
+import { NotificationService } from 'src/app/notification.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { GenericCardComponent } from '@shared/components/cards/generic-card.comp
     MensajeErrorCamposContenedorDirective,
     MensajeErrorCamposSubmitDirective,
     TrackByPipe,
-    GenericCardComponent,
+    GenericCardComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +37,8 @@ import { GenericCardComponent } from '@shared/components/cards/generic-card.comp
     ReactiveFormsModule,
     FormsModule,
     TrackByPipe,
-    GenericCardComponent,
-  ]
+    GenericCardComponent
+  ],
+  providers: [NotificationService],
 })
 export class SharedModule { }
