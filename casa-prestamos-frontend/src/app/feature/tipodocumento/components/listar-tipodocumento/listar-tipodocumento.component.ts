@@ -26,13 +26,17 @@ export class ListarTipoDocumentoComponent implements OnInit {
  { }
 
   ngOnInit() {
-    this.tipoDocumentoService.consultar().subscribe((respuesta) => {
-      this.listaTipoDocumentos = new MatTableDataSource(respuesta);
-      this.listaTipoDocumentos.sort = this.sort;
-      this.listaTipoDocumentos.paginator = this.paginator;
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
-    });
+    this.listar();
   }
+
+  listar() {
+  this.tipoDocumentoService.consultar().subscribe((respuesta) => {
+    this.listaTipoDocumentos = new MatTableDataSource(respuesta);
+    this.listaTipoDocumentos.sort = this.sort;
+    this.listaTipoDocumentos.paginator = this.paginator;
+  }, (error) => {
+    this.notificationService.error(error.error.mensaje);
+  });
+}
 
 }

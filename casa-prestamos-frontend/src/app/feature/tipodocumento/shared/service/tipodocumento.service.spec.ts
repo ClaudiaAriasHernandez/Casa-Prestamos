@@ -10,7 +10,7 @@ import { HttpResponse } from '@angular/common/http';
 describe('TipoDocumentoService', () => {
   let httpMock: HttpTestingController;
   let service: TipoDocumentoService;
-  const apiEndpointTipoDocumentoConsulta = `${environment.endpoint}/tiposFamilia`;
+  const apiEndpointTipoDocumentoConsulta = `${environment.endpoint}/tipodocumentos`;
   const apiEndpointTipoDocumentos= `${environment.endpoint}/tipodocumentos`;
 
   beforeEach(() => {
@@ -54,8 +54,8 @@ describe('TipoDocumentoService', () => {
     service.actualizar(dummyTipoDocumento).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
-    const req = httpMock.expectOne(apiEndpointTipoDocumentos);
-    expect(req.request.method).toBe('POST');
+    const req = httpMock.expectOne(`${apiEndpointTipoDocumentos}/1`);
+    expect(req.request.method).toBe('PUT');
     req.event(new HttpResponse<boolean>({body: true}));
   });
 

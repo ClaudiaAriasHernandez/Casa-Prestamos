@@ -7,8 +7,6 @@ import { TipoDocumentoService } from 'src/app/feature/tipodocumento/shared/servi
 import { ClienteService } from 'src/app/feature/cliente/shared/service/cliente.service';
 import { Cliente } from '@cliente/shared/model/cliente';
 
-
-
 @Component({
   selector: 'app-crear-prestamo',
   templateUrl: './crear-prestamo.component.html',

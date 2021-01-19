@@ -29,9 +29,6 @@
       "@shared/*": [
         "src/app/shared/*"
       ],
-      "@common/*": [
-        "src/app/feature/common/*"
-      ]
     }
   },
   "files": [

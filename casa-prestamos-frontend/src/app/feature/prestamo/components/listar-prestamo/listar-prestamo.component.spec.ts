@@ -8,12 +8,19 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PrestamoService } from '../../shared/service/prestamo.service';
 import { Prestamo } from '../../shared/model/prestamo';
 import { HttpService } from 'src/app/core/services/http.service';
+import { TipoDocumento } from 'src/app/feature/tipodocumento/shared/model/tipodocumento';
+import { Cliente } from 'src/app/feature/cliente/shared/model/cliente';
+import { NotificationService } from 'src/app/notification.service';
 
 describe('ListarPrestamoComponent', () => {
   let component: ListarPrestamoComponent;
   let fixture: ComponentFixture<ListarPrestamoComponent>;
   let prestamoService: PrestamoService;
-  const listaPrestamos: Prestamo[] = [new Prestamo(1,new Date("2020-12-27"), new Date( "2021-01-10"), new Date("2021-01-10"), 1000000.0, 30000, 0.0, 0.0, 1030000, "P","1037641034", "CC" ), new Prestamo(1,new Date("2020-12-27"), new Date( "2021-01-10"), new Date("2021-01-10"), 1000000.0, 30000, 0.0, 0.0, 1030000, "P","1037641033", "CC" )];
+  const dtoTipoDocumento: TipoDocumento = new TipoDocumento(4, "NUIP", "Identificacion unica");
+
+  const dtoCliente: Cliente = new Cliente(3, 'Karen Garcia', 'Calle 62', '1037221034', 'kren@gmail.com', '5982252', 1, dtoTipoDocumento);
+
+  const listaPrestamos: Prestamo[] = [new Prestamo(1,new Date("2020-12-27"), new Date( "2021-01-10"), new Date("2021-01-10"), 1000000.0, 30000, 0.0, 0.0, 1030000, "P","1037641034", "CC" , dtoCliente)];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,7 +28,8 @@ describe('ListarPrestamoComponent', () => {
       imports: [
         CommonModule,
         HttpClientModule,
-        RouterTestingModule
+        RouterTestingModule,
+        NotificationService
       ],
       providers: [PrestamoService, HttpService]
     })
@@ -38,11 +46,12 @@ describe('ListarPrestamoComponent', () => {
     fixture.detectChanges();
   });
 
+ 
   it('should create', () => {
     expect(component).toBeTruthy();
-    component.listaPrestamos.subscribe(resultado => {
-      expect(2).toBe(resultado.length);
-  });
+    prestamoService.consultar().subscribe(resultado => {
+      expect(1).toBe(resultado.length);
+  });  
 });
 
 });

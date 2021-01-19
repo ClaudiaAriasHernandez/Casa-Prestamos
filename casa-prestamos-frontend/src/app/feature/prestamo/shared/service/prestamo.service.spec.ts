@@ -6,13 +6,15 @@ import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/core/services/http.service';
 import { Prestamo } from '../model/prestamo';
 import { HttpResponse } from '@angular/common/http';
+import { TipoDocumento } from 'src/app/feature/tipodocumento/shared/model/tipodocumento';
+import { Cliente } from 'src/app/feature/cliente/shared/model/cliente';
 
 describe('PrestamoService', () => {
   let httpMock: HttpTestingController;
   let service: PrestamoService;
-  const apiEndpointPrestamoConsulta = `${environment.endpoint}/tiposFamilia`;
+  const apiEndpointPrestamoConsulta = `${environment.endpoint}/prestamos`;
   const apiEndpointPrestamos= `${environment.endpoint}/prestamos`;
-
+  const apiEndpointPrestamosPagar= `${environment.endpoint}/prestamos/tipoidentificacion/NUIP/numerodocumento/1037221034`;
   beforeEach(() => {
     const injector = TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -28,8 +30,13 @@ describe('PrestamoService', () => {
   });
 
   it('deberia listar prestamos', () => {
-    const dummyPrestamos =      new Prestamo(1,new Date("2020-12-27"), new Date( "2021-01-10"), new Date("2021-01-10"), 1000000.0, 30000, 0.0, 0.0, 1030000, "P","1037641034", "CC" );
-    service.consultar(dummyPrestamos).subscribe((respuesta) => {
+
+    const dtoTipoDocumento: TipoDocumento = new TipoDocumento(4, "NUIP", "Identificacion unica");
+
+    const dtoCliente: Cliente = new Cliente(3, 'Karen Garcia', 'Calle 62', '1037221034', 'kren@gmail.com', '5982252', 1, dtoTipoDocumento);
+  
+     const dummyPrestamos = new Prestamo(1,new Date("2020-12-27"), new Date( "2021-01-10"), new Date("2021-01-10"), 1000000.0, 30000, 0.0, 0.0, 1030000, "P","1037641034", "CC", dtoCliente);
+    service.consultar().subscribe((respuesta) => {
       expect(respuesta);
     });
     const req = httpMock.expectOne(apiEndpointPrestamoConsulta);
@@ -38,7 +45,11 @@ describe('PrestamoService', () => {
   });
 
   it('deberia crear un pretamoa', () => {
-    const dummyPrestamo = new Prestamo(1,new Date("2020-12-27"), new Date( "2021-01-10"), new Date("2021-01-10"), 1000000.0, 30000, 0.0, 0.0, 1030000, "P","1037641034", "CC" );
+    const dtoTipoDocumento: TipoDocumento = new TipoDocumento(4, "NUIP", "Identificacion unica");
+
+    const dtoCliente: Cliente = new Cliente(3, 'Karen Garcia', 'Calle 62', '1037221034', 'kren@gmail.com', '5982252', 1, dtoTipoDocumento);
+  
+    const dummyPrestamo = new Prestamo(1,new Date("2020-12-27"), new Date( "2021-01-10"), new Date("2021-01-10"), 1000000.0, 30000, 0.0, 0.0, 1030000, "P","1037641034", "CC" , dtoCliente);
     service.guardar(dummyPrestamo).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
@@ -47,12 +58,18 @@ describe('PrestamoService', () => {
     req.event(new HttpResponse<boolean>({body: true}));
   });
   it('deberia pagara un prestamo', () => {
-    const dummyPrestamo = new Prestamo(1,new Date("2020-12-27"), new Date( "2021-01-10"), new Date("2021-01-10"), 1000000.0, 30000, 0.0, 0.0, 1030000, "P","1037641034", "CC" );
+    const dtoTipoDocumento: TipoDocumento = new TipoDocumento(4, "NUIP", "Identificacion unica");
+
+    const dtoCliente: Cliente = new Cliente(3, 'Karen Garcia', 'Calle 62', '1037221034', 'kren@gmail.com', '5982252', 1, dtoTipoDocumento);
+  
+    const dummyPrestamo = new Prestamo(1,new Date("2020-12-27"), new Date( "2021-01-10"), new Date("2021-01-10"), 1000000.0, 30000, 0.0, 0.0, 1030000, "D","1037641034", "CC" , dtoCliente);
+  
+   
     service.pagar(dummyPrestamo).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
-    const req = httpMock.expectOne(apiEndpointPrestamos);
-    expect(req.request.method).toBe('POST');
+    const req = httpMock.expectOne(apiEndpointPrestamosPagar);
+    expect(req.request.method).toBe('PUT');
     req.event(new HttpResponse<boolean>({body: true}));
   });
 

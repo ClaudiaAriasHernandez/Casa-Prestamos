@@ -7,9 +7,9 @@ import { MensajeErrorCamposContenedorDirective } from './directivas/error-campos
 import { ErrorCamposPlantillaComponent } from './directivas/error-campos/componente/error-campos-plantilla.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TrackByPipe } from './pipe/track-by.pipe';
-import { GenericCardComponent } from '@common/generic-card.component';
 import { MaterialModule } from '../material.module';
 import { RouterModule } from '@angular/router';
+import { GenericCardComponent } from '@shared/components/cards/generic-card.component';
 
 @NgModule({
   declarations: [

@@ -8,12 +8,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TipoDocumentoService } from '../../shared/service/tipodocumento.service';
 import { TipoDocumento } from '../../shared/model/tipodocumento';
 import { HttpService } from 'src/app/core/services/http.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 describe('ListarTipoDocumentoComponent', () => {
   let component: ListarTipoDocumentoComponent;
   let fixture: ComponentFixture<ListarTipoDocumentoComponent>;
   let tipoDocumentoService: TipoDocumentoService;
-  const listaClientes: TipoDocumento[] = [ new TipoDocumento(3, 'CE', 'Cedula de extranjeria')];
+  
+  const listarTipoDocumento: TipoDocumento[] = [new TipoDocumento(3, 'CE', 'Cedula de extranjeria')];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -21,7 +23,8 @@ describe('ListarTipoDocumentoComponent', () => {
       imports: [
         CommonModule,
         HttpClientModule,
-        RouterTestingModule
+        RouterTestingModule,
+        MatTableDataSource
       ],
       providers: [TipoDocumentoService, HttpService]
     })
@@ -33,15 +36,15 @@ describe('ListarTipoDocumentoComponent', () => {
     component = fixture.componentInstance;
     tipoDocumentoService = TestBed.inject(TipoDocumentoService);
     spyOn(tipoDocumentoService, 'consultar').and.returnValue(
-      of(listaClientes)
+      of(listarTipoDocumento)
     );
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    component.listaTipoDocumentos.subscribe(resultado => {
-      expect(2).toBe(resultado.length);
+    tipoDocumentoService.consultar().subscribe(resultado => {
+      expect(1).toBe(resultado.length);
   });
 });
 

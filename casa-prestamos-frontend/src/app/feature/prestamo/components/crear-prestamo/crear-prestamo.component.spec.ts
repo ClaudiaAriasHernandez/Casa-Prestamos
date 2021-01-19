@@ -8,8 +8,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PrestamoService } from '../../shared/service/prestamo.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NotificationService } from 'src/app/notification.service';
 
-describe('CrearTPrestamoComponent', () => {
+describe('CrearPrestamoComponent', () => {
   let component: CrearPrestamoComponent;
   let fixture: ComponentFixture<CrearPrestamoComponent>;
   let prestamoService: PrestamoService;
@@ -22,9 +23,10 @@ describe('CrearTPrestamoComponent', () => {
         HttpClientModule,
         RouterTestingModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        NotificationService
       ],
-      providers: [PrestamoService, HttpService],
+      providers: [PrestamoService, HttpService,NotificationService],
     })
     .compileComponents();
   }));
@@ -49,8 +51,18 @@ describe('CrearTPrestamoComponent', () => {
 
   it('Registrando prestamo', () => {
     expect(component.prestamoForm.valid).toBeFalsy();
-    component.prestamoForm.controls.id.setValue(2);
-    component.prestamoForm.controls.numeroDocumento.setValue("10376432456")
+    component.prestamoForm.controls.idCliente.setValue(15);
+    component.prestamoForm.controls.tipoIdentificacion.setValue("CC");
+    component.prestamoForm.controls.numeroDocumento.setValue("12876554567")
+    component.prestamoForm.controls.valor.setValue("1000000")
+    component.prestamoForm.controls.valorMora.setValue("")
+    component.prestamoForm.controls.valorRecargo.setValue("")
+    component.prestamoForm.controls.valorTotal.setValue("")
+    component.prestamoForm.controls.valorInteres.setValue("")
+    component.prestamoForm.controls.fechaSolicitud.setValue("2021-01-19")
+    component.prestamoForm.controls.fechaEstimadaPago.setValue("2021-02-02")
+    component.prestamoForm.controls.fechaPago.setValue("")
+    component.prestamoForm.controls.estado.setValue("D")
     expect(component.prestamoForm.valid).toBeTruthy();
 
     component.crear();

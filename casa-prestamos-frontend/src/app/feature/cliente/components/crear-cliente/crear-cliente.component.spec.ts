@@ -51,6 +51,11 @@ describe('CrearClienteComponent', () => {
     expect(component.clienteForm.valid).toBeFalsy();
     component.clienteForm.controls.id.setValue(2);
     component.clienteForm.controls.nombre.setValue("Sara")
+    component.clienteForm.controls.numeroDocumento.setValue("29776555")
+    component.clienteForm.controls.direccion.setValue("Calle 67")
+    component.clienteForm.controls.correo.setValue("sara@gmail.com")
+    component.clienteForm.controls.telefono.setValue("5982252")
+    component.clienteForm.controls.idTipoDocumento.setValue(1)
     expect(component.clienteForm.valid).toBeTruthy();
 
     component.crear();

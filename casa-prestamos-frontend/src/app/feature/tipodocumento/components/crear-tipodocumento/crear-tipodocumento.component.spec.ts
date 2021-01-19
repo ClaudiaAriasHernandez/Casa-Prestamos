@@ -49,8 +49,9 @@ describe('CrearTipoDocumentoComponent', () => {
 
   it('Registrando tipo documento', () => {
     expect(component.tipodocumentoForm.valid).toBeFalsy();
-    component.tipodocumentoForm.controls.id.setValue(2);
-    component.tipodocumentoForm.controls.nombre.setValue("PEP")
+    component.tipodocumentoForm.controls.id.setValue(12);
+    component.tipodocumentoForm.controls.tipoIdentificacion.setValue("CE")
+    component.tipodocumentoForm.controls.descripcion.setValue("Cedula de Extranjeria")
     expect(component.tipodocumentoForm.valid).toBeTruthy();
 
     component.crear();
