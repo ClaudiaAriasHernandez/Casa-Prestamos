@@ -9,10 +9,13 @@ export class PrestamoService {
 
   constructor(protected http: HttpService) {}
 
-  public consultar(prestamo: Prestamo) {
-    return this.http.doGet<Prestamo[]>(`${environment.endpoint}/prestamos/tipoidentificacion/${prestamo.tipoIdentificacion}/numerodocumento/${prestamo.numeroDocumento}`, this.http.optsName('consultar prestamo'));
+  public consultarPorCliente(prestamo: Prestamo) {
+    return this.http.doGet<Prestamo>(`${environment.endpoint}/prestamos/tipoidentificacion/${prestamo.tipoIdentificacion}/numerodocumento/${prestamo.numeroDocumento}`, this.http.optsName('consultar prestamo'));
   }
 
+  public consultar() {
+    return this.http.doGet<Prestamo[]>(`${environment.endpoint}/prestamos/`, this.http.optsName('consultar prestamos'));
+  }
  
   public guardar(prestamo: Prestamo) {
     return this.http.doPost<Prestamo, boolean>(`${environment.endpoint}/prestamos`, prestamo,
@@ -20,7 +23,7 @@ export class PrestamoService {
   } 
 
   public pagar(prestamo: Prestamo) {
-    return this.http.doPost<Prestamo, boolean>(`${environment.endpoint}/prestamos/tipoidentificacion/${prestamo.tipoIdentificacion}/numerodocumento/${prestamo.numeroDocumento}`, prestamo,
+    return this.http.doPut<Prestamo, boolean>(`${environment.endpoint}/prestamos/tipoidentificacion/${prestamo.tipoIdentificacion}/numerodocumento/${prestamo.numeroDocumento}`, prestamo,
                                                  this.http.optsName('Pagar prestamo '));
   }
 }

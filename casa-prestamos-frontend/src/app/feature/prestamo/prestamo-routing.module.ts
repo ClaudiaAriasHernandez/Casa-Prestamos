@@ -6,28 +6,26 @@ import { PagarPrestamoComponent } from './components/pagar-prestamo/pagar-presta
 
 import { PrestamoComponent } from './components/prestamo/prestamo.component';
 
-
 const routes: Routes = [
   {
     path: '',
-    component: PrestamoComponent,
-    children: [
-      {
-        path: 'crear',
-        component: CrearPrestamoComponent
-      },
-      {
-        path: 'listar',
-        component: ListarPrestamoComponent
-      },
-    
-      {
-        path: 'pagar',
-        component: PagarPrestamoComponent
-      }
-    ]
+    pathMatch: 'full',
+    component: PrestamoComponent
+  },
+  {
+    path: 'crear',
+    component: CrearPrestamoComponent
+  },
+  {
+    path: 'listar',
+    component: ListarPrestamoComponent
+  },
+  {
+    path: 'pagar',
+    component: PagarPrestamoComponent
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

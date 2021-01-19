@@ -1,3 +1,5 @@
+import { Cliente } from "@cliente/shared/model/cliente";
+
 export class Prestamo {  
   id: number;
    fechaSolicitud: Date;
@@ -11,8 +13,11 @@ export class Prestamo {
    estado: string; 
    numeroDocumento: string;
    tipoIdentificacion: string;
+   dtoCliente: Cliente;
      
-    constructor(id,fechaSolicitud: Date, fechaEstimadaPago: Date, fechaPago: Date, valor: number,valorMora: number, valorInteres: number, valorRecargo: number, valorTotal: number, estado: string,  numeroDocumento: string,tipoIdentificacion: string) {
+    constructor(id: number,fechaSolicitud: Date, fechaEstimadaPago: Date, fechaPago: Date,
+      valor: number,valorMora: number, valorInteres: number, valorRecargo: number, valorTotal: number,
+      estado: string,  numeroDocumento: string,tipoIdentificacion: string, dtoCliente: Cliente) {
       this.id=id;
       this.fechaSolicitud=fechaSolicitud;
       this.fechaEstimadaPago=fechaEstimadaPago;
@@ -25,5 +30,6 @@ export class Prestamo {
       this.estado=estado;
       this.numeroDocumento=numeroDocumento;
       this.tipoIdentificacion=tipoIdentificacion;
+      this.dtoCliente=dtoCliente;
     }
 }

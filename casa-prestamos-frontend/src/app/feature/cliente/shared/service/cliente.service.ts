@@ -13,7 +13,7 @@ export class ClienteService {
     return this.http.doGet<Cliente[]>(`${environment.endpoint}/clientes/`, this.http.optsName('consultar clientes'));
   }
 
-  public buscarCliente( cliente: Cliente): Observable<Cliente> {
+  public buscarCliente(cliente: Cliente): Observable<Cliente> {
     return this.http.doGet<Cliente>(`${environment.endpoint}/clientes/tipoidentificacion/${cliente.idTipoDocumento}/numerodocumento/${cliente.numeroDocumento}`);
   }
 

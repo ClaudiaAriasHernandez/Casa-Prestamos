@@ -7,7 +7,10 @@ import { PagarPrestamoComponent } from './components/pagar-prestamo/pagar-presta
 import { PrestamoComponent } from './components/prestamo/prestamo.component';
 import { SharedModule } from '@shared/shared.module';
 import { PrestamoService } from './shared/service/prestamo.service';
-
+import { NotificationService } from 'src/app/notification.service';
+import { MaterialModule } from 'src/app/material.module';
+import { ClienteService } from 'src/app/feature/cliente/shared/service/cliente.service';
+import { TipoDocumentoService } from 'src/app/feature/tipodocumento/shared/service/tipodocumento.service';
 
 @NgModule({
   declarations: [
@@ -18,8 +21,9 @@ import { PrestamoService } from './shared/service/prestamo.service';
   ],
   imports: [
     PrestamoRoutingModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ],
-  providers: [PrestamoService]
+  providers: [PrestamoService, NotificationService, ClienteService, TipoDocumentoService]
 })
 export class PrestamoModule { }

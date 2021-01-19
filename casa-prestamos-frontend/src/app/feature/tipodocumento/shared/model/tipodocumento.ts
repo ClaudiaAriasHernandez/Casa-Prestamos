@@ -1,5 +1,5 @@
 export class TipoDocumento {  
-      id: number;
+    id: number;
     tipoIdentificacion: string;
     descripcion: string;
 

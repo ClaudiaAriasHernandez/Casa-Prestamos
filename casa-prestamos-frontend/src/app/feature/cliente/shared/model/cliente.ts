@@ -1,3 +1,5 @@
+import { TipoDocumento } from '@tipodocumento/shared/model/tipodocumento';
+
 export class Cliente {  
     id: number;
     nombre: string;
@@ -6,8 +8,10 @@ export class Cliente {
     correo: string;
     telefono: string;
     idTipoDocumento: number;
+    dtoTipoDocumento: TipoDocumento;
 
-    constructor(id: number, nombre: string, direccion: string, numeroDocumento: string, correo: string, telefono: string, idTipoDocumento: number ) {
+    constructor(id: number, nombre: string, direccion: string, numeroDocumento: string,
+      correo: string, telefono: string, idTipoDocumento: number, dtoTipoDocumento: TipoDocumento) {
       this.id=id;
       this.nombre=nombre;
       this.direccion=direccion;
@@ -15,5 +19,6 @@ export class Cliente {
       this.correo=correo;
       this.telefono=telefono;
       this.idTipoDocumento=idTipoDocumento;
+      this.dtoTipoDocumento = dtoTipoDocumento;
     }
 }
