@@ -1,7 +1,7 @@
-import { Cliente } from '@cliente/shared/model/cliente';
+import { Cliente } from '@shared/model/cliente';
 
 export class Prestamo {
-  id: number;
+   id: number;
    fechaSolicitud: Date;
    fechaEstimadaPago: Date;
    fechaPago: Date;

@@ -29,10 +29,9 @@ export class CrearClienteComponent implements OnInit {
   listarTiposDocumentos() {
     this.consultaTipoDocumentoService.consultar().subscribe((respuesta) => {
       this.listaTipoDocumentos = respuesta;
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   crear() {
     if (!this.clienteForm.valid) {
       return;
@@ -41,10 +40,9 @@ export class CrearClienteComponent implements OnInit {
       console.log(respuesta);
       this.notificationService.success('Se creo el cliente de forma exitosa.');
       this.router.navigateByUrl('/cliente/listar');
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   private construirFormularioCliente() {
     this.clienteForm = new FormGroup({
       correo: new FormControl(),

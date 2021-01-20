@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@core-service/http.service';
 import { environment } from 'src/environments/environment';
-import { Cliente } from 'src/app/feature/cliente/shared/model/cliente';
+import { Cliente } from '@shared/model/cliente';
 import { Observable } from 'rxjs';
 
 @Injectable()

@@ -13,7 +13,6 @@ import { NotificationService } from 'src/app/notification.service';
 
 describe('ActualizarTipoDocumentoComponent', () => {
   let component: ActualizarTipoDocumentoComponent;
-  let componentCliente: CrearTipoDocumentoComponent;
   let fixture: ComponentFixture<ActualizarTipoDocumentoComponent>;
   let tipodocumentoService: TipoDocumentoService;
 
@@ -53,13 +52,7 @@ describe('ActualizarTipoDocumentoComponent', () => {
 
   it('Actualizar tipo documento', () => {
 
-    expect(component.tipodocumentoForm.valid).toBeFalsy();
-    component.tipodocumentoForm.controls.id.setValue(12);
-    component.tipodocumentoForm.controls.tipoIdentificacion.setValue('CC');
-    component.tipodocumentoForm.controls.descripcion.setValue('Cedula de Extranjeria');
-    expect(component.tipodocumentoForm.valid).toBeTruthy();
 
-    componentCliente.crear();
     expect(component.tipodocumentoForm.valid).toBeFalsy();
     component.tipodocumentoForm.controls.id.setValue(12);
     component.tipodocumentoForm.controls.tipoIdentificacion.setValue('CC');

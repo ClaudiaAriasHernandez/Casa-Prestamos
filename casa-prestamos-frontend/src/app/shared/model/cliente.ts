@@ -1,4 +1,4 @@
-import { TipoDocumento } from '@tipodocumento/shared/model/tipodocumento';
+import { TipoDocumento } from './tipodocumento';
 
 export class Cliente {
     id: number;

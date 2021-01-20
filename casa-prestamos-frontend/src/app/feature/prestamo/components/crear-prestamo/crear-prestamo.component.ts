@@ -30,13 +30,13 @@ export class CrearPrestamoComponent implements OnInit {
     this.construirFormularioPrestamo();
     this.listarTiposDocumentos();
   }
+
   listarTiposDocumentos() {
     this.consultaTipoDocumentoService.consultar().subscribe((respuesta) => {
       this.listaTipoDocumentos = respuesta;
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   buscarCliente() {
     if (!this.findClienteForm.valid) {
       return;
@@ -51,10 +51,9 @@ export class CrearPrestamoComponent implements OnInit {
         };
       }
       this.prestamoForm.patchValue(cliente);
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   private construirBuscarCliente() {
     this.findClienteForm = new FormGroup({
       idTipoDocumento: new FormControl('', [Validators.required]),
@@ -73,10 +72,9 @@ export class CrearPrestamoComponent implements OnInit {
       console.log(respuesta);
       this.notificationService.success('Se creó el prestamo al cliente de forma exitosa.');
       this.router.navigateByUrl('/prestamo/listar');
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   private construirFormularioPrestamo() {
     this.prestamoForm = new FormGroup({
       nombre: new FormControl({ value: '', disabled: true }),

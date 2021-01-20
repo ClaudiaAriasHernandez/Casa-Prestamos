@@ -31,10 +31,9 @@ export class CrearTipoDocumentoComponent implements OnInit {
       console.log(respuesta);
       this.notificationService.success('Se creo el tipo de documento de forma exitosa.');
       this.router.navigateByUrl('/tipodocumento/listar');
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   private construirFormularioTipoDocumento() {
     this.tipodocumentoForm = new FormGroup({
       tipoIdentificacion: new FormControl('', [Validators.required]),

@@ -31,8 +31,6 @@ export class PagarPrestamoComponent implements OnInit {
   private consultarTiposDocumentos() {
     this.consultaTipoDocumentoService.consultar().subscribe((respuesta) => {
       this.listaTipoDocumentos = respuesta;
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
   private generarDatos(respuesta: Prestamo, esFormulario: boolean): any {
@@ -60,8 +58,6 @@ export class PagarPrestamoComponent implements OnInit {
       this.prestamoBuscado = respuesta;
       const prestamo = this.generarDatos(respuesta, true);
       this.prestamoForm.patchValue(prestamo);
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
   pagar() {
@@ -73,8 +69,6 @@ export class PagarPrestamoComponent implements OnInit {
       console.log(respuesta);
       this.notificationService.success('Se realizo el pago dl prestamo del cliente de forma exitosa.');
       this.router.navigateByUrl('/prestamo/listar');
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
   private construirFormularioPrestamo() {

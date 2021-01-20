@@ -1,10 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
 import { TipoDocumentoService } from './tipodocumento.service';
 import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/core/services/http.service';
-import { TipoDocumento } from '../model/tipodocumento';
+import { TipoDocumento } from '@shared/model/tipodocumento';
 import { HttpResponse } from '@angular/common/http';
 
 describe('TipoDocumentoService', () => {

@@ -4,9 +4,10 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ClienteService } from './cliente.service';
 import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/core/services/http.service';
-import { Cliente } from '../model/cliente';
+import { Cliente } from '@shared/model/cliente';
 import { HttpResponse } from '@angular/common/http';
-import { TipoDocumento } from 'src/app/feature/tipodocumento/shared/model/tipodocumento';
+import { TipoDocumento } from '@shared/model/tipodocumento';
+
 
 describe('ClienteService', () => {
   let httpMock: HttpTestingController;

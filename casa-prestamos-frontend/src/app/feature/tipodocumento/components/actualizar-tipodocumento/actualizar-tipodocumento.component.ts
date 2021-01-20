@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TipoDocumentoService } from '../../shared/service/tipodocumento.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TipoDocumento } from '@tipodocumento/shared/model/tipodocumento';
+import { TipoDocumento } from '@shared/model/tipodocumento';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/notification.service';
 
@@ -36,10 +36,9 @@ export class ActualizarTipoDocumentoComponent implements OnInit {
     this.tipodocumentoServices.buscarTipoDocumento(this.findTipodocumentoForm.value).subscribe((respuesta) => {
       this.documentoBuscado = respuesta;
       this.tipodocumentoForm.patchValue(respuesta);
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   actualizar() {
     if (!this.tipodocumentoForm.valid) {
       return;
@@ -52,10 +51,9 @@ export class ActualizarTipoDocumentoComponent implements OnInit {
       console.log(respuesta);
       this.notificationService.success('Se actualizo de forma exitosa.');
       this.router.navigateByUrl('/tipodocumento/listar');
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   private construirFormularioTipoDocumento() {
     this.tipodocumentoForm = new FormGroup({
       tipoIdentificacion: new FormControl({ value: '', disabled: true }, [Validators.required]),
@@ -68,6 +66,7 @@ export class ActualizarTipoDocumentoComponent implements OnInit {
       )
     });
   }
+
   private construirBuscarTipoDocumento() {
     this.findTipodocumentoForm = new FormGroup({
       tipoIdentificacion: new FormControl('', [Validators.required])

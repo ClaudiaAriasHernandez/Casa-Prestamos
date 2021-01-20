@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TipoDocumentoService } from '../../shared/service/tipodocumento.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TipoDocumento } from '@tipodocumento/shared/model/tipodocumento';
+import { TipoDocumento } from '@shared/model/tipodocumento';
 import { NotificationService } from 'src/app/notification.service';
 
 @Component({
@@ -33,10 +33,9 @@ export class BorrarTipoDocumentoComponent implements OnInit {
     this.tipodocumentoServices.buscarTipoDocumento(this.findTipodocumentoForm.value).subscribe((respuesta) => {
       this.documentoBuscado = respuesta;
       this.tipodocumentoForm.patchValue(respuesta);
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   eliminar() {
     const datosEliminar = {
       ...this.documentoBuscado,
@@ -46,16 +45,16 @@ export class BorrarTipoDocumentoComponent implements OnInit {
       console.log(respuesta);
       this.notificationService.success('Se elimino el tipo de documento de forma exitosa.');
       this.router.navigateByUrl('/tipodocumento');
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   private construirFormularioTipoDocumento() {
     this.tipodocumentoForm = new FormGroup({
       tipoIdentificacion: new FormControl({ value: '', disabled: true }),
       descripcion: new FormControl({ value: '', disabled: true })
     });
   }
+
 private construirBuscarTipoDocumento() {
   this.findTipodocumentoForm = new FormGroup({
     tipoIdentificacion: new FormControl('', [Validators.required])

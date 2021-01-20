@@ -3,7 +3,7 @@ import { ClienteService } from '../../shared/service/cliente.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/notification.service';
 import { Router } from '@angular/router';
-import { Cliente } from '@cliente/shared/model/cliente';
+import { Cliente } from '@shared/model/cliente';
 import { ConsultaClienteService } from '@shared/service/consulta-cliente.service';
 import { ConsultaTipoDocumentoService } from '@shared/service/consulta-tipodocumento.service';
 
@@ -20,25 +20,27 @@ export class ActualizarClienteComponent implements OnInit {
   public clienteBuscado: Cliente;
   findClienteForm: FormGroup;
   public listaTipoDocumentos;
-  constructor(protected clienteServices: ClienteService,
-              private readonly router: Router,
-              private readonly notificationService: NotificationService,
-              protected consultaTipoDocumentoService: ConsultaTipoDocumentoService,
-              protected consultaClienteService: ConsultaClienteService,
-     ) { }
+
+  constructor(
+    protected clienteServices: ClienteService,
+    private readonly router: Router,
+    private readonly notificationService: NotificationService,
+    protected consultaTipoDocumentoService: ConsultaTipoDocumentoService,
+    protected consultaClienteService: ConsultaClienteService,
+  ) { }
 
   ngOnInit() {
     this.construirFormularioCliente();
     this.construirBuscarCliente();
     this.consultarTiposDocumentos();
   }
+
   consultarTiposDocumentos() {
     this.consultaTipoDocumentoService.consultar().subscribe((respuesta) => {
       this.listaTipoDocumentos = respuesta;
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   buscarCliente() {
     if (!this.findClienteForm.valid) {
       return;
@@ -46,10 +48,9 @@ export class ActualizarClienteComponent implements OnInit {
     this.consultaClienteService.buscarCliente(this.findClienteForm.value).subscribe((respuesta) => {
       this.clienteBuscado = respuesta;
       this.clienteForm.patchValue(respuesta);
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   actualizar() {
     if (!this.clienteForm.valid) {
       return;
@@ -61,12 +62,11 @@ export class ActualizarClienteComponent implements OnInit {
     console.log(datosActualizar);
     this.clienteServices.actualizar(datosActualizar).subscribe((respuesta) => {
       console.log(respuesta);
-      this.notificationService.success('Se actualizo el cliente de forma exitosa.');
+      this.notificationService.success('Se actualizó el cliente de forma exitosa.');
       this.router.navigateByUrl('/cliente/listar');
-    }, (error) => {
-      this.notificationService.error(error.error.mensaje);
     });
   }
+
   private construirFormularioCliente() {
     this.clienteForm = new FormGroup({
       correo: new FormControl(),
@@ -78,10 +78,12 @@ export class ActualizarClienteComponent implements OnInit {
                                                              Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)])
     });
   }
+
   private construirBuscarCliente() {
     this.findClienteForm = new FormGroup({
       idTipoDocumento: new FormControl('', [Validators.required]),
       numeroDocumento: new FormControl('', [Validators.required])
     });
   }
+
 }
