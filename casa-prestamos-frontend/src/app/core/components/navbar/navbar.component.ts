@@ -10,12 +10,12 @@ export class NavbarComponent implements OnInit {
 
   @Input()
   items: MenuItem[];
+  @Output() openMenu = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit() {
   }
-  @Output() openMenu = new EventEmitter<void>();
 
   openSidenav(): void {
       this.openMenu.emit();

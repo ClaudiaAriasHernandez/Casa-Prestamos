@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-
 import { ListarTipoDocumentoComponent } from './listar-tipodocumento.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +13,6 @@ describe('ListarTipoDocumentoComponent', () => {
   let component: ListarTipoDocumentoComponent;
   let fixture: ComponentFixture<ListarTipoDocumentoComponent>;
   let tipoDocumentoService: TipoDocumentoService;
-  
   const listarTipoDocumento: TipoDocumento[] = [new TipoDocumento(3, 'CE', 'Cedula de extranjeria')];
 
   beforeEach(async(() => {
@@ -43,7 +41,7 @@ describe('ListarTipoDocumentoComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    tipoDocumentoService.consultar().subscribe(resultado => {
+    tipoDocumentoService().subscribe(resultado => {
       expect(1).toBe(resultado.length);
   });
 });

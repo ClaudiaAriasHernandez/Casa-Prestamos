@@ -11,7 +11,7 @@ describe('TipoDocumentoService', () => {
   let httpMock: HttpTestingController;
   let service: TipoDocumentoService;
   const apiEndpointTipoDocumentoConsulta = `${environment.endpoint}/tipodocumentos`;
-  const apiEndpointTipoDocumentos= `${environment.endpoint}/tipodocumentos`;
+  const apiEndpointTipoDocumentos = `${environment.endpoint}/tipodocumentos`;
 
   beforeEach(() => {
     const injector = TestBed.configureTestingModule({
@@ -60,7 +60,7 @@ describe('TipoDocumentoService', () => {
   });
 
   it('deberia eliminar un tipo documento', () => {
-    const dummyTipoDocumento= new TipoDocumento(1, 'CC', 'Cedula de ciudadania');
+    const dummyTipoDocumento = new TipoDocumento(1, 'CC', 'Cedula de ciudadania');
     service.eliminar(dummyTipoDocumento).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { TipoDocumentoRoutingModule } from './tipodocumento-routing.module';
 import { BorrarTipoDocumentoComponent } from './components/borrar-tipodocumento/borrar-tipodocumento.component';
 import { ListarTipoDocumentoComponent } from './components/listar-tipodocumento/listar-tipodocumento.component';

@@ -11,6 +11,9 @@ import { MaterialModule } from '../material.module';
 import { RouterModule } from '@angular/router';
 import { GenericCardComponent } from '@shared/components/cards/generic-card.component';
 import { NotificationService } from 'src/app/notification.service';
+import { ConsultaClienteService } from '@shared/service/consulta-cliente.service';
+import { ConsultaTipoDocumentoService } from '@shared/service/consulta-tipodocumento.service';
+
 
 @NgModule({
   declarations: [
@@ -39,6 +42,6 @@ import { NotificationService } from 'src/app/notification.service';
     TrackByPipe,
     GenericCardComponent
   ],
-  providers: [NotificationService],
+  providers: [NotificationService, ConsultaClienteService, ConsultaTipoDocumentoService],
 })
 export class SharedModule { }

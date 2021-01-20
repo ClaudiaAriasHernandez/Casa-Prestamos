@@ -8,13 +8,12 @@ import { Cliente } from '../model/cliente';
 import { HttpResponse } from '@angular/common/http';
 import { TipoDocumento } from 'src/app/feature/tipodocumento/shared/model/tipodocumento';
 
-
 describe('ClienteService', () => {
   let httpMock: HttpTestingController;
   let service: ClienteService;
   const apiEndpointClienteConsulta = `${environment.endpoint}/clientes`;
-  const apiEndpointClientes= `${environment.endpoint}/clientes`;
-  const apiEndpointClientesActualizar= `${environment.endpoint}/clientes/1`;
+  const apiEndpointClientes = `${environment.endpoint}/clientes`;
+  const apiEndpointClientesActualizar = `${environment.endpoint}/clientes/1`;
   beforeEach(() => {
     const injector = TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -30,8 +29,7 @@ describe('ClienteService', () => {
   });
 
   it('deberia listar clientes', () => {
-    const dummyDtoTipoDocumento: TipoDocumento = new TipoDocumento(4, "NUIP", "Identificacion unica");
-
+    const dummyDtoTipoDocumento: TipoDocumento = new TipoDocumento(4, 'NUIP', 'Identificacion unica');
     const dummyClientes = [
       new Cliente(1, 'Claudia Arias', 'Calle 62', '1037641034', 'claarher@gmail.com', '5982252', 1, dummyDtoTipoDocumento )
     ];
@@ -45,11 +43,10 @@ describe('ClienteService', () => {
   });
 
   it('deberia crear un clinte', () => {
-    const dummyDtoTipoDocumento: TipoDocumento = new TipoDocumento(4, "NUIP", "Identificacion unica");
-
+    const dummyDtoTipoDocumento: TipoDocumento = new TipoDocumento(4, 'NUIP', 'Identificacion unica');
     const dummyCliente =
       new Cliente(1, 'Claudia Arias', 'Calle 62', '1037641034', 'claarher@gmail.com', '5982252', 1, dummyDtoTipoDocumento );
-   
+
     service.guardar(dummyCliente).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
@@ -58,7 +55,7 @@ describe('ClienteService', () => {
     req.event(new HttpResponse<boolean>({body: true}));
   });
   it('deberia actualizar un clinte', () => {
-    const dummyDtoTipoDocumento: TipoDocumento = new TipoDocumento(4, "NUIP", "Identificacion unica");
+    const dummyDtoTipoDocumento: TipoDocumento = new TipoDocumento(4, 'NUIP', 'Identificacion unica');
 
     const dummyCliente =
       new Cliente(1, 'Claudia Arias', 'Calle 62', '1037641034', 'claarher@gmail.com', '5982252', 1, dummyDtoTipoDocumento );
@@ -71,11 +68,10 @@ describe('ClienteService', () => {
   });
 
   it('deberia eliminar un producto', () => {
-    const dummyDtoTipoDocumento: TipoDocumento = new TipoDocumento(4, "NUIP", "Identificacion unica");
-    
-    const dummyCliente = 
-      new Cliente(2, 'Sara Perez', 'Calle 62', '1037444034', 'sara.perez@gmail.com', '5982252', 1, dummyDtoTipoDocumento ); 
-   
+    const dummyDtoTipoDocumento: TipoDocumento = new TipoDocumento(4, 'NUIP', 'Identificacion unica');
+    const dummyCliente = new Cliente(2, 'Sara Perez', 'Calle 62', '1037444034', 'sara.perez@gmail.com',
+     '5982252', 1, dummyDtoTipoDocumento
+     );
     service.eliminar(dummyCliente).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });

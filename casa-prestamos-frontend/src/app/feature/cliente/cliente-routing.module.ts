@@ -4,9 +4,7 @@ import { CrearClienteComponent } from './components/crear-cliente/crear-cliente.
 import { ListarClienteComponent } from './components/listar-cliente/listar-cliente.component';
 import { BorrarClienteComponent } from './components/borrar-cliente/borrar-cliente.component';
 import { ActualizarClienteComponent } from './components/actualizar-cliente/actualizar-cliente.component';
-
 import { ClienteComponent } from './components/cliente/cliente.component';
-
 
 const routes: Routes = [
   {

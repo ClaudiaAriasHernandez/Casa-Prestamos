@@ -6,7 +6,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { NotificationService } from 'src/app/notification.service';
 
-
 @Component({
   selector: 'app-listar-prestamo',
   templateUrl: './listar-prestamo.component.html',
@@ -14,28 +13,24 @@ import { NotificationService } from 'src/app/notification.service';
 })
 export class ListarPrestamoComponent implements OnInit {
   public listaPrestamos: MatTableDataSource<Prestamo>;
-  public displayedColumns: string[] = ['id', 'dtoCliente','fechaSolicitud', 'fechaEstimadaPago', 'fechaPago', 'valor','valorMora', 'valorInteres', 'valorRecargo', 'valorTotal', 'estado'];
-  
+  public displayedColumns: string[] = ['id', 'dtoCliente', 'fechaSolicitud', 'fechaEstimadaPago',
+  'fechaPago', 'valor', 'valorMora', 'valorInteres', 'valorRecargo', 'valorTotal', 'estado'
+];
 
-
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+@ViewChild(MatSort, { static: true }) sort: MatSort;
+@ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(protected prestamoService: PrestamoService,
-  private readonly notificationService: NotificationService,)
- { }
+              private readonly notificationService: NotificationService,
+              ) { }
 
   ngOnInit() {
     this.prestamoService.consultar().subscribe((respuesta) => {
-      console.log(respuesta);
       this.listaPrestamos = new MatTableDataSource(respuesta);
-     
       this.listaPrestamos.sort = this.sort;
       this.listaPrestamos.paginator = this.paginator;
     }, (error) => {
       this.notificationService.error(error.error.mensaje);
     });
   }
-
 }

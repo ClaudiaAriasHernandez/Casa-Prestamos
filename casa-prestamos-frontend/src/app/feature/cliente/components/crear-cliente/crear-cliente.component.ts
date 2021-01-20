@@ -3,7 +3,7 @@ import { ClienteService } from '../../shared/service/cliente.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/notification.service';
 import { Router } from '@angular/router';
-import { TipoDocumentoService } from 'src/app/feature/tipodocumento/shared/service/tipodocumento.service';
+import { ConsultaTipoDocumentoService } from '@shared/service/consulta-tipodocumento.service';
 
 const LONGITUD_MINIMA_PERMITIDA_TEXTO = 7;
 const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 10;
@@ -17,16 +17,18 @@ export class CrearClienteComponent implements OnInit {
   clienteForm: FormGroup;
   public listaTipoDocumentos;
   constructor(protected clienteServices: ClienteService,
-    private readonly router: Router,
-    private readonly notificationService: NotificationService,
-    protected tipoDocumentoService: TipoDocumentoService,
-    ) { }
+              private readonly router: Router,
+              private readonly notificationService: NotificationService,
+              protected consultaTipoDocumentoService: ConsultaTipoDocumentoService,
+ ) { }
 
   ngOnInit() {
     this.construirFormularioCliente();
-
-    this.tipoDocumentoService.consultar().subscribe((respuesta) => {
-      this.listaTipoDocumentos = respuesta;    
+    this.listarTiposDocumentos();
+  }
+  listarTiposDocumentos() {
+    this.consultaTipoDocumentoService.consultar().subscribe((respuesta) => {
+      this.listaTipoDocumentos = respuesta;
     }, (error) => {
       this.notificationService.error(error.error.mensaje);
     });
@@ -37,17 +39,15 @@ export class CrearClienteComponent implements OnInit {
     }
     this.clienteServices.guardar(this.clienteForm.value).subscribe((respuesta) => {
       console.log(respuesta);
-      this.notificationService.success("Se creo el cliente de forma exitosa.");
+      this.notificationService.success('Se creo el cliente de forma exitosa.');
       this.router.navigateByUrl('/cliente/listar');
     }, (error) => {
-      
       this.notificationService.error(error.error.mensaje);
     });
   }
-
   private construirFormularioCliente() {
     this.clienteForm = new FormGroup({
-      correo:new FormControl(),
+      correo: new FormControl(),
       nombre: new FormControl('', [Validators.required]),
       direccion: new FormControl('', [Validators.required]),
       idTipoDocumento: new FormControl('', [Validators.required]),

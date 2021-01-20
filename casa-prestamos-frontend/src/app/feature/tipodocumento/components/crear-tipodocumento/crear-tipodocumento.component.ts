@@ -15,8 +15,8 @@ const LONGITUD_MAXIMA_PERMITIDA_TEXTO = 50;
 export class CrearTipoDocumentoComponent implements OnInit {
   tipodocumentoForm: FormGroup;
   constructor(protected tipoDocumentoService: TipoDocumentoService,
-    private readonly router: Router,
-    private readonly notificationService: NotificationService,
+              private readonly router: Router,
+              private readonly notificationService: NotificationService,
   ) { }
 
   ngOnInit() {
@@ -29,14 +29,12 @@ export class CrearTipoDocumentoComponent implements OnInit {
     }
     this.tipoDocumentoService.guardar(this.tipodocumentoForm.value).subscribe((respuesta) => {
       console.log(respuesta);
-      this.notificationService.success("Se creo el tipo de documento de forma exitosa.");
+      this.notificationService.success('Se creo el tipo de documento de forma exitosa.');
       this.router.navigateByUrl('/tipodocumento/listar');
     }, (error) => {
-      
       this.notificationService.error(error.error.mensaje);
     });
   }
-
   private construirFormularioTipoDocumento() {
     this.tipodocumentoForm = new FormGroup({
       tipoIdentificacion: new FormControl('', [Validators.required]),
@@ -44,5 +42,4 @@ export class CrearTipoDocumentoComponent implements OnInit {
                                                              Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)])
     });
   }
-
 }

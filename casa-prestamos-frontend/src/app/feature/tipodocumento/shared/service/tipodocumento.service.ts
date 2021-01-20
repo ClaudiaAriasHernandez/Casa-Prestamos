@@ -11,10 +11,6 @@ export class TipoDocumentoService {
 
   constructor(protected http: HttpService) {}
 
-  public consultar(): Observable<TipoDocumento[]> {
-    return this.http.doGet<TipoDocumento[]>(`${this.RUTA_BASE}/tipodocumentos/`);
-  }
-  
   public buscarTipoDocumento( tipoDocumento: TipoDocumento): Observable<TipoDocumento> {
     return this.http.doGet<TipoDocumento>(`${this.RUTA_BASE}/tipodocumentos/tipoidentificacion/${tipoDocumento.tipoIdentificacion}`);
   }

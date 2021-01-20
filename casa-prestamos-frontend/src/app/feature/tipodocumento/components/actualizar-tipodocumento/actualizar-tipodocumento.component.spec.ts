@@ -10,6 +10,7 @@ import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CrearTipoDocumentoComponent } from 'src/app/feature/tipodocumento/components/crear-tipodocumento/crear-tipodocumento.component';
 import { NotificationService } from 'src/app/notification.service';
+
 describe('ActualizarTipoDocumentoComponent', () => {
   let component: ActualizarTipoDocumentoComponent;
   let componentCliente: CrearTipoDocumentoComponent;
@@ -54,15 +55,15 @@ describe('ActualizarTipoDocumentoComponent', () => {
 
     expect(component.tipodocumentoForm.valid).toBeFalsy();
     component.tipodocumentoForm.controls.id.setValue(12);
-    component.tipodocumentoForm.controls.tipoIdentificacion.setValue("CC")
-    component.tipodocumentoForm.controls.descripcion.setValue("Cedula de Extranjeria")
+    component.tipodocumentoForm.controls.tipoIdentificacion.setValue('CC');
+    component.tipodocumentoForm.controls.descripcion.setValue('Cedula de Extranjeria');
     expect(component.tipodocumentoForm.valid).toBeTruthy();
 
     componentCliente.crear();
     expect(component.tipodocumentoForm.valid).toBeFalsy();
     component.tipodocumentoForm.controls.id.setValue(12);
-    component.tipodocumentoForm.controls.tipoIdentificacion.setValue("CC")
-    component.tipodocumentoForm.controls.descripcion.setValue("Cedula de Ciudadania")
+    component.tipodocumentoForm.controls.tipoIdentificacion.setValue('CC');
+    component.tipodocumentoForm.controls.descripcion.setValue('Cedula de Ciudadania');
     expect(component.tipodocumentoForm.valid).toBeTruthy();
 
     component.actualizar();

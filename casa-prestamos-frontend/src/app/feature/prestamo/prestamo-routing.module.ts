@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { CrearPrestamoComponent } from './components/crear-prestamo/crear-prestamo.component';
 import { ListarPrestamoComponent } from './components/listar-prestamo/listar-prestamo.component';
 import { PagarPrestamoComponent } from './components/pagar-prestamo/pagar-prestamo.component';
-
 import { PrestamoComponent } from './components/prestamo/prestamo.component';
 
 const routes: Routes = [

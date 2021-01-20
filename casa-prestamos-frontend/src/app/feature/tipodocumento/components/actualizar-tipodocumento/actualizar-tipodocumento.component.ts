@@ -21,7 +21,7 @@ export class ActualizarTipoDocumentoComponent implements OnInit {
   constructor(
     protected readonly tipodocumentoServices: TipoDocumentoService,
     private readonly router: Router,
-    private readonly notificationService: NotificationService,
+    private readonly notificationService: NotificationService
   ) { }
 
   ngOnInit() {
@@ -37,31 +37,25 @@ export class ActualizarTipoDocumentoComponent implements OnInit {
       this.documentoBuscado = respuesta;
       this.tipodocumentoForm.patchValue(respuesta);
     }, (error) => {
-   
       this.notificationService.error(error.error.mensaje);
     });
   }
-
   actualizar() {
     if (!this.tipodocumentoForm.valid) {
       return;
     }
-
     const datosActualizar = {
       ...this.documentoBuscado,
       ...this.tipodocumentoForm.value
     };
-
     this.tipodocumentoServices.actualizar(datosActualizar).subscribe((respuesta) => {
       console.log(respuesta);
-      this.notificationService.success("Se actualizo de forma exitosa.");
+      this.notificationService.success('Se actualizo de forma exitosa.');
       this.router.navigateByUrl('/tipodocumento/listar');
     }, (error) => {
-      
       this.notificationService.error(error.error.mensaje);
     });
   }
-
   private construirFormularioTipoDocumento() {
     this.tipodocumentoForm = new FormGroup({
       tipoIdentificacion: new FormControl({ value: '', disabled: true }, [Validators.required]),
@@ -74,11 +68,9 @@ export class ActualizarTipoDocumentoComponent implements OnInit {
       )
     });
   }
-
   private construirBuscarTipoDocumento() {
     this.findTipodocumentoForm = new FormGroup({
       tipoIdentificacion: new FormControl('', [Validators.required])
     });
   }
-
 }

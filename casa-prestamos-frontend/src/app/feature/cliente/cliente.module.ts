@@ -9,7 +9,6 @@ import { ClienteComponent } from './components/cliente/cliente.component';
 import { SharedModule } from '@shared/shared.module';
 import { ClienteService } from './shared/service/cliente.service';
 import { MaterialModule } from 'src/app/material.module';
-import { TipoDocumentoService } from 'src/app/feature/tipodocumento/shared/service/tipodocumento.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +23,6 @@ import { TipoDocumentoService } from 'src/app/feature/tipodocumento/shared/servi
     SharedModule,
     MaterialModule
   ],
-  providers: [ClienteService,  TipoDocumentoService]
+  providers: [ClienteService]
 })
 export class ClienteModule { }

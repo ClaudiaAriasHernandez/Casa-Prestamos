@@ -15,9 +15,10 @@ describe('ListarClienteComponent', () => {
   let component: ListarClienteComponent;
   let fixture: ComponentFixture<ListarClienteComponent>;
   let clienteService: ClienteService;
-  const dtoTipoDocumento: TipoDocumento = new TipoDocumento(4, "NUIP", "Identificacion unica");
-
-  const listaClientes: Cliente[] = [ new Cliente(3, 'Karen Garcia', 'Calle 62', '1037221034', 'kren@gmail.com', '5982252', 1, dtoTipoDocumento)];
+  const dtoTipoDocumento: TipoDocumento = new TipoDocumento(4, 'NUIP', 'Identificacion unica');
+  const listaClientes: Cliente[] = [ new Cliente(
+    3, 'Karen Garcia', 'Calle 62', '1037221034', 'kren@gmail.com', '5982252', 1, dtoTipoDocumento)
+  ];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -36,7 +37,7 @@ describe('ListarClienteComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListarClienteComponent);
     component = fixture.componentInstance;
-   clienteService = TestBed.inject(ClienteService);
+    clienteService = TestBed.inject(ClienteService);
     spyOn(clienteService, 'consultar').and.returnValue(
       of(listaClientes)
     );
@@ -48,8 +49,5 @@ describe('ListarClienteComponent', () => {
         clienteService.consultar().subscribe(resultado => {
           expect(1).toBe(resultado.length);
       });
-      
- 
 });
-
 });

@@ -16,11 +16,12 @@ describe('ListarPrestamoComponent', () => {
   let component: ListarPrestamoComponent;
   let fixture: ComponentFixture<ListarPrestamoComponent>;
   let prestamoService: PrestamoService;
-  const dtoTipoDocumento: TipoDocumento = new TipoDocumento(4, "NUIP", "Identificacion unica");
-
+  const dtoTipoDocumento: TipoDocumento = new TipoDocumento(4, 'NUIP', 'Identificacion unica');
   const dtoCliente: Cliente = new Cliente(3, 'Karen Garcia', 'Calle 62', '1037221034', 'kren@gmail.com', '5982252', 1, dtoTipoDocumento);
-
-  const listaPrestamos: Prestamo[] = [new Prestamo(1,new Date("2020-12-27"), new Date( "2021-01-10"), new Date("2021-01-10"), 1000000.0, 30000, 0.0, 0.0, 1030000, "P","1037641034", "CC" , dtoCliente)];
+  const listaPrestamos: Prestamo[] = [new Prestamo(
+    1, new Date('2020-12-27'), new Date('2021-01-10'), new Date('2021-01-10'),
+     1000000.0, 30000, 0.0, 0.0, 1030000, 'P', '1037641034', 'CC' , dtoCliente
+    )];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -46,12 +47,10 @@ describe('ListarPrestamoComponent', () => {
     fixture.detectChanges();
   });
 
- 
   it('should create', () => {
     expect(component).toBeTruthy();
     prestamoService.consultar().subscribe(resultado => {
       expect(1).toBe(resultado.length);
-  });  
+  });
 });
-
 });

@@ -3,9 +3,8 @@ import { PrestamoService } from '../../shared/service/prestamo.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/notification.service';
 import { Router } from '@angular/router';
-import { TipoDocumentoService } from 'src/app/feature/tipodocumento/shared/service/tipodocumento.service';
-import { ClienteService } from 'src/app/feature/cliente/shared/service/cliente.service';
-import { Cliente } from '@cliente/shared/model/cliente';
+import { ConsultaClienteService } from '@shared/service/consulta-cliente.service';
+import { ConsultaTipoDocumentoService } from '@shared/service/consulta-tipodocumento.service';
 
 @Component({
   selector: 'app-crear-prestamo',
@@ -17,31 +16,32 @@ export class CrearPrestamoComponent implements OnInit {
   public findClienteForm: FormGroup;
   public listaTipoDocumentos;
   public tipoDocumentoCliente;
-  public clienteBuscado: Cliente;
- 
+  public clienteBuscado;
 
   constructor(protected prestamoService: PrestamoService,
-    private readonly router: Router,
-    private readonly notificationService: NotificationService,
-    protected tipoDocumentoService: TipoDocumentoService,
-    protected clienteService: ClienteService,
+              private readonly router: Router,
+              private readonly notificationService: NotificationService,
+              private readonly consultaTipoDocumentoService: ConsultaTipoDocumentoService,
+              protected consultaClienteService: ConsultaClienteService,
     ) { }
 
   ngOnInit() {
     this.construirBuscarCliente();
     this.construirFormularioPrestamo();
-    this.tipoDocumentoService.consultar().subscribe((respuesta) => {
-      this.listaTipoDocumentos = respuesta;    
+    this.listarTiposDocumentos();
+  }
+  listarTiposDocumentos() {
+    this.consultaTipoDocumentoService.consultar().subscribe((respuesta) => {
+      this.listaTipoDocumentos = respuesta;
     }, (error) => {
       this.notificationService.error(error.error.mensaje);
     });
   }
-
   buscarCliente() {
     if (!this.findClienteForm.valid) {
       return;
     }
-    this.clienteService.buscarCliente(this.findClienteForm.value).subscribe((respuesta) => {
+    this.consultaClienteService.buscarCliente(this.findClienteForm.value).subscribe((respuesta) => {
       this.clienteBuscado = respuesta;
       let cliente: any = { ...respuesta };
       if (!!respuesta && !!respuesta.dtoTipoDocumento) {
@@ -55,38 +55,31 @@ export class CrearPrestamoComponent implements OnInit {
       this.notificationService.error(error.error.mensaje);
     });
   }
-
   private construirBuscarCliente() {
     this.findClienteForm = new FormGroup({
       idTipoDocumento: new FormControl('', [Validators.required]),
       numeroDocumento: new FormControl('', [Validators.required])
     });
   }
-
-  
   crear() {
     if (!this.prestamoForm.valid) {
       return;
     }
-
     const datosCrear = {
       idCliente: this.clienteBuscado.id,
       ...this.prestamoForm.value,
     };
-
     this.prestamoService.guardar(datosCrear).subscribe((respuesta) => {
       console.log(respuesta);
-      this.notificationService.success("Se creó el prestamo al cliente de forma exitosa.");
+      this.notificationService.success('Se creó el prestamo al cliente de forma exitosa.');
       this.router.navigateByUrl('/prestamo/listar');
     }, (error) => {
-      
       this.notificationService.error(error.error.mensaje);
     });
   }
-
   private construirFormularioPrestamo() {
     this.prestamoForm = new FormGroup({
-      nombre: new FormControl({ value: '', disabled: true }),   
+      nombre: new FormControl({ value: '', disabled: true }),
       tipoIdentificacion: new FormControl({ value: '', disabled: true }),
       numeroDocumento: new FormControl({ value: '', disabled: true }),
       valor: new FormControl('', [Validators.required])

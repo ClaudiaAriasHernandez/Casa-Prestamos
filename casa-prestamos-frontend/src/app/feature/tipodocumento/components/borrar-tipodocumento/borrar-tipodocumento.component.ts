@@ -32,24 +32,21 @@ export class BorrarTipoDocumentoComponent implements OnInit {
     }
     this.tipodocumentoServices.buscarTipoDocumento(this.findTipodocumentoForm.value).subscribe((respuesta) => {
       this.documentoBuscado = respuesta;
-      console.log(this.documentoBuscado);
       this.tipodocumentoForm.patchValue(respuesta);
     }, (error) => {
       this.notificationService.error(error.error.mensaje);
     });
-  }  
-  eliminar() {  
-
+  }
+  eliminar() {
     const datosEliminar = {
       ...this.documentoBuscado,
       ...this.tipodocumentoForm.value
     };
-
     this.tipodocumentoServices.eliminar(datosEliminar).subscribe((respuesta) => {
       console.log(respuesta);
-      this.notificationService.success("Se elimino el tipo de documento de forma exitosa.");
+      this.notificationService.success('Se elimino el tipo de documento de forma exitosa.');
       this.router.navigateByUrl('/tipodocumento');
-    }, (error) => {     
+    }, (error) => {
       this.notificationService.error(error.error.mensaje);
     });
   }
@@ -59,7 +56,6 @@ export class BorrarTipoDocumentoComponent implements OnInit {
       descripcion: new FormControl({ value: '', disabled: true })
     });
   }
-
 private construirBuscarTipoDocumento() {
   this.findTipodocumentoForm = new FormGroup({
     tipoIdentificacion: new FormControl('', [Validators.required])

@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-
 import { CrearPrestamoComponent } from './crear-prestamo.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +25,7 @@ describe('CrearPrestamoComponent', () => {
         FormsModule,
         NotificationService
       ],
-      providers: [PrestamoService, HttpService,NotificationService],
+      providers: [PrestamoService, HttpService, NotificationService],
     })
     .compileComponents();
   }));
@@ -34,7 +33,7 @@ describe('CrearPrestamoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CrearPrestamoComponent);
     component = fixture.componentInstance;
-   prestamoService = TestBed.inject(PrestamoService);
+    prestamoService = TestBed.inject(PrestamoService);
     spyOn(prestamoService, 'guardar').and.returnValue(
       of(true)
     );
@@ -52,17 +51,17 @@ describe('CrearPrestamoComponent', () => {
   it('Registrando prestamo', () => {
     expect(component.prestamoForm.valid).toBeFalsy();
     component.prestamoForm.controls.idCliente.setValue(15);
-    component.prestamoForm.controls.tipoIdentificacion.setValue("CC");
-    component.prestamoForm.controls.numeroDocumento.setValue("12876554567")
-    component.prestamoForm.controls.valor.setValue("1000000")
-    component.prestamoForm.controls.valorMora.setValue("")
-    component.prestamoForm.controls.valorRecargo.setValue("")
-    component.prestamoForm.controls.valorTotal.setValue("")
-    component.prestamoForm.controls.valorInteres.setValue("")
-    component.prestamoForm.controls.fechaSolicitud.setValue("2021-01-19")
-    component.prestamoForm.controls.fechaEstimadaPago.setValue("2021-02-02")
-    component.prestamoForm.controls.fechaPago.setValue("")
-    component.prestamoForm.controls.estado.setValue("D")
+    component.prestamoForm.controls.tipoIdentificacion.setValue('CC');
+    component.prestamoForm.controls.numeroDocumento.setValue('12876554567');
+    component.prestamoForm.controls.valor.setValue('1000000');
+    component.prestamoForm.controls.valorMora.setValue('');
+    component.prestamoForm.controls.valorRecargo.setValue('');
+    component.prestamoForm.controls.valorTotal.setValue('');
+    component.prestamoForm.controls.valorInteres.setValue('');
+    component.prestamoForm.controls.fechaSolicitud.setValue('2021-01-19');
+    component.prestamoForm.controls.fechaEstimadaPago.setValue('2021-02-02');
+    component.prestamoForm.controls.fechaPago.setValue('');
+    component.prestamoForm.controls.estado.setValue('D');
     expect(component.prestamoForm.valid).toBeTruthy();
 
     component.crear();
