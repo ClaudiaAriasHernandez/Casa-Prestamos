@@ -16,6 +16,7 @@ describe('workspace-project Prestamo', () => {
     it('Deberia crear prestamo', () => {
         const NUMERO_DOCUMENTO = '1023328473';
         const VALOR = '1000000';
+        const MENSAJE = 'Se creo el prestamo al cliente de forma exitosa';
 
         page.navigateTo();
         navBar.clickBotonPrestamos();
@@ -24,12 +25,8 @@ describe('workspace-project Prestamo', () => {
         prestamo.ingresaTipoDocumento();
         prestamo.btnBuscarCliente();
         prestamo.ingresaValor(VALOR);
-        prestamo.btnGuardarPrestamo();
-        // Adicionamos las validaciones despues de la creación
-        // expect(<>).toEqual(<>);
-      //  expect('Se creó el prestamo al cliente de forma exitosa.').toEqual('Se creó el prestamo al cliente de forma exitosa.');
 
-
+        expect(  prestamo.btnGuardarPrestamo()).toContain(MENSAJE);
 
       });
 

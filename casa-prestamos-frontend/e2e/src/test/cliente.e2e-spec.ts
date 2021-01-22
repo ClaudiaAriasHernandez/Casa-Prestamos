@@ -19,6 +19,7 @@ describe('workspace-project Cliente', () => {
         const DIRECCION = 'Calle 56 A 35';
         const TELEFONO = '5982256';
 
+
         page.navigateTo();
         navBar.clickBotonClientes();
         cliente.clickBotonCrearClientes();
@@ -28,11 +29,6 @@ describe('workspace-project Cliente', () => {
         cliente.ingresaDireccion(DIRECCION);
         cliente.ingresaTelefono(TELEFONO);
         cliente.btnGuardarCliente();
-        // Adicionamos las validaciones despues de la creación
-        // expect(<>).toEqual(<>);
-
-
-
 
     });
 

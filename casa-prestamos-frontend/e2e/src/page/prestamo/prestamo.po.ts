@@ -20,12 +20,13 @@ export class PrestamoPage {
 
     async btnGuardarPrestamo() {
         await this.crearPrestamo.click();
-        this.getMensaje();
+
+        return this.getMensaje();
     }
 
     async btnBuscarCliente() {
       await this.buscarCliente.click();
-  }
+    }
 
     async ingresaTipoDocumento() {
 
@@ -56,10 +57,7 @@ export class PrestamoPage {
       await this.inputValorPrestamo.sendKeys(valor);
     }
 
-     getMensaje() {
-      const MENSAJE = 'Se creo el prestamo al cliente de forma exitosa';
-
-      expect(element(by.tagName('simple-snack-bar')).getText() as Promise<string>).toContain(MENSAJE);
-
+    getMensaje() {
+      return element(by.tagName('simple-snack-bar')).getText() as Promise<string>;
     }
 }
