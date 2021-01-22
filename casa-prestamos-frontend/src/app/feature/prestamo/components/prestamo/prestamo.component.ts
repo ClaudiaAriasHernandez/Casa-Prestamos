@@ -19,12 +19,14 @@ export class PrestamoComponent {
       image: 'crear.png',
       content: 'Permite crear un nuevo prestamo a un cliente.',
       url: '/prestamo/crear',
+      id: 'linkCrearPrestamo',
     },
     {
       title: 'Consultar',
       image: 'consultar.png',
       content: 'Permite consultar los prestamos.',
       url: '/prestamo/listar',
+      id: 'linkListarPrestamos',
     }
   ];
 

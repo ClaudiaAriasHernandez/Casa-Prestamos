@@ -1,15 +1,15 @@
 <h1>Crear cliente</h1>
-  <hr>  
-<div class="container-form" *ngIf = "!!listaTipoDocumentos"> 
+  <hr>
+<div class="container-form" *ngIf = "!!listaTipoDocumentos">
     <form class="form-fields" [formGroup]="clienteForm" (ngSubmit)="crear()">
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Nombre:</mat-label>
         <input matInput validar type="text" id="nombre" name="nombre"
           class="form-control" formControlName="nombre" >
       </mat-form-field>
-      <mat-form-field >
+      <mat-form-field id="tipoDocumento" >
         <mat-select formControlName="idTipoDocumento" name="idTipoDocumento"   placeholder="Seleccionar tipo documento" id="idTipoDocumento"  >
-          <mat-option *ngFor="let tipoDocumento of listaTipoDocumentos" 
+          <mat-option *ngFor="let tipoDocumento of listaTipoDocumentos"
       [value]="tipoDocumento.id">
             {{tipoDocumento.tipoIdentificacion}}
           </mat-option>
@@ -35,10 +35,9 @@
         <input matInput validar type="text" id="correo" name="correo" formControlName="correo"
           class="form-control" >
       </mat-form-field>
-      <button [disabled]="!clienteForm?.valid" mat-raised-button color="primary" type="submit">Guardar</button>
+      <button [disabled]="!clienteForm?.valid" mat-raised-button id="crearCliente" color="primary" type="submit">Guardar</button>
     </form>
     <button class="cancel-button" mat-raised-button color="default" type="button" [routerLink]="'/cliente'">
       Cancelar
     </button>
   </div>
-  

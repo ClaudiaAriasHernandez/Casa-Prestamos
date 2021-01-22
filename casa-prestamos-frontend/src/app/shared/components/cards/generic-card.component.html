@@ -1,6 +1,6 @@
 
 <div class="container-card">
-  <mat-card *ngFor="let card of cards" class="generic-card" [routerLink]="card?.url">
+  <mat-card [id]="card?.id" *ngFor="let card of cards" class="generic-card" [routerLink]="card?.url">
     <mat-card-header>
       <mat-card-title class="tittle-card">{{ card?.title }}</mat-card-title>
     </mat-card-header>

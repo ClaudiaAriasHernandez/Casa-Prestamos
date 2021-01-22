@@ -9,6 +9,7 @@ import { HttpResponse } from '@angular/common/http';
 describe('TipoDocumentoService', () => {
   let httpMock: HttpTestingController;
   let service: TipoDocumentoService;
+
   const apiEndpointTipoDocumentoConsulta = `${environment.endpoint}/tipodocumentos`;
   const apiEndpointTipoDocumentos = `${environment.endpoint}/tipodocumentos`;
 
@@ -26,14 +27,12 @@ describe('TipoDocumentoService', () => {
     expect(tipodocumentoService).toBeTruthy();
   });
 
+
   it('deberia listar tipo documentos', () => {
     const dummyTipoDocumentos = [
       new TipoDocumento(1, 'CC', 'Cedula de ciudadania'), new TipoDocumento(1, 'CC', 'Cedula de ciudadania')
     ];
-    service.consultar().subscribe(tipoDocumentos => {
-      expect(tipoDocumentos.length).toBe(2);
-      expect(tipoDocumentos).toEqual(dummyTipoDocumentos);
-    });
+
     const req = httpMock.expectOne(apiEndpointTipoDocumentoConsulta);
     expect(req.request.method).toBe('GET');
     req.flush(dummyTipoDocumentos);

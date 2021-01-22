@@ -5,8 +5,8 @@ import { environment } from 'src/environments/environment';
 import { HttpService } from 'src/app/core/services/http.service';
 import { Prestamo } from '../model/prestamo';
 import { HttpResponse } from '@angular/common/http';
-import { TipoDocumento } from 'src/app/feature/tipodocumento/shared/model/tipodocumento';
-import { Cliente } from 'src/app/feature/cliente/shared/model/cliente';
+import { Cliente } from '@shared/model/cliente';
+import { TipoDocumento } from '@shared/model/tipodocumento';
 
 describe('PrestamoService', () => {
   let httpMock: HttpTestingController;

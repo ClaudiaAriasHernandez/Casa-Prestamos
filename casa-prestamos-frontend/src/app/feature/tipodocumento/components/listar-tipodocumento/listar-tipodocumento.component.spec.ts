@@ -4,15 +4,15 @@ import { ListarTipoDocumentoComponent } from './listar-tipodocumento.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { TipoDocumentoService } from '../../shared/service/tipodocumento.service';
-import { TipoDocumento } from '../../shared/model/tipodocumento';
+import { ConsultaTipoDocumentoService } from '@shared/service/consulta-tipodocumento.service';
+import { TipoDocumento } from '@shared/model/tipodocumento';
 import { HttpService } from 'src/app/core/services/http.service';
 import { MatTableDataSource } from '@angular/material/table';
 
 describe('ListarTipoDocumentoComponent', () => {
   let component: ListarTipoDocumentoComponent;
   let fixture: ComponentFixture<ListarTipoDocumentoComponent>;
-  let tipoDocumentoService: TipoDocumentoService;
+  let consultaTipoDocumentoService: ConsultaTipoDocumentoService;
   const listarTipoDocumento: TipoDocumento[] = [new TipoDocumento(3, 'CE', 'Cedula de extranjeria')];
 
   beforeEach(async(() => {
@@ -24,7 +24,7 @@ describe('ListarTipoDocumentoComponent', () => {
         RouterTestingModule,
         MatTableDataSource
       ],
-      providers: [TipoDocumentoService, HttpService]
+      providers: [ConsultaTipoDocumentoService, HttpService]
     })
       .compileComponents();
   }));
@@ -32,8 +32,8 @@ describe('ListarTipoDocumentoComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListarTipoDocumentoComponent);
     component = fixture.componentInstance;
-    tipoDocumentoService = TestBed.inject(TipoDocumentoService);
-    spyOn(tipoDocumentoService, 'consultar').and.returnValue(
+    consultaTipoDocumentoService = TestBed.inject(ConsultaTipoDocumentoService);
+    spyOn(consultaTipoDocumentoService, 'consultar').and.returnValue(
       of(listarTipoDocumento)
     );
     fixture.detectChanges();
@@ -41,7 +41,7 @@ describe('ListarTipoDocumentoComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    tipoDocumentoService().subscribe(resultado => {
+    consultaTipoDocumentoService.consultar().subscribe(resultado => {
       expect(1).toBe(resultado.length);
   });
 });

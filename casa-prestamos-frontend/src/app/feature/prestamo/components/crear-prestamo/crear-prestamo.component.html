@@ -2,9 +2,9 @@
   <hr>
   <div class="container-form" *ngIf = "!clienteBuscado">
     <form class="form-fields" [formGroup]="findClienteForm" (ngSubmit)="buscarCliente()">
-      <mat-form-field class="form-field" appearance="fill">
+      <mat-form-field class="form-field" id="tipoDocumento" appearance="fill">
         <mat-select formControlName="idTipoDocumento" name="idTipoDocumento" placeholder="Seleccionar tipo documento" id="idTipoDocumento" >
-          <mat-option *ngFor="let tipoDocumento of listaTipoDocumentos" 
+          <mat-option *ngFor="let tipoDocumento of listaTipoDocumentos"
       [value]="tipoDocumento.tipoIdentificacion">
             {{tipoDocumento.tipoIdentificacion}}
           </mat-option>
@@ -15,17 +15,17 @@
         <input matInput validar type="text" id="numeroDocumento" name="numeroDocumento"
           class="form-control" formControlName="numeroDocumento" >
       </mat-form-field>
-      <button  [disabled]="!findClienteForm?.valid" mat-raised-button color="primary" type="submit">Buscar</button>
+      <button  [disabled]="!findClienteForm?.valid" id="buscarCliente" mat-raised-button color="primary" type="submit">Buscar</button>
     </form>
   </div>
-<div class="container-form" *ngIf = "!!clienteBuscado"> 
+<div class="container-form" *ngIf = "!!clienteBuscado">
     <form class="form-fields" [formGroup]="prestamoForm" (ngSubmit)="crear()">
       <mat-form-field class="form-field" appearance="fill">
         <mat-label>Nombre:</mat-label>
         <input matInput validar type="text" id="nombre" name="nombre"
           class="form-control" formControlName="nombre">
       </mat-form-field>
-      <mat-form-field class="form-field" appearance="fill">
+      <mat-form-field class="form-field"  appearance="fill">
         <mat-label>Tipo documento:</mat-label>
         <input matInput validar type="text" id="tipoIdentificacion" name="tipoIdentificacion"
           class="form-control" formControlName="tipoIdentificacion">
@@ -39,8 +39,8 @@
         <mat-label>Valor Prestamo:</mat-label>
         <input matInput validar type="text" id="valor" name="valor"
           class="form-control" formControlName="valor">
-      </mat-form-field>      
-      <button [disabled]="!prestamoForm?.valid" mat-raised-button color="primary" type="submit">Guardar</button>
+      </mat-form-field>
+      <button [disabled]="!prestamoForm?.valid" id="crearPrestamo" mat-raised-button color="primary" type="submit">Guardar</button>
     </form>
     <button class="cancel-button" mat-raised-button color="default" type="button" [routerLink]="'/prestamo'">
       Cancelar

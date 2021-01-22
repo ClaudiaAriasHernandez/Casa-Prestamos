@@ -38,7 +38,7 @@ export class CrearClienteComponent implements OnInit {
     }
     this.clienteServices.guardar(this.clienteForm.value).subscribe((respuesta) => {
       console.log(respuesta);
-      this.notificationService.success('Se creo el cliente de forma exitosa.');
+      this.notificationService.success('Se creo el cliente de forma exitosa');
       this.router.navigateByUrl('/cliente/listar');
     });
   }

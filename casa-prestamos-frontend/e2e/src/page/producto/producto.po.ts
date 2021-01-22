@@ -1,4 +1,4 @@
-import { by, element } from 'protractor';
+/*import { by, element } from 'protractor';
 
 export class ProductoPage {
     private linkCrearProducto = element(by.id('linkCrearProducto'));
@@ -27,3 +27,4 @@ export class ProductoPage {
         return this.listaProductos.count();
     }
 }
+*/

@@ -70,7 +70,7 @@ export class CrearPrestamoComponent implements OnInit {
     };
     this.prestamoService.guardar(datosCrear).subscribe((respuesta) => {
       console.log(respuesta);
-      this.notificationService.success('Se creó el prestamo al cliente de forma exitosa.');
+      this.notificationService.success('Se creo el prestamo al cliente de forma exitosa');
       this.router.navigateByUrl('/prestamo/listar');
     });
   }

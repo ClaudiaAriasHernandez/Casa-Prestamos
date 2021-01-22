@@ -14,12 +14,14 @@ export class ClienteComponent {
       image: 'actualizar.png',
       content: 'Permite actualizar las información del cliente.',
       url: '/cliente/actualizar',
+
     },
     {
       title: 'Crear',
       image: 'crear.png',
       content: 'Permite crear un nuevo cliente.',
       url: '/cliente/crear',
+      id: 'linkCrearCliente'
     },
     {
       title: 'Eliminar',
@@ -32,6 +34,7 @@ export class ClienteComponent {
       image: 'consultar.png',
       content: 'Permite consultar un cliente.',
       url: '/cliente/listar',
+      id: 'linkListarClientes',
     }
   ];
 

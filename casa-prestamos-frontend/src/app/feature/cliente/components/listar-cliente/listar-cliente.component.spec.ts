@@ -1,14 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-
 import { ListarClienteComponent } from './listar-cliente.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ClienteService } from '../../shared/service/cliente.service';
-import { Cliente } from '../../shared/model/cliente';
+import { Cliente } from '@shared/model/cliente';
+import { TipoDocumento } from '@shared/model/tipodocumento';
 import { HttpService } from 'src/app/core/services/http.service';
-import { TipoDocumento } from 'src/app/feature/tipodocumento/shared/model/tipodocumento';
 import { MatTableDataSource } from '@angular/material/table';
 
 describe('ListarClienteComponent', () => {

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PrestamoComponent } from './prestamo.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';

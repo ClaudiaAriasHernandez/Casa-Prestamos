@@ -8,24 +8,24 @@
 
 
 <mat-toolbar color="primary">
-  <button mat-icon-button (click)="openSidenav()">
-      <mat-icon>menu</mat-icon>
+
+
+  <span class="menu-spacer"> <strong>Casa Prestamo</strong></span>
+
+  <button  mat-button routerLink="/movements">
+     HOME
   </button>
-  <span class="menu-spacer"></span>
-  <button mat-button routerLink="/movements">
-     HOME 
-  </button>
-  <button mat-button routerLink="/cliente">
+  <button id="linkCliente" mat-button routerLink="/cliente">
  CLIENTE
   </button>
-  <button mat-button routerLink="/tipodocumento">
+  <button id="linkTipodocumento" mat-button routerLink="/tipodocumento">
    TIPO DOCUMENTO
   </button>
-  <button mat-button routerLink="/prestamo">
+  <button id="linkPrestamo" mat-button routerLink="/prestamo">
     PRESTAMO
   </button>
   <!-- <button mat-button [matMenuTriggerFor]="menu">
-    
+
       <mat-icon>more_vert</mat-icon>
   </button>
  <mat-menu #menu="matMenu">

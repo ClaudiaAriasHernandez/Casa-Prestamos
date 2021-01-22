@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-
 import { ListarPrestamoComponent } from './listar-prestamo.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,8 +7,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PrestamoService } from '../../shared/service/prestamo.service';
 import { Prestamo } from '../../shared/model/prestamo';
 import { HttpService } from 'src/app/core/services/http.service';
-import { TipoDocumento } from 'src/app/feature/tipodocumento/shared/model/tipodocumento';
-import { Cliente } from 'src/app/feature/cliente/shared/model/cliente';
+import { Cliente } from '@shared/model/cliente';
+import { TipoDocumento } from '@shared/model/tipodocumento';
 import { NotificationService } from 'src/app/notification.service';
 
 describe('ListarPrestamoComponent', () => {

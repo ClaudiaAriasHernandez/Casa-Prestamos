@@ -1,6 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-
 import { CrearTipoDocumentoComponent } from './crear-tipodocumento.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
