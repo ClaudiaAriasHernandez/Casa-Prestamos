@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image:  claudiaariash/casaprestamos:3.5
+        ports:
+        - containerPort: 8080
+        env:
+          - name: MYSQL_SERVICE
+            value: mysql-service
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  app-service
+spec:
+  type: NodePort
+  selector:
+    app: app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 30100
