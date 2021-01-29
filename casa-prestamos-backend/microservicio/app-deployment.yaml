@@ -19,7 +19,10 @@ spec:
         - containerPort: 8080
         env:
           - name: MYSQL_SERVICE
-            value: mysql-service
+            valueFrom:
+              configMapKeyRef:
+                name: mysql-connection-configmap
+                key: db-connection-string
 ---
 kind: Service
 apiVersion: v1

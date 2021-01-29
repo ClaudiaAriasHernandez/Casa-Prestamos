@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-connection-configmap
+  labels:
+    app: mysql
+data:
+  db-connection-string: mysql-service
