@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: app
-        image:  claudiaariash/casaprestamos:3.7
+        image:  claudiaariash/casaprestamos:3.8
         ports:
         - containerPort: 8080
         env:
@@ -29,11 +29,10 @@ apiVersion: v1
 metadata:
   name:  app-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: app
   ports:
     - protocol: TCP
-      port: 80
+      port: 8080
       targetPort: 8080
-      nodePort: 30100
