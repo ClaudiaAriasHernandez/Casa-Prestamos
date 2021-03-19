@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/tipodocumentos")
+@CrossOrigin(origins = "*")
 @Api(tags = { "Controlador comando tipodocumento"})
 public class ComandoControladorTipoDocumento {
 

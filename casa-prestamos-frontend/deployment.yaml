@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: casaprestamosfrontend
-          image: claudiaariash/casa-prestamos-frontend:1.5
+          image: claudiaariash/casa-prestamos-frontend:1.8
           ports:
             - containerPort: 4200
 ---
